@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
+import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 
@@ -19,8 +20,11 @@ class FlashcardWidget2x2Provider : AppWidgetProvider() {
         // DailyWordWorker immediately so the widget shows real words right away.
         val prefs = context.getSharedPreferences("FlutterHomeWidgetPlugin", Context.MODE_PRIVATE)
         if (prefs.getString("word_0_char", null) == null) {
-            WorkManager.getInstance(context)
-                .enqueue(OneTimeWorkRequestBuilder<DailyWordWorker>().build())
+            WorkManager.getInstance(context).enqueueUniqueWork(
+                "daily_word_immediate",
+                ExistingWorkPolicy.KEEP,
+                OneTimeWorkRequestBuilder<DailyWordWorker>().build()
+            )
         }
         DailyWordWorker.schedule(context)
     }

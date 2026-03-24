@@ -2,6 +2,7 @@ package com.chinesewidget.chinese_reading_widget
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import io.flutter.embedding.android.FlutterActivity
@@ -29,8 +30,11 @@ class MainActivity : FlutterActivity() {
         val storedDay = hwPrefs.getLong("last_epoch_day", -1L)
         val todayDay = System.currentTimeMillis() / 86_400_000L
         if (storedDay < todayDay) {
-            WorkManager.getInstance(this)
-                .enqueue(OneTimeWorkRequestBuilder<DailyWordWorker>().build())
+            WorkManager.getInstance(this).enqueueUniqueWork(
+                "daily_word_immediate",
+                ExistingWorkPolicy.KEEP,
+                OneTimeWorkRequestBuilder<DailyWordWorker>().build()
+            )
         }
     }
 

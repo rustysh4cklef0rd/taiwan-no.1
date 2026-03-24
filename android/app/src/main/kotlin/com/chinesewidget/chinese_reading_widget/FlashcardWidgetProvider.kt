@@ -23,8 +23,11 @@ class FlashcardWidgetProvider : AppWidgetProvider() {
         super.onEnabled(context)
         val prefs = context.getSharedPreferences("FlutterHomeWidgetPlugin", Context.MODE_PRIVATE)
         if (prefs.getString("word_0_char", null) == null) {
-            androidx.work.WorkManager.getInstance(context)
-                .enqueue(androidx.work.OneTimeWorkRequestBuilder<DailyWordWorker>().build())
+            androidx.work.WorkManager.getInstance(context).enqueueUniqueWork(
+                "daily_word_immediate",
+                androidx.work.ExistingWorkPolicy.KEEP,
+                androidx.work.OneTimeWorkRequestBuilder<DailyWordWorker>().build()
+            )
         }
         DailyWordWorker.schedule(context)
     }

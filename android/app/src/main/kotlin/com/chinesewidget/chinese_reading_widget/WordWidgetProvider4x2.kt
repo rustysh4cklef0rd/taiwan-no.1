@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.widget.RemoteViews
+import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 
@@ -75,8 +76,11 @@ class WordWidgetProvider4x2 : AppWidgetProvider() {
             val storedDay = prefs.getLong("last_epoch_day", -1L)
             val todayDay = System.currentTimeMillis() / 86_400_000L
             if (storedDay < todayDay) {
-                WorkManager.getInstance(context)
-                    .enqueue(OneTimeWorkRequestBuilder<DailyWordWorker>().build())
+                WorkManager.getInstance(context).enqueueUniqueWork(
+                    "daily_word_immediate",
+                    ExistingWorkPolicy.KEEP,
+                    OneTimeWorkRequestBuilder<DailyWordWorker>().build()
+                )
             }
 
             val hidePinyin = prefs.getBoolean("hide_pinyin", false)
