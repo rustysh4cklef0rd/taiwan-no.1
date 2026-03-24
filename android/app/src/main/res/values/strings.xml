@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chinese Reading Widget</string>
+    <string name="widget_description_4x2">Shows 6 Traditional Chinese characters for daily reading practice (4×2)</string>
+    <string name="widget_description_2x2">Shows 3 Traditional Chinese characters for daily reading practice (2×2)</string>
+    <string name="widget_description_flashcard">Shows one character at a time with full detail — cycles every 20 minutes</string>
+    <string name="widget_description_flashcard_2x2">Compact flashcard — character + pinyin + speaker button</string>
+</resources>

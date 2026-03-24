@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  4×2 widget layout — 6 word cells (character + pinyin each).
+  RemoteViews-compatible: LinearLayout only, no ConstraintLayout.
+  Light mode variant.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_background"
+    android:padding="8dp">
+
+    <!-- Row 1: words 0, 1, 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Word 0 -->
+        <LinearLayout
+            android:id="@+id/cell_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/word_cell_background"
+            android:layout_margin="3dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/char_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="字"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/pinyin_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="zì"
+                android:textSize="10sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/meaning_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="good"
+                android:textSize="9sp"
+                android:textColor="#999999"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <!-- Word 1 -->
+        <LinearLayout
+            android:id="@+id/cell_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/word_cell_background"
+            android:layout_margin="3dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/char_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="字"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/pinyin_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="zì"
+                android:textSize="10sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/meaning_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="good"
+                android:textSize="9sp"
+                android:textColor="#999999"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <!-- Word 2 -->
+        <LinearLayout
+            android:id="@+id/cell_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/word_cell_background"
+            android:layout_margin="3dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/char_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="字"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/pinyin_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="zì"
+                android:textSize="10sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/meaning_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="good"
+                android:textSize="9sp"
+                android:textColor="#999999"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Row 2: words 3, 4, 5 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Word 3 -->
+        <LinearLayout
+            android:id="@+id/cell_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/word_cell_background"
+            android:layout_margin="3dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/char_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="字"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/pinyin_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="zì"
+                android:textSize="10sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/meaning_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="good"
+                android:textSize="9sp"
+                android:textColor="#999999"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <!-- Word 4 -->
+        <LinearLayout
+            android:id="@+id/cell_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/word_cell_background"
+            android:layout_margin="3dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/char_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="字"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/pinyin_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="zì"
+                android:textSize="10sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/meaning_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="good"
+                android:textSize="9sp"
+                android:textColor="#999999"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <!-- Word 5 -->
+        <LinearLayout
+            android:id="@+id/cell_5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/word_cell_background"
+            android:layout_margin="3dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/char_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="字"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/pinyin_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="zì"
+                android:textSize="10sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/meaning_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="good"
+                android:textSize="9sp"
+                android:textColor="#999999"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2×2 compact flashcard — dark mode. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_background_night"
+    android:gravity="center"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/flashcard_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="好"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#F5F5F5"
+        android:includeFontPadding="false"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/flashcard_pinyin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hǎo"
+        android:textSize="11sp"
+        android:textColor="#AAAAAA"
+        android:layout_marginTop="2dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/flashcard_meaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="good / well"
+        android:textSize="9sp"
+        android:textColor="#777777"
+        android:layout_marginTop="1dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/flashcard_speak_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔊"
+        android:textSize="13sp"
+        android:layout_marginTop="4dp"
+        android:padding="2dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>
