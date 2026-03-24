@@ -73,6 +73,8 @@ Future<void> _pushTodaysWordsToWidget([DateTime? date]) async {
 
     await HomeWidget.updateWidget(androidName: 'WordWidgetProvider4x2');
     await HomeWidget.updateWidget(androidName: 'WordWidgetProvider2x2');
+    await HomeWidget.updateWidget(androidName: 'FlashcardWidgetProvider');
+    await HomeWidget.updateWidget(androidName: 'FlashcardWidget2x2Provider');
   } catch (_) {
     // Silently continue — the widget will update on next WorkManager run.
   }
