@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-03-24 (QA)
+
+### Fixed
+- `lib/main.dart` — `_pushTodaysWordsToWidget` now triggers update for all 4 widget providers (was missing flashcard widgets, causing "…" on first install until WorkManager ran)
+- `MainActivity.kt`, `WordWidgetProvider4x2.kt`, `WordWidgetProvider2x2.kt`, `FlashcardWidgetProvider.kt`, `FlashcardWidget2x2Provider.kt` — all stale-check `enqueue()` calls replaced with `enqueueUniqueWork("daily_word_immediate", KEEP)` to prevent duplicate concurrent workers
+
+### Reverted
+- `DailyWordWorker.kt` + `lib/main.dart` — removed `+1 day` preview offset; app now pushes today's words as intended
+
 ## 2026-03-23 (implementation)
 
 ### Added
