@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-03-25 (widget/app word mismatch fix)
+
+### Fixed
+- `all 4 widget providers` — tap intent now sends `word_id` (stable word ID) instead of slot index; detail screen looks up word by ID in full word list, so tapping a widget card always opens the correct word regardless of how today's list was computed
+- `MainActivity.kt` — reads `word_id` extra and stores as `launch_word_id`; `onNewIntent` also updated
+- `lib/main.dart` — `_resolveInitialRoute` reads `launch_word_id`; `_pendingDetailWordId` carries it to the `/detail` route; home screen now uses `_launchWords` (in-memory cache set by `_pushTodaysWordsToWidget`) guaranteeing it always shows exactly the words pushed to the widget
+- `lib/main.dart` — `_pushTodaysWordsToWidget` now writes `last_epoch_day` as a String (home_widget stores all values as strings; previous `putLong` was unreadable by Flutter, causing stale-check to always fire `DailyWordWorker` and overwrite words)
+- `DailyWordWorker.kt` — `last_epoch_day` migrated from `putLong` to `putString` (with `remove()` first to clear legacy Long)
+- All Kotlin stale checks — read `last_epoch_day` via `getString` with `ClassCastException` fallback for legacy Long values
+- `lib/screens/detail_screen.dart` — `_loadWord` looks up word by ID in full word list instead of `getTodaysWords()[index]`
+- `lib/services/word_service.dart` — added `getWidgetWords()` helper that reconstructs today's word list from widget SharedPreferences by ID
+
 ## 2026-03-24 (QA)
 
 ### Fixed

@@ -57,12 +57,14 @@ class FlashcardWidget2x2Provider : AppWidgetProvider() {
             views.setTextViewText(R.id.flashcard_pinyin, pinyin)
             views.setTextViewText(R.id.flashcard_meaning, meaning)
 
-            // Tap character → open detail screen in app
+            // Tap character → open detail screen in app (pass stable ID not slot)
+            val wordId = prefs.getString("word_${slot}_id", "-1")
+                ?.toIntOrNull() ?: slot
             val tapIntent = Intent(context, MainActivity::class.java).apply {
                 action = Intent.ACTION_MAIN
                 addCategory(Intent.CATEGORY_LAUNCHER)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                putExtra("word_index", slot)
+                putExtra("word_id", wordId)
             }
             views.setOnClickPendingIntent(
                 R.id.flashcard_character,

@@ -50,7 +50,11 @@ class WordWidgetProvider2x2 : AppWidgetProvider() {
 
             val views = RemoteViews(context.packageName, layoutId)
 
-            val storedDay = prefs.getLong("last_epoch_day", -1L)
+            val storedDay = try {
+                prefs.getString("last_epoch_day", "-1")?.toLongOrNull() ?: -1L
+            } catch (_: ClassCastException) {
+                try { prefs.getLong("last_epoch_day", -1L) } catch (_: Exception) { -1L }
+            }
             val todayDay = System.currentTimeMillis() / 86_400_000L
             if (storedDay < todayDay) {
                 WorkManager.getInstance(context).enqueueUniqueWork(
@@ -72,11 +76,13 @@ class WordWidgetProvider2x2 : AppWidgetProvider() {
                 val meaning = prefs.getString("word_${slot}_meaning", "") ?: ""
                 views.setTextViewText(MEANING_IDS[slot], meaning)
 
+                val wordId = prefs.getString("word_${slot}_id", "-1")
+                    ?.toIntOrNull() ?: slot
                 val tapIntent = Intent(context, MainActivity::class.java).apply {
                     action = Intent.ACTION_MAIN
                     addCategory(Intent.CATEGORY_LAUNCHER)
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    putExtra(EXTRA_WORD_INDEX, slot)
+                    putExtra("word_id", wordId)
                 }
 
                 val pendingIntent = PendingIntent.getActivity(

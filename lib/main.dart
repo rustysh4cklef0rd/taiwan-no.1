@@ -12,6 +12,14 @@ import 'services/word_service.dart';
 // Entry point
 // ─────────────────────────────────────────────────────────────────────────────
 
+/// Word ID stored here when the app is cold-started from a widget tap,
+/// so the initial /detail route can pass the correct word to DetailScreen.
+int? _pendingDetailWordId;
+
+/// Words written to the widget prefs on this launch — the home screen reads
+/// this directly so it always shows exactly what was pushed to the widget.
+List<Word>? _launchWords;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -53,6 +61,7 @@ Future<void> _pushTodaysWordsToWidget([DateTime? date]) async {
   try {
     final target = date ?? DateTime.now();
     final List<Word> words = await WordService.getTodaysWords(target);
+    _launchWords = words; // cache so HomeScreen uses the exact same list
 
     for (int i = 0; i < words.length; i++) {
       final w = words[i];
@@ -70,6 +79,12 @@ Future<void> _pushTodaysWordsToWidget([DateTime? date]) async {
 
     await HomeWidget.saveWidgetData<String>(
         'last_updated', target.toIso8601String());
+    // Write epoch day as string so the Kotlin stale-check can read it
+    // (home_widget stores values as strings; getLong() can't read them).
+    final epochDay =
+        target.toUtc().difference(DateTime.utc(1970, 1, 1)).inDays;
+    await HomeWidget.saveWidgetData<String>(
+        'last_epoch_day', epochDay.toString());
 
     await HomeWidget.updateWidget(androidName: 'WordWidgetProvider4x2');
     await HomeWidget.updateWidget(androidName: 'WordWidgetProvider2x2');
@@ -83,16 +98,17 @@ Future<void> _pushTodaysWordsToWidget([DateTime? date]) async {
 /// Determines which screen to open on launch.
 ///
 /// Priority:
-///   1. Widget tap: home_widget passes `launch_word_index` via intent extra.
+///   1. Widget tap: home_widget passes `launch_word_id` via intent extra.
 ///   2. Onboarding not complete → '/onboarding'
 ///   3. Otherwise → '/home'
 Future<String> _resolveInitialRoute(SharedPreferences prefs) async {
   try {
-    final dynamic tappedIndex =
-        await HomeWidget.getWidgetData<int>('launch_word_index');
-    if (tappedIndex != null && tappedIndex.toString().isNotEmpty) {
-      // Clear after reading so the next cold start doesn't re-open detail.
-      await HomeWidget.saveWidgetData<String>('launch_word_index', '');
+    final dynamic wordId =
+        await HomeWidget.getWidgetData<int>('launch_word_id');
+    if (wordId is int && wordId > 0) {
+      _pendingDetailWordId = wordId;
+      // Clear so the next cold start doesn't re-open detail.
+      await HomeWidget.saveWidgetData<int>('launch_word_id', -1);
       return '/detail';
     }
   } catch (_) {}
@@ -218,9 +234,14 @@ class _ChineseReadingAppState extends State<ChineseReadingApp> {
           settings: settings,
         );
       case '/detail':
+        // Prefer explicit route argument; fall back to cold-start pending ID.
+        final wordId = (settings.arguments is int)
+            ? settings.arguments as int
+            : _pendingDetailWordId;
+        _pendingDetailWordId = null; // consume
         return MaterialPageRoute(
           builder: (_) => const DetailScreen(),
-          settings: settings,
+          settings: RouteSettings(name: '/detail', arguments: wordId),
         );
       default:
         return MaterialPageRoute(
@@ -253,7 +274,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _load() async {
-    final words = await WordService.getTodaysWords(DateTime.now());
+    // Use the words that were pushed to the widget on this launch — guarantees
+    // the home screen shows exactly what was written to the widget prefs.
+    final words = _launchWords ?? await WordService.getTodaysWords(DateTime.now());
     if (mounted) {
       setState(() {
         _words = words;
@@ -314,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           word: w,
                           onTap: () => Navigator.of(context).pushNamed(
                             '/detail',
-                            arguments: index,
+                            arguments: w.id,
                           ),
                         );
                       },

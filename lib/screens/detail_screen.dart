@@ -80,17 +80,21 @@ class _DetailScreenState extends State<DetailScreen> {
 
   Future<void> _loadWord() async {
     final args = ModalRoute.of(context)?.settings.arguments;
-    int wordIndex = 0;
-    if (args is int) {
-      wordIndex = args;
-    } else if (args is Map) {
-      wordIndex = (args['word_index'] as int?) ?? 0;
-    }
+    // Arguments are always a word ID (int) — set by HomeScreen or widget tap.
+    final int? wordId = args is int ? args : null;
 
     try {
-      final todaysWords = await WordService.getTodaysWords(DateTime.now());
-      final safeIndex = wordIndex.clamp(0, todaysWords.length - 1);
-      final word = todaysWords[safeIndex];
+      Word word;
+      if (wordId != null) {
+        final allWords = await WordService.loadWordList();
+        word = allWords.firstWhere(
+          (w) => w.id == wordId,
+          orElse: () => allWords.first,
+        );
+      } else {
+        final todaysWords = await WordService.getTodaysWords(DateTime.now());
+        word = todaysWords.first;
+      }
       await WordService.recordTap(word.id);
       final recognized = await WordService.isRecognized(word.id);
       if (mounted) {

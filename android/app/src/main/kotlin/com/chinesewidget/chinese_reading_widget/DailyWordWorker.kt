@@ -92,7 +92,11 @@ class DailyWordWorker(context: Context, params: WorkerParameters) :
             editor.putString("word_${i}_id", w.id.toString())
         }
         editor.putString("last_updated", System.currentTimeMillis().toString())
-        editor.putLong("last_epoch_day", System.currentTimeMillis() / 86_400_000L)
+        // Store as String so Flutter's home_widget (which uses putString) and
+        // Kotlin can both read the same value with getString().
+        // Remove first to clear any legacy Long value before writing String.
+        editor.remove("last_epoch_day")
+        editor.putString("last_epoch_day", (System.currentTimeMillis() / 86_400_000L).toString())
         editor.apply()
     }
 

@@ -19,6 +19,27 @@ class WordService {
     return _cachedWords!;
   }
 
+  /// Returns the 6 words currently stored in the widget SharedPreferences.
+  ///
+  /// These are the same words the home-screen widget displays, so the app home
+  /// screen will always be in sync with the widget. Falls back to
+  /// [getTodaysWords] if the prefs haven't been populated yet.
+  static Future<List<Word>> getWidgetWords() async {
+    final allWords = await loadWordList();
+    final result = <Word>[];
+    for (int i = 0; i < 6; i++) {
+      final idStr = await HomeWidget.getWidgetData<String>('word_${i}_id');
+      if (idStr == null || idStr.isEmpty) break;
+      final id = int.tryParse(idStr);
+      if (id == null) break;
+      final matches = allWords.where((w) => w.id == id);
+      if (matches.isEmpty) break;
+      result.add(matches.first);
+    }
+    if (result.isEmpty) return getTodaysWords(DateTime.now());
+    return result;
+  }
+
   /// Returns 6 words for [date].
   ///
   /// Priority order:
