@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-03-27 (README)
+
+### Changed
+- `README.md` — replaced Flutter boilerplate with full app description: features, word sets, tech stack, install instructions
+
 ## 2026-03-27
 
 ### Added
