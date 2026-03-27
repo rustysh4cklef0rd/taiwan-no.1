@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.util.Log
 import android.widget.RemoteViews
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -24,6 +25,19 @@ import androidx.work.WorkManager
  */
 class WordWidgetProvider4x2 : AppWidgetProvider() {
 
+    /** Bootstrap: fire DailyWordWorker once if the app has never been opened. */
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        val prefs = context.getSharedPreferences("HomeWidgetPreferences", Context.MODE_PRIVATE)
+        if (prefs.getString("word_0_char", null) == null) {
+            WorkManager.getInstance(context).enqueueUniqueWork(
+                "daily_word_immediate",
+                ExistingWorkPolicy.KEEP,
+                OneTimeWorkRequestBuilder<DailyWordWorker>().build()
+            )
+        }
+    }
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -36,7 +50,7 @@ class WordWidgetProvider4x2 : AppWidgetProvider() {
 
     companion object {
 
-        private const val PREFS_NAME = "FlutterHomeWidgetPlugin"
+        private const val PREFS_NAME = "HomeWidgetPreferences"
         private const val EXTRA_WORD_INDEX = "word_index"
 
         /** Cell view IDs in order (slot 0..5). */
@@ -72,20 +86,7 @@ class WordWidgetProvider4x2 : AppWidgetProvider() {
 
             val views = RemoteViews(context.packageName, layoutId)
 
-            // Stale check: if words are from a previous day, queue an immediate refresh.
-            val storedDay = try {
-                prefs.getString("last_epoch_day", "-1")?.toLongOrNull() ?: -1L
-            } catch (_: ClassCastException) {
-                try { prefs.getLong("last_epoch_day", -1L) } catch (_: Exception) { -1L }
-            }
-            val todayDay = System.currentTimeMillis() / 86_400_000L
-            if (storedDay < todayDay) {
-                WorkManager.getInstance(context).enqueueUniqueWork(
-                    "daily_word_immediate",
-                    ExistingWorkPolicy.KEEP,
-                    OneTimeWorkRequestBuilder<DailyWordWorker>().build()
-                )
-            }
+            Log.d("CWDBG", "4x2 onUpdate: word_0=${prefs.getString("word_0_char", "MISSING")} last_epoch_day=${prefs.getString("last_epoch_day", "MISSING")}")
 
             val hidePinyin = prefs.getBoolean("hide_pinyin", false)
 

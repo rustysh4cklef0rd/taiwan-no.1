@@ -16,6 +16,19 @@ import androidx.work.WorkManager
  */
 class WordWidgetProvider2x2 : AppWidgetProvider() {
 
+    /** Bootstrap: fire DailyWordWorker once if the app has never been opened. */
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        val prefs = context.getSharedPreferences("HomeWidgetPreferences", Context.MODE_PRIVATE)
+        if (prefs.getString("word_0_char", null) == null) {
+            WorkManager.getInstance(context).enqueueUniqueWork(
+                "daily_word_immediate",
+                ExistingWorkPolicy.KEEP,
+                OneTimeWorkRequestBuilder<DailyWordWorker>().build()
+            )
+        }
+    }
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -28,7 +41,7 @@ class WordWidgetProvider2x2 : AppWidgetProvider() {
 
     companion object {
 
-        private const val PREFS_NAME = "FlutterHomeWidgetPlugin"
+        private const val PREFS_NAME = "HomeWidgetPreferences"
         private const val EXTRA_WORD_INDEX = "word_index"
 
         private val CELL_IDS   = intArrayOf(R.id.cell_0,   R.id.cell_1,   R.id.cell_2,   R.id.cell_3,   R.id.cell_4,   R.id.cell_5)
@@ -49,20 +62,6 @@ class WordWidgetProvider2x2 : AppWidgetProvider() {
                            else R.layout.widget_layout_2x2
 
             val views = RemoteViews(context.packageName, layoutId)
-
-            val storedDay = try {
-                prefs.getString("last_epoch_day", "-1")?.toLongOrNull() ?: -1L
-            } catch (_: ClassCastException) {
-                try { prefs.getLong("last_epoch_day", -1L) } catch (_: Exception) { -1L }
-            }
-            val todayDay = System.currentTimeMillis() / 86_400_000L
-            if (storedDay < todayDay) {
-                WorkManager.getInstance(context).enqueueUniqueWork(
-                    "daily_word_immediate",
-                    ExistingWorkPolicy.KEEP,
-                    OneTimeWorkRequestBuilder<DailyWordWorker>().build()
-                )
-            }
 
             val hidePinyin = prefs.getBoolean("hide_pinyin", false)
 

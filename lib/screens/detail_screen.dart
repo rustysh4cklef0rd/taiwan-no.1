@@ -129,7 +129,8 @@ class _DetailScreenState extends State<DetailScreen> {
       await _tts!.stop();
       return;
     }
-    await _tts!.speak(_word!.phrase);
+    final textToSpeak = _word!.phrase.isNotEmpty ? _word!.phrase : _word!.character;
+    await _tts!.speak(textToSpeak);
   }
 
   Future<void> _toggleRecognized() async {
@@ -239,8 +240,9 @@ class _DetailScreenState extends State<DetailScreen> {
             Text(
               word.character,
               style: TextStyle(
+                fontFamily: 'serif',
                 fontSize: 120,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w900,
                 color: colorScheme.onSurface,
                 height: 1.0,
               ),
@@ -293,14 +295,28 @@ class _DetailScreenState extends State<DetailScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                word.character,
-                style: TextStyle(
-                  fontSize: 96,
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.onSurface,
-                  height: 1.1,
-                ),
+              Column(
+                children: [
+                  Text(
+                    word.character,
+                    style: TextStyle(
+                      fontFamily: 'serif',
+                      fontSize: 112,
+                      fontWeight: FontWeight.w900,
+                      color: colorScheme.onSurface,
+                      height: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    width: 36,
+                    height: 2.5,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFC9372C),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(width: 12),
               _SpeakButton(
@@ -324,13 +340,26 @@ class _DetailScreenState extends State<DetailScreen> {
           const SizedBox(height: 12),
 
           // ── Meaning ────────────────────────────────────────────────────
-          Text(
-            word.meaning,
-            style: textTheme.bodyLarge?.copyWith(
-              color: colorScheme.onSurfaceVariant,
-              fontSize: 16,
-            ),
-            textAlign: TextAlign.center,
+          // Left-align when text wraps (easier to read); center when it fits.
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final style = textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+                fontSize: 16,
+              );
+              final tp = TextPainter(
+                text: TextSpan(text: word.meaning, style: style),
+                maxLines: 1,
+                textDirection: TextDirection.ltr,
+              )..layout(maxWidth: constraints.maxWidth);
+              final align =
+                  tp.didExceedMaxLines ? TextAlign.left : TextAlign.center;
+              return Text(
+                word.meaning,
+                style: style,
+                textAlign: align,
+              );
+            },
           ),
           const SizedBox(height: 40),
 
@@ -452,12 +481,33 @@ class _PhraseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (word.phrase.isEmpty) {
+      return Container(
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        child: Center(
+          child: Text(
+            'Example phrase coming soon',
+            style: textTheme.bodySmall?.copyWith(color: colorScheme.outline),
+          ),
+        ),
+      );
+    }
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(16),
+        border: Border(
+          left: BorderSide(
+            color: const Color(0xFFC9372C),
+            width: 3,
+          ),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -480,8 +530,9 @@ class _PhraseCard extends StatelessWidget {
                     Text(
                       word.phrase,
                       style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
+                        fontFamily: 'serif',
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
                         color: colorScheme.onSurface,
                         height: 1.2,
                       ),

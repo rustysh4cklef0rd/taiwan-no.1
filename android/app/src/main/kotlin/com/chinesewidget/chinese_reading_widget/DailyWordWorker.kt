@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.work.*
 import org.json.JSONArray
 import java.io.BufferedReader
@@ -22,47 +23,87 @@ class DailyWordWorker(context: Context, params: WorkerParameters) :
     CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
+        Log.d("CWDBG", "DailyWordWorker.doWork: STARTED")
         return try {
             val words = loadWordList()
             val todaysWords = getTodaysWords(words)
+            Log.d("CWDBG", "DailyWordWorker: writing words=${todaysWords.map { "${it.character}(${it.id})" }}")
             writeWordsToPrefs(todaysWords)
             triggerWidgetUpdate()
+            Log.d("CWDBG", "DailyWordWorker.doWork: DONE")
             Result.success()
         } catch (e: Exception) {
+            Log.e("CWDBG", "DailyWordWorker.doWork: FAILED $e")
             Result.retry()
         }
     }
 
     private fun loadWordList(): JSONArray {
         val assetManager = applicationContext.assets
-        // Flutter bundles assets under flutter_assets/
-        val stream = assetManager.open("flutter_assets/assets/data/words.json")
-        val reader = BufferedReader(InputStreamReader(stream))
-        val json = reader.readText()
-        reader.close()
-        return JSONArray(json)
+        // Flutter bundles assets under flutter_assets/. Load all 4 files and merge.
+        val filePaths = listOf(
+            "flutter_assets/assets/data/words_set1.json",
+            "flutter_assets/assets/data/words_set2.json",
+            "flutter_assets/assets/data/words_set3.json",
+            "flutter_assets/assets/data/words_set4.json",
+        )
+        val combined = JSONArray()
+        for (path in filePaths) {
+            try {
+                val stream = assetManager.open(path)
+                val reader = BufferedReader(InputStreamReader(stream))
+                val json = reader.readText()
+                reader.close()
+                val part = JSONArray(json)
+                for (i in 0 until part.length()) {
+                    combined.put(part.getJSONObject(i))
+                }
+            } catch (e: Exception) {
+                Log.w("CWDBG", "DailyWordWorker: skipping missing asset $path: $e")
+            }
+        }
+        if (combined.length() == 0) throw IllegalStateException("No word files could be loaded")
+        return combined
     }
 
     private fun getTodaysWords(words: JSONArray): List<WordEntry> {
         // Read recognized IDs saved by Flutter and filter them out.
-        val prefs = applicationContext.getSharedPreferences(
-            "FlutterHomeWidgetPlugin", Context.MODE_PRIVATE
+        val widgetPrefs = applicationContext.getSharedPreferences(
+            "HomeWidgetPreferences", Context.MODE_PRIVATE
         )
-        val recognizedRaw = prefs.getString("recognized_ids", "") ?: ""
+        val recognizedRaw = widgetPrefs.getString("recognized_ids", "") ?: ""
         val recognizedIds = if (recognizedRaw.isBlank()) emptySet<Int>()
             else recognizedRaw.split(",").mapNotNull { it.trim().toIntOrNull() }.toSet()
 
-        // Build a list of indices for unrecognized words.
+        // Read active set from Flutter's SharedPreferences (keys prefixed with "flutter.").
+        val flutterPrefs = applicationContext.getSharedPreferences(
+            "FlutterSharedPreferences", Context.MODE_PRIVATE
+        )
+        val activeSet = flutterPrefs.getInt("flutter.active_set", 1)
+
+        // Set max IDs: index matches set number (0 unused).
+        val setMaxIds = listOf(0, 312, 625, 937, 1250)
+        val maxId = setMaxIds.getOrElse(activeSet) { 1250 }
+
+        // Build a list of indices for unrecognized words within the active set.
         val poolIndices = (0 until words.length()).filter { i ->
-            !recognizedIds.contains(words.getJSONObject(i).getInt("id"))
+            val word = words.getJSONObject(i)
+            val id = word.getInt("id")
+            !recognizedIds.contains(id) && id <= maxId
         }
-        // Fall back to full list if every word is mastered.
+        // Fall back to active-set words only (ignore recognized filter) if everything mastered.
+        val setIndices = (0 until words.length()).filter { i ->
+            words.getJSONObject(i).getInt("id") <= maxId
+        }
         val effectiveIndices = if (poolIndices.isEmpty())
-            (0 until words.length()).toList()
+            if (setIndices.isEmpty()) (0 until words.length()).toList() else setIndices
         else poolIndices
 
         val epochDay = System.currentTimeMillis() / 86_400_000L
-        val startIndex = ((epochDay * 6) % effectiveIndices.size).toInt()
+        // Anchor rotation to install date so day 1 = words 1-6.
+        val installEpochDay = flutterPrefs.getInt("flutter.install_epoch_day", -1).toLong()
+        val rotationDay = if (installEpochDay < 0) 0L else (epochDay - installEpochDay)
+        val startIndex = ((rotationDay * 6) % effectiveIndices.size).toInt()
 
         return (0 until 6).map { i ->
             val obj = words.getJSONObject(effectiveIndices[(startIndex + i) % effectiveIndices.size])
@@ -80,7 +121,7 @@ class DailyWordWorker(context: Context, params: WorkerParameters) :
 
     private fun writeWordsToPrefs(words: List<WordEntry>) {
         val prefs: SharedPreferences = applicationContext
-            .getSharedPreferences("FlutterHomeWidgetPlugin", Context.MODE_PRIVATE)
+            .getSharedPreferences("HomeWidgetPreferences", Context.MODE_PRIVATE)
         val editor = prefs.edit()
         words.forEachIndexed { i, w ->
             editor.putString("word_${i}_char", w.character)

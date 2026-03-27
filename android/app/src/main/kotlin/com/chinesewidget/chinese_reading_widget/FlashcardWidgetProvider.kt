@@ -21,7 +21,7 @@ class FlashcardWidgetProvider : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         super.onEnabled(context)
-        val prefs = context.getSharedPreferences("FlutterHomeWidgetPlugin", Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences("HomeWidgetPreferences", Context.MODE_PRIVATE)
         if (prefs.getString("word_0_char", null) == null) {
             androidx.work.WorkManager.getInstance(context).enqueueUniqueWork(
                 "daily_word_immediate",
@@ -43,7 +43,7 @@ class FlashcardWidgetProvider : AppWidgetProvider() {
     }
 
     companion object {
-        private const val PREFS_NAME = "FlutterHomeWidgetPlugin"
+        private const val PREFS_NAME = "HomeWidgetPreferences"
 
         fun updateWidget(
             context: Context,

@@ -18,7 +18,7 @@ class FlashcardWidget2x2Provider : AppWidgetProvider() {
         super.onEnabled(context)
         // Bootstrap: if word data doesn't exist yet (app never opened), run
         // DailyWordWorker immediately so the widget shows real words right away.
-        val prefs = context.getSharedPreferences("FlutterHomeWidgetPlugin", Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences("HomeWidgetPreferences", Context.MODE_PRIVATE)
         if (prefs.getString("word_0_char", null) == null) {
             WorkManager.getInstance(context).enqueueUniqueWork(
                 "daily_word_immediate",
@@ -38,7 +38,7 @@ class FlashcardWidget2x2Provider : AppWidgetProvider() {
     }
 
     companion object {
-        private const val PREFS = "FlutterHomeWidgetPlugin"
+        private const val PREFS = "HomeWidgetPreferences"
 
         fun updateWidget(context: Context, manager: AppWidgetManager, widgetId: Int) {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)

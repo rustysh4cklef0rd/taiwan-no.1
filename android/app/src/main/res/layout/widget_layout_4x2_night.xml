@@ -32,6 +32,7 @@
             <TextView
                 android:id="@+id/char_0"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="字"
                 android:textSize="28sp"
@@ -42,6 +43,7 @@
             <TextView
                 android:id="@+id/pinyin_0"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
@@ -51,12 +53,13 @@
             <TextView
                 android:id="@+id/meaning_0"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
                 android:textColor="#777777"
                 android:layout_marginTop="1dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -76,6 +79,7 @@
             <TextView
                 android:id="@+id/char_1"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="字"
                 android:textSize="28sp"
@@ -86,6 +90,7 @@
             <TextView
                 android:id="@+id/pinyin_1"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
@@ -95,12 +100,13 @@
             <TextView
                 android:id="@+id/meaning_1"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
                 android:textColor="#777777"
                 android:layout_marginTop="1dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -120,6 +126,7 @@
             <TextView
                 android:id="@+id/char_2"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="字"
                 android:textSize="28sp"
@@ -130,6 +137,7 @@
             <TextView
                 android:id="@+id/pinyin_2"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
@@ -139,12 +147,13 @@
             <TextView
                 android:id="@+id/meaning_2"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
                 android:textColor="#777777"
                 android:layout_marginTop="1dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -172,6 +181,7 @@
             <TextView
                 android:id="@+id/char_3"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="字"
                 android:textSize="28sp"
@@ -182,6 +192,7 @@
             <TextView
                 android:id="@+id/pinyin_3"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
@@ -191,12 +202,13 @@
             <TextView
                 android:id="@+id/meaning_3"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
                 android:textColor="#777777"
                 android:layout_marginTop="1dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -216,6 +228,7 @@
             <TextView
                 android:id="@+id/char_4"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="字"
                 android:textSize="28sp"
@@ -226,6 +239,7 @@
             <TextView
                 android:id="@+id/pinyin_4"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
@@ -235,12 +249,13 @@
             <TextView
                 android:id="@+id/meaning_4"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
                 android:textColor="#777777"
                 android:layout_marginTop="1dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -260,6 +275,7 @@
             <TextView
                 android:id="@+id/char_5"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="字"
                 android:textSize="28sp"
@@ -270,6 +286,7 @@
             <TextView
                 android:id="@+id/pinyin_5"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
@@ -279,12 +296,13 @@
             <TextView
                 android:id="@+id/meaning_5"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nunito"
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
                 android:textColor="#777777"
                 android:layout_marginTop="1dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>

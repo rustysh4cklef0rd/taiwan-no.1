@@ -3,6 +3,8 @@ import 'package:home_widget/home_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/word.dart';
 import '../services/word_service.dart';
+import 'package:chinese_reading_widget/main.dart'
+    show pushTodaysWordsToWidget, simulatedDayOffset, saveDayOffset, effectiveDate;
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -190,6 +192,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 const SizedBox(height: 32),
 
+                // ── Word sets ────────────────────────────────────────────
+                Text(
+                  'WORD SETS',
+                  style: textTheme.labelSmall?.copyWith(
+                    color: colorScheme.outline,
+                    letterSpacing: 1.4,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                _WordSetsCard(
+                  colorScheme: colorScheme,
+                  textTheme: textTheme,
+                  onUnlock: () => setState(() {}),
+                ),
+                const SizedBox(height: 32),
+
                 // ── Progress card ────────────────────────────────────────
                 _ProgressCard(
                   dayOfCycle: _dayOfCycle,
@@ -345,7 +363,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             color: colorScheme.primary),
                         title: const Text('Word list'),
                         trailing: Text(
-                          '200 characters',
+                          '1,250 characters',
                           style: textTheme.bodySmall
                               ?.copyWith(color: colorScheme.outline),
                         ),
@@ -361,6 +379,91 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ?.copyWith(color: colorScheme.outline),
                         ),
                       ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 32),
+
+                // ── Day navigation (debug) ────────────────────────────────
+                Text(
+                  'DAY NAVIGATION',
+                  style: textTheme.labelSmall?.copyWith(
+                    color: colorScheme.error,
+                    letterSpacing: 1.4,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Card(
+                  margin: EdgeInsets.zero,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 14),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                icon: const Icon(Icons.arrow_back, size: 16),
+                                label: const Text('Prev day'),
+                                onPressed: () async {
+                                  final nav = Navigator.of(context);
+                                  await saveDayOffset(simulatedDayOffset - 1);
+                                  await pushTodaysWordsToWidget(effectiveDate);
+                                  if (!mounted) return;
+                                  nav.pushNamedAndRemoveUntil(
+                                      '/home', (_) => false);
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              child: Text(
+                                simulatedDayOffset == 0
+                                    ? 'Today'
+                                    : 'Day ${simulatedDayOffset > 0 ? '+' : ''}$simulatedDayOffset',
+                                style: textTheme.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: simulatedDayOffset == 0
+                                      ? colorScheme.outline
+                                      : colorScheme.error,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: FilledButton.icon(
+                                icon: const Icon(Icons.arrow_forward, size: 16),
+                                label: const Text('Next day'),
+                                onPressed: () async {
+                                  final nav = Navigator.of(context);
+                                  await saveDayOffset(simulatedDayOffset + 1);
+                                  await pushTodaysWordsToWidget(effectiveDate);
+                                  if (!mounted) return;
+                                  nav.pushNamedAndRemoveUntil(
+                                      '/home', (_) => false);
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (simulatedDayOffset != 0) ...[
+                        const Divider(height: 1),
+                        ListTile(
+                          leading:
+                              Icon(Icons.today_outlined, color: colorScheme.error),
+                          title: const Text('Reset to today'),
+                          onTap: () async {
+                            final nav = Navigator.of(context);
+                            await saveDayOffset(0);
+                            await pushTodaysWordsToWidget(effectiveDate);
+                            if (!mounted) return;
+                            nav.pushNamedAndRemoveUntil(
+                                '/home', (_) => false);
+                          },
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -722,7 +825,7 @@ class _ProgressCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'The widget cycles through all 200 characters every $cycleDays days, then starts again.',
+            'The widget cycles through all 1,250 characters every $cycleDays days, then starts again.',
             style: textTheme.bodySmall?.copyWith(
               color: colorScheme.onPrimaryContainer.withAlpha(160),
             ),
@@ -846,6 +949,198 @@ class _ReviewRow extends StatelessWidget {
               color: colorScheme.primary, size: 20)
           : Icon(Icons.radio_button_unchecked,
               color: colorScheme.outline, size: 20),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Word sets card
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _WordSetsCard extends StatelessWidget {
+  const _WordSetsCard({
+    required this.colorScheme,
+    required this.textTheme,
+    required this.onUnlock,
+  });
+
+  final ColorScheme colorScheme;
+  final TextTheme textTheme;
+  final VoidCallback onUnlock;
+
+  static const _setLabels = [
+    'Set 1 — Characters 1–312',
+    'Set 2 — Characters 313–625',
+    'Set 3 — Characters 626–937',
+    'Set 4 — Characters 938–1250',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<_WordSetsData>(
+      future: _loadData(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Card(
+            margin: EdgeInsets.zero,
+            child: Padding(
+              padding: EdgeInsets.all(24),
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          );
+        }
+        final data = snapshot.data!;
+        return Card(
+          margin: EdgeInsets.zero,
+          child: Column(
+            children: [
+              for (int i = 0; i < 4; i++) ...[
+                if (i > 0) const Divider(height: 1, indent: 16),
+                _SetRow(
+                  setNum: i + 1,
+                  label: _setLabels[i],
+                  stats: data.stats[i],
+                  isLocked: (i + 1) > data.activeSet,
+                  canUnlock: (i + 1) == data.activeSet + 1 && data.canUnlock,
+                  colorScheme: colorScheme,
+                  textTheme: textTheme,
+                  onUnlock: () async {
+                    await WordService.setActiveSet(i + 1);
+                    await pushTodaysWordsToWidget(effectiveDate);
+                    onUnlock();
+                  },
+                ),
+              ],
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  static Future<_WordSetsData> _loadData() async {
+    final results = await Future.wait([
+      WordService.getActiveSet(),
+      WordService.canUnlockNextSet(),
+      WordService.getSetStats(1),
+      WordService.getSetStats(2),
+      WordService.getSetStats(3),
+      WordService.getSetStats(4),
+    ]);
+    return _WordSetsData(
+      activeSet: results[0] as int,
+      canUnlock: results[1] as bool,
+      stats: [
+        results[2] as ({int total, int recognized, double percentDone}),
+        results[3] as ({int total, int recognized, double percentDone}),
+        results[4] as ({int total, int recognized, double percentDone}),
+        results[5] as ({int total, int recognized, double percentDone}),
+      ],
+    );
+  }
+}
+
+class _WordSetsData {
+  const _WordSetsData({
+    required this.activeSet,
+    required this.canUnlock,
+    required this.stats,
+  });
+  final int activeSet;
+  final bool canUnlock;
+  final List<({int total, int recognized, double percentDone})> stats;
+}
+
+class _SetRow extends StatelessWidget {
+  const _SetRow({
+    required this.setNum,
+    required this.label,
+    required this.stats,
+    required this.isLocked,
+    required this.canUnlock,
+    required this.colorScheme,
+    required this.textTheme,
+    required this.onUnlock,
+  });
+
+  final int setNum;
+  final String label;
+  final ({int total, int recognized, double percentDone}) stats;
+  final bool isLocked;
+  final bool canUnlock;
+  final ColorScheme colorScheme;
+  final TextTheme textTheme;
+  final VoidCallback onUnlock;
+
+  @override
+  Widget build(BuildContext context) {
+    final bool complete = stats.percentDone >= 0.8;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  label,
+                  style: textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: isLocked
+                        ? colorScheme.onSurface.withAlpha(100)
+                        : colorScheme.onSurface,
+                  ),
+                ),
+              ),
+              if (isLocked)
+                Icon(Icons.lock_outline,
+                    size: 18, color: colorScheme.outline)
+              else if (complete)
+                Icon(Icons.check_circle_outline,
+                    size: 18, color: colorScheme.primary),
+            ],
+          ),
+          const SizedBox(height: 8),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: stats.percentDone,
+              minHeight: 6,
+              backgroundColor: colorScheme.surfaceContainerHighest,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                isLocked ? colorScheme.outline : colorScheme.primary,
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Text(
+                '${stats.recognized} / ${stats.total} mastered',
+                style: textTheme.bodySmall?.copyWith(
+                  color: isLocked
+                      ? colorScheme.outline.withAlpha(140)
+                      : colorScheme.outline,
+                ),
+              ),
+              const Spacer(),
+              if (canUnlock)
+                FilledButton.tonal(
+                  onPressed: onUnlock,
+                  style: FilledButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 4),
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  child: Text('Unlock Set $setNum',
+                      style: textTheme.labelSmall),
+                ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

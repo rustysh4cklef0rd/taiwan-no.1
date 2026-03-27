@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-03-26 (1250 words, 4 sets, font, widget alignment)
+
+### Added
+- `assets/data/words_set1–4.json` — 1,250 high-frequency Simplified Chinese characters (from CC-CEDICT frequency list), split into 4 sequential sets (~312 words each); pinyin uses tone diacritics
+- `assets/fonts/Nunito-Regular/SemiBold/Bold.ttf` — Nunito font bundled as app asset (no network download required)
+- `android/app/src/main/res/font/nunito.xml` — downloadable font descriptor for Android widget
+- `android/app/src/main/res/values/font_certs.xml` + `preloaded_fonts.xml` — Google Fonts provider certs for widget font
+
+### Changed
+- `lib/services/word_service.dart` — word list now loads from 4 set files; `getTodaysWords` filters pool by `active_set`; new `getActiveSet`, `setActiveSet`, `getSetStats`, `canUnlockNextSet` methods
+- `DailyWordWorker.kt` — loads from 4 set files with per-file error resilience; respects `active_set` from SharedPreferences
+- `lib/screens/settings_screen.dart` — added "WORD SETS" section with per-set progress bars and unlock buttons; labels updated to "1,250 characters"
+- `lib/main.dart` / `lib/screens/detail_screen.dart` — Nunito applied app-wide via `textTheme.apply(fontFamily: 'Nunito')`; `GoogleFonts.config.allowRuntimeFetching = false` prevents crashes in release builds; NotoSerifSC replaced with system serif for Chinese character display
+- All 8 widget XML layouts — `android:fontFamily="@font/nunito"` on all TextViews; meaning TextViews changed from `gravity="center"` to `gravity="start"` (left-aligned for readability)
+- `lib/screens/detail_screen.dart` — meaning text uses adaptive alignment: centered when it fits one line, left-aligned when it wraps
+- `pubspec.yaml` — replaced `words.json`/`words_201_400.json`/`words_401_600.json` with 4 set files; declared Nunito font family
+
+### Fixed
+- `lib/main.dart` — stale-check `!=` fix (was `<`): widget words now re-pushed on both forward and backward day navigation
+- `lib/screens/detail_screen.dart` — empty phrase guard shows "Example phrase coming soon" placeholder for words 601–1250; TTS falls back to character when phrase is empty
+
+### Removed
+- `assets/data/words.json`, `words_201_400.json`, `words_401_600.json` — replaced by 4 set files
+
 ## 2026-03-25 (widget/app word mismatch fix)
 
 ### Fixed

@@ -15,6 +15,7 @@ dependencies:
   home_widget: ^0.6.0
   flutter_tts: ^4.2.0
   shared_preferences: ^2.3.0
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -25,4 +26,16 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/data/words.json
+    - assets/data/words_set1.json
+    - assets/data/words_set2.json
+    - assets/data/words_set3.json
+    - assets/data/words_set4.json
+
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700

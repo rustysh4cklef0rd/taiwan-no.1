@@ -11,6 +11,7 @@
     <TextView
         android:id="@+id/flashcard_character"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nunito"
         android:layout_height="wrap_content"
         android:text="好"
         android:textSize="72sp"
@@ -22,6 +23,7 @@
     <TextView
         android:id="@+id/flashcard_pinyin"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nunito"
         android:layout_height="wrap_content"
         android:text="hǎo"
         android:textSize="20sp"
@@ -32,15 +34,17 @@
     <TextView
         android:id="@+id/flashcard_meaning"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nunito"
         android:layout_height="wrap_content"
         android:text="good / well"
         android:textSize="14sp"
         android:textColor="#888888"
         android:layout_marginTop="2dp"
-        android:gravity="center" />
+        android:gravity="start" />
 
     <TextView
         android:layout_width="40dp"
+        android:fontFamily="@font/nunito"
         android:layout_height="1dp"
         android:background="#333333"
         android:layout_marginTop="10dp"
@@ -49,6 +53,7 @@
     <TextView
         android:id="@+id/flashcard_phrase"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nunito"
         android:layout_height="wrap_content"
         android:text="你好  •  nǐ hǎo"
         android:textSize="13sp"
@@ -58,6 +63,7 @@
     <TextView
         android:id="@+id/flashcard_phrase_meaning"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nunito"
         android:layout_height="wrap_content"
         android:text="hello / how are you"
         android:textSize="11sp"
@@ -68,6 +74,7 @@
     <TextView
         android:id="@+id/flashcard_speak_btn"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nunito"
         android:layout_height="wrap_content"
         android:text="🔊"
         android:textSize="20sp"

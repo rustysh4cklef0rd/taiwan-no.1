@@ -109,6 +109,11 @@
                 android:value="androidx.startup" />
         </provider>
 
+        <!-- Preloaded fonts — fetched from Google Fonts provider on first run -->
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <!-- Flutter embedding meta-data — do not remove -->
         <meta-data
             android:name="flutterEmbedding"
