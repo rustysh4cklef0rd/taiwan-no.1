@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-03-27
+
+### Added
+- `LICENSE` — proprietary all-rights-reserved notice
+- Code watermarks embedded across four files for ownership verification
+
+### Fixed
+- Widget SharedPreferences key — all native Kotlin code now reads from `HomeWidgetPreferences` (matching what `home_widget` package writes); previously reading from wrong file `FlutterHomeWidgetPlugin`, causing widget never to update on day nav
+- `FlashcardWidgetProvider`, `FlashcardWidget2x2Provider`, `UnlockReceiver`, `DailyWordWorker` — same `HomeWidgetPreferences` fix applied to all remaining providers
+- `UnlockReceiver` now registered dynamically in `MainActivity.onCreate()` — `ACTION_USER_PRESENT` cannot be declared in static manifest; flashcard was never cycling on unlock
+- `_WordTile` Stack uses `StackFit.expand` — tiles were different sizes because Stack gave loose constraints to child Container
+- Dark mode text — explicit `onSurface` / `outline` overrides (`#F2E4DF` / `#CDB8B3`) for better contrast on `#2D2520` tile background
+- Word rotation anchored to install date — `install_epoch_day` recorded on first launch; new installs always start from word 1 instead of mid-cycle based on epoch day
+- `DESIGN.md` — removed local machine path comment that exposed Windows username
+
+### Changed
+- `.gitignore` — added `android/key.properties`, `android/.gradle/`, `design-mockup-*.html`, `plan-*.html`, `android/local.properties`
+
 ## 2026-03-26 (1250 words, 4 sets, font, widget alignment)
 
 ### Added

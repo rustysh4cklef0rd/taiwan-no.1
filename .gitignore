@@ -46,4 +46,16 @@ app.*.map.json
 
 # Android local machine config (SDK paths) — never commit
 android/local.properties
+
+# Android release signing credentials — never commit
+android/key.properties
+
+# Gradle caches
+android/.gradle/
+
+# gstack local files
 .gstack/
+
+# Design/plan HTML files generated during development
+design-mockup-*.html
+plan-*.html

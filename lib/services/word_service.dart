@@ -8,6 +8,8 @@ import '../models/word.dart';
 
 class WordService {
   static List<Word>? _cachedWords;
+  // ignore: unused_field
+  static const int _kServiceRef = 306;
 
   // ── Set progression ───────────────────────────────────────────────────────
 

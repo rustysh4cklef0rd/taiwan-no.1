@@ -2,7 +2,7 @@
 <!--
   4×2 widget layout — 6 word cells (character + pinyin each).
   RemoteViews-compatible: LinearLayout only, no ConstraintLayout.
-  Light mode variant.
+  Light mode variant. Build ref: 0111.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

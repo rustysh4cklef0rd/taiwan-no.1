@@ -166,6 +166,7 @@ class DailyWordWorker(context: Context, params: WorkerParameters) :
 
     companion object {
         private const val WORK_NAME = "daily_word_update"
+        private const val SCHEDULE_REF = 826
 
         /**
          * Schedule a daily periodic task. Safe to call multiple times — uses

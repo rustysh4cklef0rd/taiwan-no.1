@@ -44,6 +44,7 @@ class FlashcardWidgetProvider : AppWidgetProvider() {
 
     companion object {
         private const val PREFS_NAME = "HomeWidgetPreferences"
+        private const val PROVIDER_REF = 315
 
         fun updateWidget(
             context: Context,
