@@ -1,0 +1,3132 @@
+[
+  {
+    "id": 313,
+    "character": "身",
+    "pinyin": "shēn",
+    "meaning": "body / oneself / personally",
+    "phrase": "身上",
+    "phrase_pinyin": "shēn shàng",
+    "phrase_meaning": "on one's body / with one",
+    "frequency_rank": 313
+  },
+  {
+    "id": 314,
+    "character": "快",
+    "pinyin": "kuài",
+    "meaning": "fast / quick / soon / happy",
+    "phrase": "快樂",
+    "phrase_pinyin": "kuài lè",
+    "phrase_meaning": "happy / joyful",
+    "frequency_rank": 314
+  },
+  {
+    "id": 315,
+    "character": "慢",
+    "pinyin": "màn",
+    "meaning": "slow / slowly",
+    "phrase": "慢慢",
+    "phrase_pinyin": "màn màn",
+    "phrase_meaning": "slowly / gradually",
+    "frequency_rank": 315
+  },
+  {
+    "id": 316,
+    "character": "低",
+    "pinyin": "dī",
+    "meaning": "low / below / to lower",
+    "phrase": "低頭",
+    "phrase_pinyin": "dī tóu",
+    "phrase_meaning": "to lower one's head / to yield",
+    "frequency_rank": 316
+  },
+  {
+    "id": 317,
+    "character": "短",
+    "pinyin": "duǎn",
+    "meaning": "short (length) / brief",
+    "phrase": "短暫",
+    "phrase_pinyin": "duǎn zàn",
+    "phrase_meaning": "brief / short-lived",
+    "frequency_rank": 317
+  },
+  {
+    "id": 318,
+    "character": "舊",
+    "pinyin": "jiù",
+    "meaning": "old / used / former",
+    "phrase": "舊式",
+    "phrase_pinyin": "jiù shì",
+    "phrase_meaning": "old style / old-fashioned",
+    "frequency_rank": 318
+  },
+  {
+    "id": 319,
+    "character": "美",
+    "pinyin": "měi",
+    "meaning": "beautiful / America / good",
+    "phrase": "美麗",
+    "phrase_pinyin": "měi lì",
+    "phrase_meaning": "beautiful / gorgeous",
+    "frequency_rank": 319
+  },
+  {
+    "id": 320,
+    "character": "醜",
+    "pinyin": "chǒu",
+    "meaning": "ugly / shameful",
+    "phrase": "醜陋",
+    "phrase_pinyin": "chǒu lòu",
+    "phrase_meaning": "ugly / unsightly",
+    "frequency_rank": 320
+  },
+  {
+    "id": 321,
+    "character": "冷",
+    "pinyin": "lěng",
+    "meaning": "cold / cool",
+    "phrase": "寒冷",
+    "phrase_pinyin": "hán lěng",
+    "phrase_meaning": "cold / frigid",
+    "frequency_rank": 321
+  },
+  {
+    "id": 322,
+    "character": "熱",
+    "pinyin": "rè",
+    "meaning": "hot / heat / fever / popular",
+    "phrase": "熱情",
+    "phrase_pinyin": "rè qíng",
+    "phrase_meaning": "enthusiasm / warmth",
+    "frequency_rank": 322
+  },
+  {
+    "id": 323,
+    "character": "早",
+    "pinyin": "zǎo",
+    "meaning": "early / morning / long ago",
+    "phrase": "早上",
+    "phrase_pinyin": "zǎo shàng",
+    "phrase_meaning": "morning",
+    "frequency_rank": 323
+  },
+  {
+    "id": 324,
+    "character": "晚",
+    "pinyin": "wǎn",
+    "meaning": "evening / late / night",
+    "phrase": "晚上",
+    "phrase_pinyin": "wǎn shàng",
+    "phrase_meaning": "evening / night",
+    "frequency_rank": 324
+  },
+  {
+    "id": 325,
+    "character": "左",
+    "pinyin": "zuǒ",
+    "meaning": "left (direction)",
+    "phrase": "左邊",
+    "phrase_pinyin": "zuǒ biān",
+    "phrase_meaning": "left side",
+    "frequency_rank": 325
+  },
+  {
+    "id": 326,
+    "character": "右",
+    "pinyin": "yòu",
+    "meaning": "right (direction)",
+    "phrase": "右邊",
+    "phrase_pinyin": "yòu biān",
+    "phrase_meaning": "right side",
+    "frequency_rank": 326
+  },
+  {
+    "id": 327,
+    "character": "遠",
+    "pinyin": "yuǎn",
+    "meaning": "far / distant / remote",
+    "phrase": "遠方",
+    "phrase_pinyin": "yuǎn fāng",
+    "phrase_meaning": "distant place / faraway",
+    "frequency_rank": 327
+  },
+  {
+    "id": 328,
+    "character": "近",
+    "pinyin": "jìn",
+    "meaning": "near / close / recently",
+    "phrase": "附近",
+    "phrase_pinyin": "fù jìn",
+    "phrase_meaning": "nearby / in the vicinity",
+    "frequency_rank": 328
+  },
+  {
+    "id": 329,
+    "character": "輕",
+    "pinyin": "qīng",
+    "meaning": "light (weight) / gentle / young",
+    "phrase": "輕鬆",
+    "phrase_pinyin": "qīng sōng",
+    "phrase_meaning": "relaxed / easy",
+    "frequency_rank": 329
+  },
+  {
+    "id": 330,
+    "character": "硬",
+    "pinyin": "yìng",
+    "meaning": "hard / stiff / firm",
+    "phrase": "硬體",
+    "phrase_pinyin": "yìng tǐ",
+    "phrase_meaning": "hardware",
+    "frequency_rank": 330
+  },
+  {
+    "id": 331,
+    "character": "軟",
+    "pinyin": "ruǎn",
+    "meaning": "soft / flexible / weak",
+    "phrase": "軟體",
+    "phrase_pinyin": "ruǎn tǐ",
+    "phrase_meaning": "software",
+    "frequency_rank": 331
+  },
+  {
+    "id": 332,
+    "character": "乾",
+    "pinyin": "gān",
+    "meaning": "dry / clean / only",
+    "phrase": "乾淨",
+    "phrase_pinyin": "gān jìng",
+    "phrase_meaning": "clean / neat",
+    "frequency_rank": 332
+  },
+  {
+    "id": 333,
+    "character": "濕",
+    "pinyin": "shī",
+    "meaning": "wet / damp / moist",
+    "phrase": "潮濕",
+    "phrase_pinyin": "cháo shī",
+    "phrase_meaning": "damp / humid",
+    "frequency_rank": 333
+  },
+  {
+    "id": 334,
+    "character": "亮",
+    "pinyin": "liàng",
+    "meaning": "bright / light / to shine",
+    "phrase": "明亮",
+    "phrase_pinyin": "míng liàng",
+    "phrase_meaning": "bright / well-lit",
+    "frequency_rank": 334
+  },
+  {
+    "id": 335,
+    "character": "暗",
+    "pinyin": "àn",
+    "meaning": "dark / dim / secret",
+    "phrase": "黑暗",
+    "phrase_pinyin": "hēi àn",
+    "phrase_meaning": "darkness",
+    "frequency_rank": 335
+  },
+  {
+    "id": 336,
+    "character": "清",
+    "pinyin": "qīng",
+    "meaning": "clear / clean / pure / Qing dynasty",
+    "phrase": "清楚",
+    "phrase_pinyin": "qīng chǔ",
+    "phrase_meaning": "clear / distinct",
+    "frequency_rank": 336
+  },
+  {
+    "id": 337,
+    "character": "濁",
+    "pinyin": "zhuó",
+    "meaning": "muddy / turbid / unclear",
+    "phrase": "混濁",
+    "phrase_pinyin": "hún zhuó",
+    "phrase_meaning": "turbid / murky",
+    "frequency_rank": 337
+  },
+  {
+    "id": 338,
+    "character": "甜",
+    "pinyin": "tián",
+    "meaning": "sweet",
+    "phrase": "甜蜜",
+    "phrase_pinyin": "tián mì",
+    "phrase_meaning": "sweet / honeyed",
+    "frequency_rank": 338
+  },
+  {
+    "id": 339,
+    "character": "苦",
+    "pinyin": "kǔ",
+    "meaning": "bitter / hardship / suffering",
+    "phrase": "苦惱",
+    "phrase_pinyin": "kǔ nǎo",
+    "phrase_meaning": "distressed / troubled",
+    "frequency_rank": 339
+  },
+  {
+    "id": 340,
+    "character": "辣",
+    "pinyin": "là",
+    "meaning": "spicy / hot / pungent",
+    "phrase": "辣椒",
+    "phrase_pinyin": "là jiāo",
+    "phrase_meaning": "chili pepper",
+    "frequency_rank": 340
+  },
+  {
+    "id": 341,
+    "character": "鹹",
+    "pinyin": "xián",
+    "meaning": "salty / salted",
+    "phrase": "鹹魚",
+    "phrase_pinyin": "xián yú",
+    "phrase_meaning": "salted fish",
+    "frequency_rank": 341
+  },
+  {
+    "id": 342,
+    "character": "酸",
+    "pinyin": "suān",
+    "meaning": "sour / acid / aching",
+    "phrase": "酸甜",
+    "phrase_pinyin": "suān tián",
+    "phrase_meaning": "sweet and sour",
+    "frequency_rank": 342
+  },
+  {
+    "id": 343,
+    "character": "週",
+    "pinyin": "zhōu",
+    "meaning": "week / cycle / circumference",
+    "phrase": "這週",
+    "phrase_pinyin": "zhè zhōu",
+    "phrase_meaning": "this week",
+    "frequency_rank": 343
+  },
+  {
+    "id": 344,
+    "character": "今",
+    "pinyin": "jīn",
+    "meaning": "now / present / today",
+    "phrase": "今天",
+    "phrase_pinyin": "jīn tiān",
+    "phrase_meaning": "today",
+    "frequency_rank": 344
+  },
+  {
+    "id": 345,
+    "character": "昨",
+    "pinyin": "zuó",
+    "meaning": "yesterday",
+    "phrase": "昨天",
+    "phrase_pinyin": "zuó tiān",
+    "phrase_meaning": "yesterday",
+    "frequency_rank": 345
+  },
+  {
+    "id": 346,
+    "character": "午",
+    "pinyin": "wǔ",
+    "meaning": "noon / midday",
+    "phrase": "下午",
+    "phrase_pinyin": "xià wǔ",
+    "phrase_meaning": "afternoon",
+    "frequency_rank": 346
+  },
+  {
+    "id": 347,
+    "character": "秒",
+    "pinyin": "miǎo",
+    "meaning": "second (time) / tiny",
+    "phrase": "幾秒",
+    "phrase_pinyin": "jǐ miǎo",
+    "phrase_meaning": "a few seconds",
+    "frequency_rank": 347
+  },
+  {
+    "id": 348,
+    "character": "春",
+    "pinyin": "chūn",
+    "meaning": "spring (season)",
+    "phrase": "春天",
+    "phrase_pinyin": "chūn tiān",
+    "phrase_meaning": "spring / springtime",
+    "frequency_rank": 348
+  },
+  {
+    "id": 349,
+    "character": "夏",
+    "pinyin": "xià",
+    "meaning": "summer / Xia dynasty",
+    "phrase": "夏天",
+    "phrase_pinyin": "xià tiān",
+    "phrase_meaning": "summer",
+    "frequency_rank": 349
+  },
+  {
+    "id": 350,
+    "character": "秋",
+    "pinyin": "qiū",
+    "meaning": "autumn / fall / harvest",
+    "phrase": "秋天",
+    "phrase_pinyin": "qiū tiān",
+    "phrase_meaning": "autumn / fall",
+    "frequency_rank": 350
+  },
+  {
+    "id": 351,
+    "character": "冬",
+    "pinyin": "dōng",
+    "meaning": "winter",
+    "phrase": "冬天",
+    "phrase_pinyin": "dōng tiān",
+    "phrase_meaning": "winter",
+    "frequency_rank": 351
+  },
+  {
+    "id": 352,
+    "character": "二",
+    "pinyin": "èr",
+    "meaning": "two / second",
+    "phrase": "第二",
+    "phrase_pinyin": "dì èr",
+    "phrase_meaning": "second / number two",
+    "frequency_rank": 352
+  },
+  {
+    "id": 353,
+    "character": "四",
+    "pinyin": "sì",
+    "meaning": "four",
+    "phrase": "四月",
+    "phrase_pinyin": "sì yuè",
+    "phrase_meaning": "April",
+    "frequency_rank": 353
+  },
+  {
+    "id": 354,
+    "character": "五",
+    "pinyin": "wǔ",
+    "meaning": "five",
+    "phrase": "五月",
+    "phrase_pinyin": "wǔ yuè",
+    "phrase_meaning": "May",
+    "frequency_rank": 354
+  },
+  {
+    "id": 355,
+    "character": "六",
+    "pinyin": "liù",
+    "meaning": "six",
+    "phrase": "六月",
+    "phrase_pinyin": "liù yuè",
+    "phrase_meaning": "June",
+    "frequency_rank": 355
+  },
+  {
+    "id": 356,
+    "character": "七",
+    "pinyin": "qī",
+    "meaning": "seven",
+    "phrase": "七月",
+    "phrase_pinyin": "qī yuè",
+    "phrase_meaning": "July",
+    "frequency_rank": 356
+  },
+  {
+    "id": 357,
+    "character": "八",
+    "pinyin": "bā",
+    "meaning": "eight",
+    "phrase": "八月",
+    "phrase_pinyin": "bā yuè",
+    "phrase_meaning": "August",
+    "frequency_rank": 357
+  },
+  {
+    "id": 358,
+    "character": "九",
+    "pinyin": "jiǔ",
+    "meaning": "nine",
+    "phrase": "九月",
+    "phrase_pinyin": "jiǔ yuè",
+    "phrase_meaning": "September",
+    "frequency_rank": 358
+  },
+  {
+    "id": 359,
+    "character": "十",
+    "pinyin": "shí",
+    "meaning": "ten",
+    "phrase": "十月",
+    "phrase_pinyin": "shí yuè",
+    "phrase_meaning": "October",
+    "frequency_rank": 359
+  },
+  {
+    "id": 360,
+    "character": "百",
+    "pinyin": "bǎi",
+    "meaning": "hundred",
+    "phrase": "一百",
+    "phrase_pinyin": "yī bǎi",
+    "phrase_meaning": "one hundred",
+    "frequency_rank": 360
+  },
+  {
+    "id": 361,
+    "character": "千",
+    "pinyin": "qiān",
+    "meaning": "thousand",
+    "phrase": "幾千",
+    "phrase_pinyin": "jǐ qiān",
+    "phrase_meaning": "several thousand",
+    "frequency_rank": 361
+  },
+  {
+    "id": 362,
+    "character": "萬",
+    "pinyin": "wàn",
+    "meaning": "ten thousand / myriad",
+    "phrase": "一萬",
+    "phrase_pinyin": "yī wàn",
+    "phrase_meaning": "ten thousand",
+    "frequency_rank": 362
+  },
+  {
+    "id": 363,
+    "character": "零",
+    "pinyin": "líng",
+    "meaning": "zero / odd / spare",
+    "phrase": "零錢",
+    "phrase_pinyin": "líng qián",
+    "phrase_meaning": "change (coins) / small money",
+    "frequency_rank": 363
+  },
+  {
+    "id": 364,
+    "character": "半",
+    "pinyin": "bàn",
+    "meaning": "half / semi- / in the middle",
+    "phrase": "一半",
+    "phrase_pinyin": "yī bàn",
+    "phrase_meaning": "half / one half",
+    "frequency_rank": 364
+  },
+  {
+    "id": 365,
+    "character": "幾",
+    "pinyin": "jǐ",
+    "meaning": "how many / several / a few",
+    "phrase": "幾個",
+    "phrase_pinyin": "jǐ gè",
+    "phrase_meaning": "a few / several",
+    "frequency_rank": 365
+  },
+  {
+    "id": 366,
+    "character": "量",
+    "pinyin": "liàng",
+    "meaning": "quantity / measure / to measure",
+    "phrase": "數量",
+    "phrase_pinyin": "shù liàng",
+    "phrase_meaning": "quantity / amount",
+    "frequency_rank": 366
+  },
+  {
+    "id": 367,
+    "character": "少",
+    "pinyin": "shǎo",
+    "meaning": "few / less / young",
+    "phrase": "少量",
+    "phrase_pinyin": "shǎo liàng",
+    "phrase_meaning": "a small amount / few",
+    "frequency_rank": 367
+  },
+  {
+    "id": 368,
+    "character": "夠",
+    "pinyin": "gòu",
+    "meaning": "enough / sufficient",
+    "phrase": "足夠",
+    "phrase_pinyin": "zú gòu",
+    "phrase_meaning": "enough / sufficient",
+    "frequency_rank": 368
+  },
+  {
+    "id": 369,
+    "character": "每",
+    "pinyin": "měi",
+    "meaning": "every / each",
+    "phrase": "每天",
+    "phrase_pinyin": "měi tiān",
+    "phrase_meaning": "every day",
+    "frequency_rank": 369
+  },
+  {
+    "id": 370,
+    "character": "全",
+    "pinyin": "quán",
+    "meaning": "whole / all / complete",
+    "phrase": "全國",
+    "phrase_pinyin": "quán guó",
+    "phrase_meaning": "whole country / nationwide",
+    "frequency_rank": 370
+  },
+  {
+    "id": 371,
+    "character": "任",
+    "pinyin": "rèn",
+    "meaning": "to appoint / to trust / to let",
+    "phrase": "任何",
+    "phrase_pinyin": "rèn hé",
+    "phrase_meaning": "any / whatever",
+    "frequency_rank": 371
+  },
+  {
+    "id": 372,
+    "character": "何",
+    "pinyin": "hé",
+    "meaning": "what / how / which / why",
+    "phrase": "為何",
+    "phrase_pinyin": "wèi hé",
+    "phrase_meaning": "why / for what reason",
+    "frequency_rank": 372
+  },
+  {
+    "id": 373,
+    "character": "哪",
+    "pinyin": "nǎ",
+    "meaning": "which / where",
+    "phrase": "哪裡",
+    "phrase_pinyin": "nǎ lǐ",
+    "phrase_meaning": "where",
+    "frequency_rank": 373
+  },
+  {
+    "id": 374,
+    "character": "誰",
+    "pinyin": "shuí",
+    "meaning": "who / someone",
+    "phrase": "是誰",
+    "phrase_pinyin": "shì shuí",
+    "phrase_meaning": "who is it",
+    "frequency_rank": 374
+  },
+  {
+    "id": 375,
+    "character": "怎",
+    "pinyin": "zěn",
+    "meaning": "how / why",
+    "phrase": "怎樣",
+    "phrase_pinyin": "zěn yàng",
+    "phrase_meaning": "how / what kind",
+    "frequency_rank": 375
+  },
+  {
+    "id": 376,
+    "character": "樣",
+    "pinyin": "yàng",
+    "meaning": "appearance / kind / type",
+    "phrase": "一樣",
+    "phrase_pinyin": "yī yàng",
+    "phrase_meaning": "the same / alike",
+    "frequency_rank": 376
+  },
+  {
+    "id": 377,
+    "character": "為",
+    "pinyin": "wèi",
+    "meaning": "for / because of / in order to",
+    "phrase": "為了",
+    "phrase_pinyin": "wèi le",
+    "phrase_meaning": "in order to / for the sake of",
+    "frequency_rank": 377
+  },
+  {
+    "id": 378,
+    "character": "雖",
+    "pinyin": "suī",
+    "meaning": "although / even though",
+    "phrase": "雖說",
+    "phrase_pinyin": "suī shuō",
+    "phrase_meaning": "although / even if",
+    "frequency_rank": 378
+  },
+  {
+    "id": 379,
+    "character": "除",
+    "pinyin": "chú",
+    "meaning": "except / to exclude / to remove",
+    "phrase": "除了",
+    "phrase_pinyin": "chú le",
+    "phrase_meaning": "except for / besides",
+    "frequency_rank": 379
+  },
+  {
+    "id": 380,
+    "character": "若",
+    "pinyin": "ruò",
+    "meaning": "if / as if / like",
+    "phrase": "若是",
+    "phrase_pinyin": "ruò shì",
+    "phrase_meaning": "if / in case",
+    "frequency_rank": 380
+  },
+  {
+    "id": 381,
+    "character": "即",
+    "pinyin": "jí",
+    "meaning": "immediately / that is / namely",
+    "phrase": "即使",
+    "phrase_pinyin": "jí shǐ",
+    "phrase_meaning": "even if / even though",
+    "frequency_rank": 381
+  },
+  {
+    "id": 382,
+    "character": "雖",
+    "pinyin": "suī",
+    "meaning": "although",
+    "phrase": "雖然如此",
+    "phrase_pinyin": "suī rán rú cǐ",
+    "phrase_meaning": "even so / nonetheless",
+    "frequency_rank": 382
+  },
+  {
+    "id": 383,
+    "character": "並",
+    "pinyin": "bìng",
+    "meaning": "and / also / moreover / (not) at all",
+    "phrase": "並且",
+    "phrase_pinyin": "bìng qiě",
+    "phrase_meaning": "furthermore / moreover",
+    "frequency_rank": 383
+  },
+  {
+    "id": 384,
+    "character": "且",
+    "pinyin": "qiě",
+    "meaning": "and / yet / for the time being",
+    "phrase": "而且",
+    "phrase_pinyin": "ér qiě",
+    "phrase_meaning": "moreover / and also",
+    "frequency_rank": 384
+  },
+  {
+    "id": 385,
+    "character": "仍",
+    "pinyin": "réng",
+    "meaning": "still / yet / to remain",
+    "phrase": "仍然",
+    "phrase_pinyin": "réng rán",
+    "phrase_meaning": "still / yet / as before",
+    "frequency_rank": 385
+  },
+  {
+    "id": 386,
+    "character": "既",
+    "pinyin": "jì",
+    "meaning": "already / since / as",
+    "phrase": "既然",
+    "phrase_pinyin": "jì rán",
+    "phrase_meaning": "since / now that",
+    "frequency_rank": 386
+  },
+  {
+    "id": 387,
+    "character": "於",
+    "pinyin": "yú",
+    "meaning": "in / at / to / than / by",
+    "phrase": "對於",
+    "phrase_pinyin": "duì yú",
+    "phrase_meaning": "regarding / with respect to",
+    "frequency_rank": 387
+  },
+  {
+    "id": 388,
+    "character": "被",
+    "pinyin": "bèi",
+    "meaning": "passive marker / by / quilt",
+    "phrase": "被迫",
+    "phrase_pinyin": "bèi pò",
+    "phrase_meaning": "to be forced / compelled",
+    "frequency_rank": 388
+  },
+  {
+    "id": 389,
+    "character": "將",
+    "pinyin": "jiāng",
+    "meaning": "will / about to / general",
+    "phrase": "將來",
+    "phrase_pinyin": "jiāng lái",
+    "phrase_meaning": "in the future / future",
+    "frequency_rank": 389
+  },
+  {
+    "id": 390,
+    "character": "已",
+    "pinyin": "yǐ",
+    "meaning": "already / to stop / afterward",
+    "phrase": "已知",
+    "phrase_pinyin": "yǐ zhī",
+    "phrase_meaning": "known / already known",
+    "frequency_rank": 390
+  },
+  {
+    "id": 391,
+    "character": "曾",
+    "pinyin": "céng",
+    "meaning": "once / ever / already / great-",
+    "phrase": "曾經",
+    "phrase_pinyin": "céng jīng",
+    "phrase_meaning": "once / formerly / ever",
+    "frequency_rank": 391
+  },
+  {
+    "id": 392,
+    "character": "漸",
+    "pinyin": "jiàn",
+    "meaning": "gradually / to soak",
+    "phrase": "逐漸",
+    "phrase_pinyin": "zhú jiàn",
+    "phrase_meaning": "gradually / step by step",
+    "frequency_rank": 392
+  },
+  {
+    "id": 393,
+    "character": "突",
+    "pinyin": "tū",
+    "meaning": "sudden / to protrude / to dash forward",
+    "phrase": "突然",
+    "phrase_pinyin": "tū rán",
+    "phrase_meaning": "suddenly / all of a sudden",
+    "frequency_rank": 393
+  },
+  {
+    "id": 394,
+    "character": "忽",
+    "pinyin": "hū",
+    "meaning": "suddenly / to neglect / to overlook",
+    "phrase": "忽然",
+    "phrase_pinyin": "hū rán",
+    "phrase_meaning": "suddenly / all at once",
+    "frequency_rank": 394
+  },
+  {
+    "id": 395,
+    "character": "剛",
+    "pinyin": "gāng",
+    "meaning": "just now / hard / firm",
+    "phrase": "剛才",
+    "phrase_pinyin": "gāng cái",
+    "phrase_meaning": "just now / a moment ago",
+    "frequency_rank": 395
+  },
+  {
+    "id": 396,
+    "character": "才",
+    "pinyin": "cái",
+    "meaning": "just / only then / talent",
+    "phrase": "只有才",
+    "phrase_pinyin": "zhǐ yǒu cái",
+    "phrase_meaning": "only then / only if",
+    "frequency_rank": 396
+  },
+  {
+    "id": 397,
+    "character": "快",
+    "pinyin": "kuài",
+    "meaning": "soon / about to / fast",
+    "phrase": "快點",
+    "phrase_pinyin": "kuài diǎn",
+    "phrase_meaning": "hurry up / quickly",
+    "frequency_rank": 397
+  },
+  {
+    "id": 398,
+    "character": "慢",
+    "pinyin": "màn",
+    "meaning": "slow / late / negligent",
+    "phrase": "放慢",
+    "phrase_pinyin": "fàng màn",
+    "phrase_meaning": "to slow down",
+    "frequency_rank": 398
+  },
+  {
+    "id": 399,
+    "character": "互",
+    "pinyin": "hù",
+    "meaning": "mutual / each other",
+    "phrase": "互相",
+    "phrase_pinyin": "hù xiāng",
+    "phrase_meaning": "mutually / each other",
+    "frequency_rank": 399
+  },
+  {
+    "id": 400,
+    "character": "相",
+    "pinyin": "xiāng",
+    "meaning": "mutual / each other / appearance",
+    "phrase": "相信",
+    "phrase_pinyin": "xiāng xìn",
+    "phrase_meaning": "to believe / to trust",
+    "frequency_rank": 400
+  },
+  {
+    "id": 401,
+    "character": "信",
+    "pinyin": "xìn",
+    "meaning": "to believe / letter / trust",
+    "phrase": "信任",
+    "phrase_pinyin": "xìn rèn",
+    "phrase_meaning": "to trust / trust",
+    "frequency_rank": 401
+  },
+  {
+    "id": 402,
+    "character": "望",
+    "pinyin": "wàng",
+    "meaning": "to hope / to look toward / to expect",
+    "phrase": "希望",
+    "phrase_pinyin": "xī wàng",
+    "phrase_meaning": "to hope / hope",
+    "frequency_rank": 402
+  },
+  {
+    "id": 403,
+    "character": "希",
+    "pinyin": "xī",
+    "meaning": "to hope / rare / sparse",
+    "phrase": "希望",
+    "phrase_pinyin": "xī wàng",
+    "phrase_meaning": "hope / to wish",
+    "frequency_rank": 403
+  },
+  {
+    "id": 404,
+    "character": "夢",
+    "pinyin": "mèng",
+    "meaning": "dream / to dream",
+    "phrase": "做夢",
+    "phrase_pinyin": "zuò mèng",
+    "phrase_meaning": "to dream / to daydream",
+    "frequency_rank": 404
+  },
+  {
+    "id": 405,
+    "character": "願",
+    "pinyin": "yuàn",
+    "meaning": "to wish / to want / vow",
+    "phrase": "願意",
+    "phrase_pinyin": "yuàn yì",
+    "phrase_meaning": "to be willing / willing",
+    "frequency_rank": 405
+  },
+  {
+    "id": 406,
+    "character": "求",
+    "pinyin": "qiú",
+    "meaning": "to seek / to request / to demand",
+    "phrase": "要求",
+    "phrase_pinyin": "yāo qiú",
+    "phrase_meaning": "requirement / to demand",
+    "frequency_rank": 406
+  },
+  {
+    "id": 407,
+    "character": "需",
+    "pinyin": "xū",
+    "meaning": "to need / to require",
+    "phrase": "需求",
+    "phrase_pinyin": "xū qiú",
+    "phrase_meaning": "demand / need",
+    "frequency_rank": 407
+  },
+  {
+    "id": 408,
+    "character": "缺",
+    "pinyin": "quē",
+    "meaning": "to lack / deficiency / vacancy",
+    "phrase": "缺少",
+    "phrase_pinyin": "quē shǎo",
+    "phrase_meaning": "to lack / to be short of",
+    "frequency_rank": 408
+  },
+  {
+    "id": 409,
+    "character": "足",
+    "pinyin": "zú",
+    "meaning": "foot / sufficient / to satisfy",
+    "phrase": "足夠",
+    "phrase_pinyin": "zú gòu",
+    "phrase_meaning": "enough / sufficient",
+    "frequency_rank": 409
+  },
+  {
+    "id": 410,
+    "character": "滿",
+    "pinyin": "mǎn",
+    "meaning": "full / satisfied / filled",
+    "phrase": "滿意",
+    "phrase_pinyin": "mǎn yì",
+    "phrase_meaning": "satisfied / content",
+    "frequency_rank": 410
+  },
+  {
+    "id": 411,
+    "character": "空",
+    "pinyin": "kōng",
+    "meaning": "empty / vacant / sky",
+    "phrase": "空白",
+    "phrase_pinyin": "kōng bái",
+    "phrase_meaning": "blank / empty space",
+    "frequency_rank": 411
+  },
+  {
+    "id": 412,
+    "character": "餘",
+    "pinyin": "yú",
+    "meaning": "surplus / remaining / after",
+    "phrase": "多餘",
+    "phrase_pinyin": "duō yú",
+    "phrase_meaning": "superfluous / unnecessary",
+    "frequency_rank": 412
+  },
+  {
+    "id": 413,
+    "character": "增",
+    "pinyin": "zēng",
+    "meaning": "to increase / to add",
+    "phrase": "增加",
+    "phrase_pinyin": "zēng jiā",
+    "phrase_meaning": "to increase / to add",
+    "frequency_rank": 413
+  },
+  {
+    "id": 414,
+    "character": "減",
+    "pinyin": "jiǎn",
+    "meaning": "to reduce / to subtract / minus",
+    "phrase": "減輕",
+    "phrase_pinyin": "jiǎn qīng",
+    "phrase_meaning": "to lighten / to reduce",
+    "frequency_rank": 414
+  },
+  {
+    "id": 415,
+    "character": "擴",
+    "pinyin": "kuò",
+    "meaning": "to expand / to enlarge",
+    "phrase": "擴大",
+    "phrase_pinyin": "kuò dà",
+    "phrase_meaning": "to expand / to enlarge",
+    "frequency_rank": 415
+  },
+  {
+    "id": 416,
+    "character": "縮",
+    "pinyin": "suō",
+    "meaning": "to shrink / to contract / to draw back",
+    "phrase": "縮小",
+    "phrase_pinyin": "suō xiǎo",
+    "phrase_meaning": "to shrink / to reduce",
+    "frequency_rank": 416
+  },
+  {
+    "id": 417,
+    "character": "移",
+    "pinyin": "yí",
+    "meaning": "to move / to shift / to change",
+    "phrase": "移動",
+    "phrase_pinyin": "yí dòng",
+    "phrase_meaning": "to move / mobile",
+    "frequency_rank": 417
+  },
+  {
+    "id": 418,
+    "character": "轉",
+    "pinyin": "zhuǎn",
+    "meaning": "to turn / to rotate / to transfer",
+    "phrase": "轉變",
+    "phrase_pinyin": "zhuǎn biàn",
+    "phrase_meaning": "to change / transformation",
+    "frequency_rank": 418
+  },
+  {
+    "id": 419,
+    "character": "升",
+    "pinyin": "shēng",
+    "meaning": "to rise / to ascend / liter",
+    "phrase": "上升",
+    "phrase_pinyin": "shàng shēng",
+    "phrase_meaning": "to rise / to go up",
+    "frequency_rank": 419
+  },
+  {
+    "id": 420,
+    "character": "降",
+    "pinyin": "jiàng",
+    "meaning": "to descend / to lower / to surrender",
+    "phrase": "下降",
+    "phrase_pinyin": "xià jiàng",
+    "phrase_meaning": "to decline / to decrease",
+    "frequency_rank": 420
+  },
+  {
+    "id": 421,
+    "character": "提",
+    "pinyin": "tí",
+    "meaning": "to lift / to raise / to mention",
+    "phrase": "提高",
+    "phrase_pinyin": "tí gāo",
+    "phrase_meaning": "to raise / to improve",
+    "frequency_rank": 421
+  },
+  {
+    "id": 422,
+    "character": "落",
+    "pinyin": "luò",
+    "meaning": "to fall / to drop / village",
+    "phrase": "落下",
+    "phrase_pinyin": "luò xià",
+    "phrase_meaning": "to fall / to drop",
+    "frequency_rank": 422
+  },
+  {
+    "id": 423,
+    "character": "達",
+    "pinyin": "dá",
+    "meaning": "to arrive / to reach / to attain",
+    "phrase": "達到",
+    "phrase_pinyin": "dá dào",
+    "phrase_meaning": "to achieve / to reach",
+    "frequency_rank": 423
+  },
+  {
+    "id": 424,
+    "character": "超",
+    "pinyin": "chāo",
+    "meaning": "to exceed / to surpass / super",
+    "phrase": "超過",
+    "phrase_pinyin": "chāo guò",
+    "phrase_meaning": "to exceed / to surpass",
+    "frequency_rank": 424
+  },
+  {
+    "id": 425,
+    "character": "越",
+    "pinyin": "yuè",
+    "meaning": "to cross / to exceed / more and more",
+    "phrase": "越來越",
+    "phrase_pinyin": "yuè lái yuè",
+    "phrase_meaning": "more and more",
+    "frequency_rank": 425
+  },
+  {
+    "id": 426,
+    "character": "失",
+    "pinyin": "shī",
+    "meaning": "to lose / to miss / to fail",
+    "phrase": "失去",
+    "phrase_pinyin": "shī qù",
+    "phrase_meaning": "to lose / to be deprived of",
+    "frequency_rank": 426
+  },
+  {
+    "id": 427,
+    "character": "得",
+    "pinyin": "dé",
+    "meaning": "to get / to obtain / satisfied",
+    "phrase": "取得",
+    "phrase_pinyin": "qǔ dé",
+    "phrase_meaning": "to obtain / to achieve",
+    "frequency_rank": 427
+  },
+  {
+    "id": 428,
+    "character": "取",
+    "pinyin": "qǔ",
+    "meaning": "to take / to get / to choose",
+    "phrase": "取得",
+    "phrase_pinyin": "qǔ dé",
+    "phrase_meaning": "to obtain / to achieve",
+    "frequency_rank": 428
+  },
+  {
+    "id": 429,
+    "character": "留",
+    "pinyin": "liú",
+    "meaning": "to stay / to remain / to keep",
+    "phrase": "留下",
+    "phrase_pinyin": "liú xià",
+    "phrase_meaning": "to stay behind / to leave behind",
+    "frequency_rank": 429
+  },
+  {
+    "id": 430,
+    "character": "離",
+    "pinyin": "lí",
+    "meaning": "to leave / to depart / distance from",
+    "phrase": "離開",
+    "phrase_pinyin": "lí kāi",
+    "phrase_meaning": "to leave / to depart",
+    "frequency_rank": 430
+  },
+  {
+    "id": 431,
+    "character": "返",
+    "pinyin": "fǎn",
+    "meaning": "to return / to go back",
+    "phrase": "返回",
+    "phrase_pinyin": "fǎn huí",
+    "phrase_meaning": "to return / to come back",
+    "frequency_rank": 431
+  },
+  {
+    "id": 432,
+    "character": "抵",
+    "pinyin": "dǐ",
+    "meaning": "to resist / to arrive at / to offset",
+    "phrase": "抵達",
+    "phrase_pinyin": "dǐ dá",
+    "phrase_meaning": "to arrive / to reach",
+    "frequency_rank": 432
+  },
+  {
+    "id": 433,
+    "character": "追",
+    "pinyin": "zhuī",
+    "meaning": "to chase / to pursue / to follow",
+    "phrase": "追求",
+    "phrase_pinyin": "zhuī qiú",
+    "phrase_meaning": "to pursue / to seek after",
+    "frequency_rank": 433
+  },
+  {
+    "id": 434,
+    "character": "逃",
+    "pinyin": "táo",
+    "meaning": "to escape / to flee / to evade",
+    "phrase": "逃走",
+    "phrase_pinyin": "táo zǒu",
+    "phrase_meaning": "to flee / to run away",
+    "frequency_rank": 434
+  },
+  {
+    "id": 435,
+    "character": "攻",
+    "pinyin": "gōng",
+    "meaning": "to attack / to study / to specialize in",
+    "phrase": "攻擊",
+    "phrase_pinyin": "gōng jī",
+    "phrase_meaning": "to attack",
+    "frequency_rank": 435
+  },
+  {
+    "id": 436,
+    "character": "守",
+    "pinyin": "shǒu",
+    "meaning": "to guard / to defend / to keep",
+    "phrase": "守護",
+    "phrase_pinyin": "shǒu hù",
+    "phrase_meaning": "to guard / to protect",
+    "frequency_rank": 436
+  },
+  {
+    "id": 437,
+    "character": "保",
+    "pinyin": "bǎo",
+    "meaning": "to protect / to keep / to guarantee",
+    "phrase": "保護",
+    "phrase_pinyin": "bǎo hù",
+    "phrase_meaning": "to protect / protection",
+    "frequency_rank": 437
+  },
+  {
+    "id": 438,
+    "character": "護",
+    "pinyin": "hù",
+    "meaning": "to protect / to guard",
+    "phrase": "保護",
+    "phrase_pinyin": "bǎo hù",
+    "phrase_meaning": "to protect",
+    "frequency_rank": 438
+  },
+  {
+    "id": 439,
+    "character": "救",
+    "pinyin": "jiù",
+    "meaning": "to save / to rescue",
+    "phrase": "救助",
+    "phrase_pinyin": "jiù zhù",
+    "phrase_meaning": "to help / to rescue",
+    "frequency_rank": 439
+  },
+  {
+    "id": 440,
+    "character": "助",
+    "pinyin": "zhù",
+    "meaning": "to help / to assist",
+    "phrase": "幫助",
+    "phrase_pinyin": "bāng zhù",
+    "phrase_meaning": "to help / assistance",
+    "frequency_rank": 440
+  },
+  {
+    "id": 441,
+    "character": "支",
+    "pinyin": "zhī",
+    "meaning": "to support / branch / measure word",
+    "phrase": "支持",
+    "phrase_pinyin": "zhī chí",
+    "phrase_meaning": "to support / support",
+    "frequency_rank": 441
+  },
+  {
+    "id": 442,
+    "character": "持",
+    "pinyin": "chí",
+    "meaning": "to hold / to maintain / to persist",
+    "phrase": "堅持",
+    "phrase_pinyin": "jiān chí",
+    "phrase_meaning": "to persist / to insist",
+    "frequency_rank": 442
+  },
+  {
+    "id": 443,
+    "character": "控",
+    "pinyin": "kòng",
+    "meaning": "to control / to accuse / to charge",
+    "phrase": "控制",
+    "phrase_pinyin": "kòng zhì",
+    "phrase_meaning": "to control / control",
+    "frequency_rank": 443
+  },
+  {
+    "id": 444,
+    "character": "制",
+    "pinyin": "zhì",
+    "meaning": "to control / to restrict / system",
+    "phrase": "控制",
+    "phrase_pinyin": "kòng zhì",
+    "phrase_meaning": "to control / to manage",
+    "frequency_rank": 444
+  },
+  {
+    "id": 445,
+    "character": "管",
+    "pinyin": "guǎn",
+    "meaning": "to manage / to care / pipe / tube",
+    "phrase": "管理",
+    "phrase_pinyin": "guǎn lǐ",
+    "phrase_meaning": "management / to manage",
+    "frequency_rank": 445
+  },
+  {
+    "id": 446,
+    "character": "治",
+    "pinyin": "zhì",
+    "meaning": "to govern / to manage / to cure",
+    "phrase": "政治",
+    "phrase_pinyin": "zhèng zhì",
+    "phrase_meaning": "politics / political",
+    "frequency_rank": 446
+  },
+  {
+    "id": 447,
+    "character": "辦",
+    "pinyin": "bàn",
+    "meaning": "to handle / to manage / to set up",
+    "phrase": "辦法",
+    "phrase_pinyin": "bàn fǎ",
+    "phrase_meaning": "method / way to handle",
+    "frequency_rank": 447
+  },
+  {
+    "id": 448,
+    "character": "處",
+    "pinyin": "chǔ",
+    "meaning": "to handle / place / department",
+    "phrase": "處理",
+    "phrase_pinyin": "chǔ lǐ",
+    "phrase_meaning": "to deal with / to handle",
+    "frequency_rank": 448
+  },
+  {
+    "id": 449,
+    "character": "應",
+    "pinyin": "yīng",
+    "meaning": "should / to respond / to comply",
+    "phrase": "適應",
+    "phrase_pinyin": "shì yìng",
+    "phrase_meaning": "to adapt / to adjust",
+    "frequency_rank": 449
+  },
+  {
+    "id": 450,
+    "character": "適",
+    "pinyin": "shì",
+    "meaning": "suitable / to fit / comfortable",
+    "phrase": "適合",
+    "phrase_pinyin": "shì hé",
+    "phrase_meaning": "to suit / suitable",
+    "frequency_rank": 450
+  },
+  {
+    "id": 451,
+    "character": "準",
+    "pinyin": "zhǔn",
+    "meaning": "accurate / standard / to allow",
+    "phrase": "準備",
+    "phrase_pinyin": "zhǔn bèi",
+    "phrase_meaning": "to prepare / preparation",
+    "frequency_rank": 451
+  },
+  {
+    "id": 452,
+    "character": "備",
+    "pinyin": "bèi",
+    "meaning": "to prepare / to equip / complete",
+    "phrase": "準備",
+    "phrase_pinyin": "zhǔn bèi",
+    "phrase_meaning": "to prepare / ready",
+    "frequency_rank": 452
+  },
+  {
+    "id": 453,
+    "character": "完",
+    "pinyin": "wán",
+    "meaning": "finished / whole / to use up",
+    "phrase": "完全",
+    "phrase_pinyin": "wán quán",
+    "phrase_meaning": "completely / entirely",
+    "frequency_rank": 453
+  },
+  {
+    "id": 454,
+    "character": "始",
+    "pinyin": "shǐ",
+    "meaning": "beginning / to start",
+    "phrase": "開始",
+    "phrase_pinyin": "kāi shǐ",
+    "phrase_meaning": "to begin / start",
+    "frequency_rank": 454
+  },
+  {
+    "id": 455,
+    "character": "終",
+    "pinyin": "zhōng",
+    "meaning": "end / final / eventually",
+    "phrase": "最終",
+    "phrase_pinyin": "zuì zhōng",
+    "phrase_meaning": "final / ultimately",
+    "frequency_rank": 455
+  },
+  {
+    "id": 456,
+    "character": "初",
+    "pinyin": "chū",
+    "meaning": "at first / initial / beginning",
+    "phrase": "初步",
+    "phrase_pinyin": "chū bù",
+    "phrase_meaning": "preliminary / initial",
+    "frequency_rank": 456
+  },
+  {
+    "id": 457,
+    "character": "末",
+    "pinyin": "mò",
+    "meaning": "end / last / tip",
+    "phrase": "週末",
+    "phrase_pinyin": "zhōu mò",
+    "phrase_meaning": "weekend",
+    "frequency_rank": 457
+  },
+  {
+    "id": 458,
+    "character": "期",
+    "pinyin": "qī",
+    "meaning": "period / phase / to hope",
+    "phrase": "學期",
+    "phrase_pinyin": "xué qī",
+    "phrase_meaning": "school term / semester",
+    "frequency_rank": 458
+  },
+  {
+    "id": 459,
+    "character": "段",
+    "pinyin": "duàn",
+    "meaning": "section / paragraph / piece",
+    "phrase": "一段",
+    "phrase_pinyin": "yī duàn",
+    "phrase_meaning": "a period / a section of",
+    "frequency_rank": 459
+  },
+  {
+    "id": 460,
+    "character": "部",
+    "pinyin": "bù",
+    "meaning": "part / section / ministry / measure word",
+    "phrase": "部分",
+    "phrase_pinyin": "bù fēn",
+    "phrase_meaning": "part / portion",
+    "frequency_rank": 460
+  },
+  {
+    "id": 461,
+    "character": "層",
+    "pinyin": "céng",
+    "meaning": "layer / floor / level",
+    "phrase": "一層",
+    "phrase_pinyin": "yī céng",
+    "phrase_meaning": "one floor / a layer",
+    "frequency_rank": 461
+  },
+  {
+    "id": 462,
+    "character": "級",
+    "pinyin": "jí",
+    "meaning": "level / grade / rank",
+    "phrase": "年級",
+    "phrase_pinyin": "nián jí",
+    "phrase_meaning": "grade (school year)",
+    "frequency_rank": 462
+  },
+  {
+    "id": 463,
+    "character": "類",
+    "pinyin": "lèi",
+    "meaning": "type / category / similar",
+    "phrase": "種類",
+    "phrase_pinyin": "zhǒng lèi",
+    "phrase_meaning": "type / variety / category",
+    "frequency_rank": 463
+  },
+  {
+    "id": 464,
+    "character": "式",
+    "pinyin": "shì",
+    "meaning": "type / style / format",
+    "phrase": "方式",
+    "phrase_pinyin": "fāng shì",
+    "phrase_meaning": "way / method / style",
+    "frequency_rank": 464
+  },
+  {
+    "id": 465,
+    "character": "形",
+    "pinyin": "xíng",
+    "meaning": "shape / form / to appear",
+    "phrase": "形式",
+    "phrase_pinyin": "xíng shì",
+    "phrase_meaning": "form / shape / format",
+    "frequency_rank": 465
+  },
+  {
+    "id": 466,
+    "character": "狀",
+    "pinyin": "zhuàng",
+    "meaning": "state / condition / form",
+    "phrase": "狀態",
+    "phrase_pinyin": "zhuàng tài",
+    "phrase_meaning": "state / status / condition",
+    "frequency_rank": 466
+  },
+  {
+    "id": 467,
+    "character": "態",
+    "pinyin": "tài",
+    "meaning": "manner / appearance / condition",
+    "phrase": "狀態",
+    "phrase_pinyin": "zhuàng tài",
+    "phrase_meaning": "state / condition",
+    "frequency_rank": 467
+  },
+  {
+    "id": 468,
+    "character": "況",
+    "pinyin": "kuàng",
+    "meaning": "situation / condition / besides",
+    "phrase": "情況",
+    "phrase_pinyin": "qíng kuàng",
+    "phrase_meaning": "situation / circumstances",
+    "frequency_rank": 468
+  },
+  {
+    "id": 469,
+    "character": "境",
+    "pinyin": "jìng",
+    "meaning": "border / territory / condition",
+    "phrase": "環境",
+    "phrase_pinyin": "huán jìng",
+    "phrase_meaning": "environment / surroundings",
+    "frequency_rank": 469
+  },
+  {
+    "id": 470,
+    "character": "環",
+    "pinyin": "huán",
+    "meaning": "ring / to circle / environment",
+    "phrase": "環境",
+    "phrase_pinyin": "huán jìng",
+    "phrase_meaning": "environment",
+    "frequency_rank": 470
+  },
+  {
+    "id": 471,
+    "character": "質",
+    "pinyin": "zhì",
+    "meaning": "quality / nature / matter",
+    "phrase": "品質",
+    "phrase_pinyin": "pǐn zhì",
+    "phrase_meaning": "quality / character",
+    "frequency_rank": 471
+  },
+  {
+    "id": 472,
+    "character": "品",
+    "pinyin": "pǐn",
+    "meaning": "article / commodity / character",
+    "phrase": "產品",
+    "phrase_pinyin": "chǎn pǐn",
+    "phrase_meaning": "product",
+    "frequency_rank": 472
+  },
+  {
+    "id": 473,
+    "character": "產",
+    "pinyin": "chǎn",
+    "meaning": "to produce / product / property",
+    "phrase": "生產",
+    "phrase_pinyin": "shēng chǎn",
+    "phrase_meaning": "to produce / production",
+    "frequency_rank": 473
+  },
+  {
+    "id": 474,
+    "character": "業",
+    "pinyin": "yè",
+    "meaning": "industry / business / occupation",
+    "phrase": "工業",
+    "phrase_pinyin": "gōng yè",
+    "phrase_meaning": "industry",
+    "frequency_rank": 474
+  },
+  {
+    "id": 475,
+    "character": "技",
+    "pinyin": "jì",
+    "meaning": "skill / technique / ability",
+    "phrase": "技術",
+    "phrase_pinyin": "jì shù",
+    "phrase_meaning": "technology / skill",
+    "frequency_rank": 475
+  },
+  {
+    "id": 476,
+    "character": "術",
+    "pinyin": "shù",
+    "meaning": "art / technique / method",
+    "phrase": "技術",
+    "phrase_pinyin": "jì shù",
+    "phrase_meaning": "technique / technology",
+    "frequency_rank": 476
+  },
+  {
+    "id": 477,
+    "character": "科",
+    "pinyin": "kē",
+    "meaning": "science / branch / department",
+    "phrase": "科學",
+    "phrase_pinyin": "kē xué",
+    "phrase_meaning": "science",
+    "frequency_rank": 477
+  },
+  {
+    "id": 478,
+    "character": "醫",
+    "pinyin": "yī",
+    "meaning": "medicine / doctor / to cure",
+    "phrase": "醫生",
+    "phrase_pinyin": "yī shēng",
+    "phrase_meaning": "doctor / physician",
+    "frequency_rank": 478
+  },
+  {
+    "id": 479,
+    "character": "藥",
+    "pinyin": "yào",
+    "meaning": "medicine / drug / remedy",
+    "phrase": "吃藥",
+    "phrase_pinyin": "chī yào",
+    "phrase_meaning": "to take medicine",
+    "frequency_rank": 479
+  },
+  {
+    "id": 480,
+    "character": "病",
+    "pinyin": "bìng",
+    "meaning": "illness / disease / sick",
+    "phrase": "生病",
+    "phrase_pinyin": "shēng bìng",
+    "phrase_meaning": "to get sick / to fall ill",
+    "frequency_rank": 480
+  },
+  {
+    "id": 481,
+    "character": "健",
+    "pinyin": "jiàn",
+    "meaning": "healthy / strong / to strengthen",
+    "phrase": "健康",
+    "phrase_pinyin": "jiàn kāng",
+    "phrase_meaning": "health / healthy",
+    "frequency_rank": 481
+  },
+  {
+    "id": 482,
+    "character": "康",
+    "pinyin": "kāng",
+    "meaning": "healthy / well-being / affluent",
+    "phrase": "健康",
+    "phrase_pinyin": "jiàn kāng",
+    "phrase_meaning": "healthy / health",
+    "frequency_rank": 482
+  },
+  {
+    "id": 483,
+    "character": "痛",
+    "pinyin": "tòng",
+    "meaning": "pain / ache / to hurt",
+    "phrase": "頭痛",
+    "phrase_pinyin": "tóu tòng",
+    "phrase_meaning": "headache",
+    "frequency_rank": 483
+  },
+  {
+    "id": 484,
+    "character": "傷",
+    "pinyin": "shāng",
+    "meaning": "injury / to injure / sorrow",
+    "phrase": "受傷",
+    "phrase_pinyin": "shòu shāng",
+    "phrase_meaning": "to get injured / injured",
+    "frequency_rank": 484
+  },
+  {
+    "id": 485,
+    "character": "危",
+    "pinyin": "wēi",
+    "meaning": "dangerous / perilous",
+    "phrase": "危險",
+    "phrase_pinyin": "wēi xiǎn",
+    "phrase_meaning": "dangerous / danger",
+    "frequency_rank": 485
+  },
+  {
+    "id": 486,
+    "character": "險",
+    "pinyin": "xiǎn",
+    "meaning": "danger / risk /险恶",
+    "phrase": "冒險",
+    "phrase_pinyin": "mào xiǎn",
+    "phrase_meaning": "to take a risk / adventure",
+    "frequency_rank": 486
+  },
+  {
+    "id": 487,
+    "character": "安",
+    "pinyin": "ān",
+    "meaning": "peaceful / safe / to settle",
+    "phrase": "安全",
+    "phrase_pinyin": "ān quán",
+    "phrase_meaning": "safe / safety",
+    "frequency_rank": 487
+  },
+  {
+    "id": 488,
+    "character": "靜",
+    "pinyin": "jìng",
+    "meaning": "quiet / still / calm",
+    "phrase": "安靜",
+    "phrase_pinyin": "ān jìng",
+    "phrase_meaning": "quiet / calm",
+    "frequency_rank": 488
+  },
+  {
+    "id": 489,
+    "character": "平",
+    "pinyin": "píng",
+    "meaning": "flat / level / calm / equal",
+    "phrase": "和平",
+    "phrase_pinyin": "hé píng",
+    "phrase_meaning": "peace / peaceful",
+    "frequency_rank": 489
+  },
+  {
+    "id": 490,
+    "character": "順",
+    "pinyin": "shùn",
+    "meaning": "to go along with / smooth / to obey",
+    "phrase": "順利",
+    "phrase_pinyin": "shùn lì",
+    "phrase_meaning": "smooth / successful",
+    "frequency_rank": 490
+  },
+  {
+    "id": 491,
+    "character": "利",
+    "pinyin": "lì",
+    "meaning": "benefit / profit / sharp",
+    "phrase": "利用",
+    "phrase_pinyin": "lì yòng",
+    "phrase_meaning": "to use / to utilize",
+    "frequency_rank": 491
+  },
+  {
+    "id": 492,
+    "character": "益",
+    "pinyin": "yì",
+    "meaning": "benefit / profit / increasingly",
+    "phrase": "利益",
+    "phrase_pinyin": "lì yì",
+    "phrase_meaning": "benefit / interest / profit",
+    "frequency_rank": 492
+  },
+  {
+    "id": 493,
+    "character": "效",
+    "pinyin": "xiào",
+    "meaning": "effect / to imitate / to serve",
+    "phrase": "效果",
+    "phrase_pinyin": "xiào guǒ",
+    "phrase_meaning": "result / effect",
+    "frequency_rank": 493
+  },
+  {
+    "id": 494,
+    "character": "率",
+    "pinyin": "lǜ",
+    "meaning": "rate / efficiency / to lead",
+    "phrase": "效率",
+    "phrase_pinyin": "xiào lǜ",
+    "phrase_meaning": "efficiency",
+    "frequency_rank": 494
+  },
+  {
+    "id": 495,
+    "character": "值",
+    "pinyin": "zhí",
+    "meaning": "value / worth / to be worth",
+    "phrase": "價值",
+    "phrase_pinyin": "jià zhí",
+    "phrase_meaning": "value / worth",
+    "frequency_rank": 495
+  },
+  {
+    "id": 496,
+    "character": "價",
+    "pinyin": "jià",
+    "meaning": "price / value",
+    "phrase": "價格",
+    "phrase_pinyin": "jià gé",
+    "phrase_meaning": "price",
+    "frequency_rank": 496
+  },
+  {
+    "id": 497,
+    "character": "費",
+    "pinyin": "fèi",
+    "meaning": "to spend / cost / fee",
+    "phrase": "費用",
+    "phrase_pinyin": "fèi yòng",
+    "phrase_meaning": "cost / expense / fee",
+    "frequency_rank": 497
+  },
+  {
+    "id": 498,
+    "character": "錢",
+    "pinyin": "qián",
+    "meaning": "money / coin / cash",
+    "phrase": "花錢",
+    "phrase_pinyin": "huā qián",
+    "phrase_meaning": "to spend money",
+    "frequency_rank": 498
+  },
+  {
+    "id": 499,
+    "character": "富",
+    "pinyin": "fù",
+    "meaning": "rich / wealthy / abundant",
+    "phrase": "富有",
+    "phrase_pinyin": "fù yǒu",
+    "phrase_meaning": "rich / wealthy",
+    "frequency_rank": 499
+  },
+  {
+    "id": 500,
+    "character": "窮",
+    "pinyin": "qióng",
+    "meaning": "poor / destitute / exhausted",
+    "phrase": "貧窮",
+    "phrase_pinyin": "pín qióng",
+    "phrase_meaning": "poor / poverty",
+    "frequency_rank": 500
+  },
+  {
+    "id": 501,
+    "character": "貧",
+    "pinyin": "pín",
+    "meaning": "poor / inadequate",
+    "phrase": "貧困",
+    "phrase_pinyin": "pín kùn",
+    "phrase_meaning": "poor / poverty-stricken",
+    "frequency_rank": 501
+  },
+  {
+    "id": 502,
+    "character": "賺",
+    "pinyin": "zhuàn",
+    "meaning": "to earn / to profit",
+    "phrase": "賺錢",
+    "phrase_pinyin": "zhuàn qián",
+    "phrase_meaning": "to make money / to earn",
+    "frequency_rank": 502
+  },
+  {
+    "id": 503,
+    "character": "存",
+    "pinyin": "cún",
+    "meaning": "to exist / to save / to deposit",
+    "phrase": "存在",
+    "phrase_pinyin": "cún zài",
+    "phrase_meaning": "to exist / existence",
+    "frequency_rank": 503
+  },
+  {
+    "id": 504,
+    "character": "花",
+    "pinyin": "huā",
+    "meaning": "to spend / to cost",
+    "phrase": "花時間",
+    "phrase_pinyin": "huā shí jiān",
+    "phrase_meaning": "to spend time",
+    "frequency_rank": 504
+  },
+  {
+    "id": 505,
+    "character": "省",
+    "pinyin": "shěng",
+    "meaning": "to save / province / to be aware",
+    "phrase": "省錢",
+    "phrase_pinyin": "shěng qián",
+    "phrase_meaning": "to save money",
+    "frequency_rank": 505
+  },
+  {
+    "id": 506,
+    "character": "付",
+    "pinyin": "fù",
+    "meaning": "to pay / to hand over",
+    "phrase": "付錢",
+    "phrase_pinyin": "fù qián",
+    "phrase_meaning": "to pay",
+    "frequency_rank": 506
+  },
+  {
+    "id": 507,
+    "character": "稅",
+    "pinyin": "shuì",
+    "meaning": "tax / duty",
+    "phrase": "稅收",
+    "phrase_pinyin": "shuì shōu",
+    "phrase_meaning": "tax revenue",
+    "frequency_rank": 507
+  },
+  {
+    "id": 508,
+    "character": "投",
+    "pinyin": "tóu",
+    "meaning": "to throw / to invest / to go toward",
+    "phrase": "投資",
+    "phrase_pinyin": "tóu zī",
+    "phrase_meaning": "to invest / investment",
+    "frequency_rank": 508
+  },
+  {
+    "id": 509,
+    "character": "資",
+    "pinyin": "zī",
+    "meaning": "resources / capital / money",
+    "phrase": "資料",
+    "phrase_pinyin": "zī liào",
+    "phrase_meaning": "data / material / information",
+    "frequency_rank": 509
+  },
+  {
+    "id": 510,
+    "character": "料",
+    "pinyin": "liào",
+    "meaning": "material / to expect / to estimate",
+    "phrase": "材料",
+    "phrase_pinyin": "cái liào",
+    "phrase_meaning": "material / ingredient",
+    "frequency_rank": 510
+  },
+  {
+    "id": 511,
+    "character": "材",
+    "pinyin": "cái",
+    "meaning": "material / lumber / talent",
+    "phrase": "人才",
+    "phrase_pinyin": "rén cái",
+    "phrase_meaning": "talent / talented person",
+    "frequency_rank": 511
+  },
+  {
+    "id": 512,
+    "character": "源",
+    "pinyin": "yuán",
+    "meaning": "source / origin / spring",
+    "phrase": "資源",
+    "phrase_pinyin": "zī yuán",
+    "phrase_meaning": "resource / natural resource",
+    "frequency_rank": 512
+  },
+  {
+    "id": 513,
+    "character": "能",
+    "pinyin": "néng",
+    "meaning": "energy / ability / can",
+    "phrase": "能源",
+    "phrase_pinyin": "néng yuán",
+    "phrase_meaning": "energy source",
+    "frequency_rank": 513
+  },
+  {
+    "id": 514,
+    "character": "電",
+    "pinyin": "diàn",
+    "meaning": "electricity / lightning / electric",
+    "phrase": "電腦",
+    "phrase_pinyin": "diàn nǎo",
+    "phrase_meaning": "computer",
+    "frequency_rank": 514
+  },
+  {
+    "id": 515,
+    "character": "腦",
+    "pinyin": "nǎo",
+    "meaning": "brain / mind",
+    "phrase": "電腦",
+    "phrase_pinyin": "diàn nǎo",
+    "phrase_meaning": "computer",
+    "frequency_rank": 515
+  },
+  {
+    "id": 516,
+    "character": "網",
+    "pinyin": "wǎng",
+    "meaning": "net / network / web",
+    "phrase": "網路",
+    "phrase_pinyin": "wǎng lù",
+    "phrase_meaning": "internet / network",
+    "frequency_rank": 516
+  },
+  {
+    "id": 517,
+    "character": "機",
+    "pinyin": "jī",
+    "meaning": "machine / opportunity / aircraft",
+    "phrase": "手機",
+    "phrase_pinyin": "shǒu jī",
+    "phrase_meaning": "mobile phone",
+    "frequency_rank": 517
+  },
+  {
+    "id": 518,
+    "character": "器",
+    "pinyin": "qì",
+    "meaning": "tool / device / utensil",
+    "phrase": "機器",
+    "phrase_pinyin": "jī qì",
+    "phrase_meaning": "machine / machinery",
+    "frequency_rank": 518
+  },
+  {
+    "id": 519,
+    "character": "具",
+    "pinyin": "jù",
+    "meaning": "tool / implement / to have",
+    "phrase": "工具",
+    "phrase_pinyin": "gōng jù",
+    "phrase_meaning": "tool / instrument",
+    "frequency_rank": 519
+  },
+  {
+    "id": 520,
+    "character": "軟",
+    "pinyin": "ruǎn",
+    "meaning": "soft / flexible",
+    "phrase": "軟件",
+    "phrase_pinyin": "ruǎn jiàn",
+    "phrase_meaning": "software",
+    "frequency_rank": 520
+  },
+  {
+    "id": 521,
+    "character": "件",
+    "pinyin": "jiàn",
+    "meaning": "item / article / measure word",
+    "phrase": "條件",
+    "phrase_pinyin": "tiáo jiàn",
+    "phrase_meaning": "condition / terms / requirement",
+    "frequency_rank": 521
+  },
+  {
+    "id": 522,
+    "character": "條",
+    "pinyin": "tiáo",
+    "meaning": "strip / item / measure word",
+    "phrase": "一條",
+    "phrase_pinyin": "yī tiáo",
+    "phrase_meaning": "a strip / a (long, thin thing)",
+    "frequency_rank": 522
+  },
+  {
+    "id": 523,
+    "character": "根",
+    "pinyin": "gēn",
+    "meaning": "root / basis / measure word for thin objects",
+    "phrase": "根本",
+    "phrase_pinyin": "gēn běn",
+    "phrase_meaning": "fundamental / at all / simply",
+    "frequency_rank": 523
+  },
+  {
+    "id": 524,
+    "character": "底",
+    "pinyin": "dǐ",
+    "meaning": "bottom / base / end of period",
+    "phrase": "底部",
+    "phrase_pinyin": "dǐ bù",
+    "phrase_meaning": "bottom part / base",
+    "frequency_rank": 524
+  },
+  {
+    "id": 525,
+    "character": "頂",
+    "pinyin": "dǐng",
+    "meaning": "top / peak / to carry on head",
+    "phrase": "頂部",
+    "phrase_pinyin": "dǐng bù",
+    "phrase_meaning": "top part / peak",
+    "frequency_rank": 525
+  },
+  {
+    "id": 526,
+    "character": "邊",
+    "pinyin": "biān",
+    "meaning": "side / edge / border",
+    "phrase": "旁邊",
+    "phrase_pinyin": "páng biān",
+    "phrase_meaning": "beside / next to",
+    "frequency_rank": 526
+  },
+  {
+    "id": 527,
+    "character": "旁",
+    "pinyin": "páng",
+    "meaning": "side / beside / other",
+    "phrase": "旁邊",
+    "phrase_pinyin": "páng biān",
+    "phrase_meaning": "beside / next to",
+    "frequency_rank": 527
+  },
+  {
+    "id": 528,
+    "character": "角",
+    "pinyin": "jiǎo",
+    "meaning": "corner / angle / horn / role",
+    "phrase": "角落",
+    "phrase_pinyin": "jiǎo luò",
+    "phrase_meaning": "corner / nook",
+    "frequency_rank": 528
+  },
+  {
+    "id": 529,
+    "character": "側",
+    "pinyin": "cè",
+    "meaning": "side / to slant",
+    "phrase": "側面",
+    "phrase_pinyin": "cè miàn",
+    "phrase_meaning": "side / lateral",
+    "frequency_rank": 529
+  },
+  {
+    "id": 530,
+    "character": "中",
+    "pinyin": "zhōng",
+    "meaning": "center / middle / inside",
+    "phrase": "中間",
+    "phrase_pinyin": "zhōng jiān",
+    "phrase_meaning": "in the middle / between",
+    "frequency_rank": 530
+  },
+  {
+    "id": 531,
+    "character": "外",
+    "pinyin": "wài",
+    "meaning": "outside / foreign / other",
+    "phrase": "外面",
+    "phrase_pinyin": "wài miàn",
+    "phrase_meaning": "outside / exterior",
+    "frequency_rank": 531
+  },
+  {
+    "id": 532,
+    "character": "內",
+    "pinyin": "nèi",
+    "meaning": "inside / inner / within",
+    "phrase": "國內",
+    "phrase_pinyin": "guó nèi",
+    "phrase_meaning": "domestic / within the country",
+    "frequency_rank": 532
+  },
+  {
+    "id": 533,
+    "character": "東",
+    "pinyin": "dōng",
+    "meaning": "east",
+    "phrase": "東西",
+    "phrase_pinyin": "dōng xi",
+    "phrase_meaning": "thing / object / stuff",
+    "frequency_rank": 533
+  },
+  {
+    "id": 534,
+    "character": "西",
+    "pinyin": "xī",
+    "meaning": "west",
+    "phrase": "東西",
+    "phrase_pinyin": "dōng xi",
+    "phrase_meaning": "thing / object",
+    "frequency_rank": 534
+  },
+  {
+    "id": 535,
+    "character": "南",
+    "pinyin": "nán",
+    "meaning": "south",
+    "phrase": "南方",
+    "phrase_pinyin": "nán fāng",
+    "phrase_meaning": "the south / southern region",
+    "frequency_rank": 535
+  },
+  {
+    "id": 536,
+    "character": "北",
+    "pinyin": "běi",
+    "meaning": "north",
+    "phrase": "北方",
+    "phrase_pinyin": "běi fāng",
+    "phrase_meaning": "the north / northern region",
+    "frequency_rank": 536
+  },
+  {
+    "id": 537,
+    "character": "城",
+    "pinyin": "chéng",
+    "meaning": "city / town / wall",
+    "phrase": "城市",
+    "phrase_pinyin": "chéng shì",
+    "phrase_meaning": "city / town",
+    "frequency_rank": 537
+  },
+  {
+    "id": 538,
+    "character": "市",
+    "pinyin": "shì",
+    "meaning": "city / market / trade",
+    "phrase": "城市",
+    "phrase_pinyin": "chéng shì",
+    "phrase_meaning": "city / urban",
+    "frequency_rank": 538
+  },
+  {
+    "id": 539,
+    "character": "區",
+    "pinyin": "qū",
+    "meaning": "area / district / region",
+    "phrase": "地區",
+    "phrase_pinyin": "dì qū",
+    "phrase_meaning": "area / region / district",
+    "frequency_rank": 539
+  },
+  {
+    "id": 540,
+    "character": "鄉",
+    "pinyin": "xiāng",
+    "meaning": "village / hometown / rural",
+    "phrase": "家鄉",
+    "phrase_pinyin": "jiā xiāng",
+    "phrase_meaning": "hometown / native place",
+    "frequency_rank": 540
+  },
+  {
+    "id": 541,
+    "character": "村",
+    "pinyin": "cūn",
+    "meaning": "village / hamlet",
+    "phrase": "農村",
+    "phrase_pinyin": "nóng cūn",
+    "phrase_meaning": "rural area / countryside",
+    "frequency_rank": 541
+  },
+  {
+    "id": 542,
+    "character": "農",
+    "pinyin": "nóng",
+    "meaning": "agriculture / farmer",
+    "phrase": "農業",
+    "phrase_pinyin": "nóng yè",
+    "phrase_meaning": "agriculture / farming",
+    "frequency_rank": 542
+  },
+  {
+    "id": 543,
+    "character": "田",
+    "pinyin": "tián",
+    "meaning": "field / farmland",
+    "phrase": "田野",
+    "phrase_pinyin": "tián yě",
+    "phrase_meaning": "field / open country",
+    "frequency_rank": 543
+  },
+  {
+    "id": 544,
+    "character": "野",
+    "pinyin": "yě",
+    "meaning": "wild / open country / uncultivated",
+    "phrase": "野生",
+    "phrase_pinyin": "yě shēng",
+    "phrase_meaning": "wild / wildlife",
+    "frequency_rank": 544
+  },
+  {
+    "id": 545,
+    "character": "林",
+    "pinyin": "lín",
+    "meaning": "forest / grove / woods",
+    "phrase": "森林",
+    "phrase_pinyin": "sēn lín",
+    "phrase_meaning": "forest",
+    "frequency_rank": 545
+  },
+  {
+    "id": 546,
+    "character": "森",
+    "pinyin": "sēn",
+    "meaning": "forest / dense",
+    "phrase": "森林",
+    "phrase_pinyin": "sēn lín",
+    "phrase_meaning": "forest / jungle",
+    "frequency_rank": 546
+  },
+  {
+    "id": 547,
+    "character": "草",
+    "pinyin": "cǎo",
+    "meaning": "grass / straw / rough",
+    "phrase": "草地",
+    "phrase_pinyin": "cǎo dì",
+    "phrase_meaning": "grassland / lawn",
+    "frequency_rank": 547
+  },
+  {
+    "id": 548,
+    "character": "葉",
+    "pinyin": "yè",
+    "meaning": "leaf / page / period of time",
+    "phrase": "樹葉",
+    "phrase_pinyin": "shù yè",
+    "phrase_meaning": "tree leaf / foliage",
+    "frequency_rank": 548
+  },
+  {
+    "id": 549,
+    "character": "根",
+    "pinyin": "gēn",
+    "meaning": "root / origin",
+    "phrase": "樹根",
+    "phrase_pinyin": "shù gēn",
+    "phrase_meaning": "tree root",
+    "frequency_rank": 549
+  },
+  {
+    "id": 550,
+    "character": "果",
+    "pinyin": "guǒ",
+    "meaning": "fruit / result",
+    "phrase": "水果",
+    "phrase_pinyin": "shuǐ guǒ",
+    "phrase_meaning": "fruit",
+    "frequency_rank": 550
+  },
+  {
+    "id": 551,
+    "character": "蔬",
+    "pinyin": "shū",
+    "meaning": "vegetable",
+    "phrase": "蔬菜",
+    "phrase_pinyin": "shū cài",
+    "phrase_meaning": "vegetables",
+    "frequency_rank": 551
+  },
+  {
+    "id": 552,
+    "character": "菜",
+    "pinyin": "cài",
+    "meaning": "vegetable / dish / food",
+    "phrase": "菜單",
+    "phrase_pinyin": "cài dān",
+    "phrase_meaning": "menu",
+    "frequency_rank": 552
+  },
+  {
+    "id": 553,
+    "character": "飯",
+    "pinyin": "fàn",
+    "meaning": "rice / meal / cooked grain",
+    "phrase": "晚飯",
+    "phrase_pinyin": "wǎn fàn",
+    "phrase_meaning": "dinner / evening meal",
+    "frequency_rank": 553
+  },
+  {
+    "id": 554,
+    "character": "米",
+    "pinyin": "mǐ",
+    "meaning": "rice / meter / grain",
+    "phrase": "白米",
+    "phrase_pinyin": "bái mǐ",
+    "phrase_meaning": "white rice",
+    "frequency_rank": 554
+  },
+  {
+    "id": 555,
+    "character": "麵",
+    "pinyin": "miàn",
+    "meaning": "noodles / flour / face / surface",
+    "phrase": "麵條",
+    "phrase_pinyin": "miàn tiáo",
+    "phrase_meaning": "noodles",
+    "frequency_rank": 555
+  },
+  {
+    "id": 556,
+    "character": "肉",
+    "pinyin": "ròu",
+    "meaning": "meat / flesh",
+    "phrase": "豬肉",
+    "phrase_pinyin": "zhū ròu",
+    "phrase_meaning": "pork",
+    "frequency_rank": 556
+  },
+  {
+    "id": 557,
+    "character": "魚",
+    "pinyin": "yú",
+    "meaning": "fish",
+    "phrase": "魚肉",
+    "phrase_pinyin": "yú ròu",
+    "phrase_meaning": "fish meat",
+    "frequency_rank": 557
+  },
+  {
+    "id": 558,
+    "character": "雞",
+    "pinyin": "jī",
+    "meaning": "chicken / fowl",
+    "phrase": "雞蛋",
+    "phrase_pinyin": "jī dàn",
+    "phrase_meaning": "chicken egg",
+    "frequency_rank": 558
+  },
+  {
+    "id": 559,
+    "character": "蛋",
+    "pinyin": "dàn",
+    "meaning": "egg",
+    "phrase": "雞蛋",
+    "phrase_pinyin": "jī dàn",
+    "phrase_meaning": "egg",
+    "frequency_rank": 559
+  },
+  {
+    "id": 560,
+    "character": "牛",
+    "pinyin": "niú",
+    "meaning": "cow / ox / bull",
+    "phrase": "牛奶",
+    "phrase_pinyin": "niú nǎi",
+    "phrase_meaning": "milk",
+    "frequency_rank": 560
+  },
+  {
+    "id": 561,
+    "character": "奶",
+    "pinyin": "nǎi",
+    "meaning": "milk / breast / grandmother",
+    "phrase": "牛奶",
+    "phrase_pinyin": "niú nǎi",
+    "phrase_meaning": "milk",
+    "frequency_rank": 561
+  },
+  {
+    "id": 562,
+    "character": "豬",
+    "pinyin": "zhū",
+    "meaning": "pig / hog / swine",
+    "phrase": "小豬",
+    "phrase_pinyin": "xiǎo zhū",
+    "phrase_meaning": "piglet / little pig",
+    "frequency_rank": 562
+  },
+  {
+    "id": 563,
+    "character": "羊",
+    "pinyin": "yáng",
+    "meaning": "sheep / goat",
+    "phrase": "小羊",
+    "phrase_pinyin": "xiǎo yáng",
+    "phrase_meaning": "lamb / little sheep",
+    "frequency_rank": 563
+  },
+  {
+    "id": 564,
+    "character": "馬",
+    "pinyin": "mǎ",
+    "meaning": "horse",
+    "phrase": "馬上",
+    "phrase_pinyin": "mǎ shàng",
+    "phrase_meaning": "immediately / right away",
+    "frequency_rank": 564
+  },
+  {
+    "id": 565,
+    "character": "狗",
+    "pinyin": "gǒu",
+    "meaning": "dog",
+    "phrase": "小狗",
+    "phrase_pinyin": "xiǎo gǒu",
+    "phrase_meaning": "puppy / little dog",
+    "frequency_rank": 565
+  },
+  {
+    "id": 566,
+    "character": "貓",
+    "pinyin": "māo",
+    "meaning": "cat",
+    "phrase": "小貓",
+    "phrase_pinyin": "xiǎo māo",
+    "phrase_meaning": "kitten / little cat",
+    "frequency_rank": 566
+  },
+  {
+    "id": 567,
+    "character": "鳥",
+    "pinyin": "niǎo",
+    "meaning": "bird",
+    "phrase": "小鳥",
+    "phrase_pinyin": "xiǎo niǎo",
+    "phrase_meaning": "little bird",
+    "frequency_rank": 567
+  },
+  {
+    "id": 568,
+    "character": "蟲",
+    "pinyin": "chóng",
+    "meaning": "insect / worm / creature",
+    "phrase": "昆蟲",
+    "phrase_pinyin": "kūn chóng",
+    "phrase_meaning": "insect",
+    "frequency_rank": 568
+  },
+  {
+    "id": 569,
+    "character": "魚",
+    "pinyin": "yú",
+    "meaning": "fish (aquatic creature)",
+    "phrase": "金魚",
+    "phrase_pinyin": "jīn yú",
+    "phrase_meaning": "goldfish",
+    "frequency_rank": 569
+  },
+  {
+    "id": 570,
+    "character": "茶",
+    "pinyin": "chá",
+    "meaning": "tea",
+    "phrase": "喝茶",
+    "phrase_pinyin": "hē chá",
+    "phrase_meaning": "to drink tea",
+    "frequency_rank": 570
+  },
+  {
+    "id": 571,
+    "character": "酒",
+    "pinyin": "jiǔ",
+    "meaning": "wine / liquor / alcohol",
+    "phrase": "啤酒",
+    "phrase_pinyin": "pí jiǔ",
+    "phrase_meaning": "beer",
+    "frequency_rank": 571
+  },
+  {
+    "id": 572,
+    "character": "糖",
+    "pinyin": "táng",
+    "meaning": "sugar / candy / sweets",
+    "phrase": "糖果",
+    "phrase_pinyin": "táng guǒ",
+    "phrase_meaning": "candy / sweets",
+    "frequency_rank": 572
+  },
+  {
+    "id": 573,
+    "character": "鹽",
+    "pinyin": "yán",
+    "meaning": "salt",
+    "phrase": "食鹽",
+    "phrase_pinyin": "shí yán",
+    "phrase_meaning": "table salt",
+    "frequency_rank": 573
+  },
+  {
+    "id": 574,
+    "character": "油",
+    "pinyin": "yóu",
+    "meaning": "oil / grease / petroleum",
+    "phrase": "石油",
+    "phrase_pinyin": "shí yóu",
+    "phrase_meaning": "petroleum / oil",
+    "frequency_rank": 574
+  },
+  {
+    "id": 575,
+    "character": "碗",
+    "pinyin": "wǎn",
+    "meaning": "bowl",
+    "phrase": "一碗",
+    "phrase_pinyin": "yī wǎn",
+    "phrase_meaning": "a bowl of",
+    "frequency_rank": 575
+  },
+  {
+    "id": 576,
+    "character": "盤",
+    "pinyin": "pán",
+    "meaning": "plate / tray / to coil",
+    "phrase": "盤子",
+    "phrase_pinyin": "pán zi",
+    "phrase_meaning": "plate / dish / tray",
+    "frequency_rank": 576
+  },
+  {
+    "id": 577,
+    "character": "杯",
+    "pinyin": "bēi",
+    "meaning": "cup / glass / trophy",
+    "phrase": "一杯",
+    "phrase_pinyin": "yī bēi",
+    "phrase_meaning": "a cup of / a glass of",
+    "frequency_rank": 577
+  },
+  {
+    "id": 578,
+    "character": "瓶",
+    "pinyin": "píng",
+    "meaning": "bottle / vase / jar",
+    "phrase": "瓶子",
+    "phrase_pinyin": "píng zi",
+    "phrase_meaning": "bottle",
+    "frequency_rank": 578
+  },
+  {
+    "id": 579,
+    "character": "袋",
+    "pinyin": "dài",
+    "meaning": "bag / sack / pouch",
+    "phrase": "袋子",
+    "phrase_pinyin": "dài zi",
+    "phrase_meaning": "bag / sack",
+    "frequency_rank": 579
+  },
+  {
+    "id": 580,
+    "character": "箱",
+    "pinyin": "xiāng",
+    "meaning": "box / chest / trunk",
+    "phrase": "行李箱",
+    "phrase_pinyin": "xíng lǐ xiāng",
+    "phrase_meaning": "suitcase / luggage",
+    "frequency_rank": 580
+  },
+  {
+    "id": 581,
+    "character": "布",
+    "pinyin": "bù",
+    "meaning": "cloth / to spread / to announce",
+    "phrase": "公布",
+    "phrase_pinyin": "gōng bù",
+    "phrase_meaning": "to announce / to publish",
+    "frequency_rank": 581
+  },
+  {
+    "id": 582,
+    "character": "衣",
+    "pinyin": "yī",
+    "meaning": "clothing / garment",
+    "phrase": "衣服",
+    "phrase_pinyin": "yī fú",
+    "phrase_meaning": "clothing / clothes",
+    "frequency_rank": 582
+  },
+  {
+    "id": 583,
+    "character": "服",
+    "pinyin": "fú",
+    "meaning": "clothes / to serve / dose",
+    "phrase": "衣服",
+    "phrase_pinyin": "yī fú",
+    "phrase_meaning": "clothes / clothing",
+    "frequency_rank": 583
+  },
+  {
+    "id": 584,
+    "character": "褲",
+    "pinyin": "kù",
+    "meaning": "trousers / pants",
+    "phrase": "褲子",
+    "phrase_pinyin": "kù zi",
+    "phrase_meaning": "trousers / pants",
+    "frequency_rank": 584
+  },
+  {
+    "id": 585,
+    "character": "裙",
+    "pinyin": "qún",
+    "meaning": "skirt",
+    "phrase": "裙子",
+    "phrase_pinyin": "qún zi",
+    "phrase_meaning": "skirt",
+    "frequency_rank": 585
+  },
+  {
+    "id": 586,
+    "character": "帽",
+    "pinyin": "mào",
+    "meaning": "hat / cap",
+    "phrase": "帽子",
+    "phrase_pinyin": "mào zi",
+    "phrase_meaning": "hat / cap",
+    "frequency_rank": 586
+  },
+  {
+    "id": 587,
+    "character": "鞋",
+    "pinyin": "xié",
+    "meaning": "shoe",
+    "phrase": "鞋子",
+    "phrase_pinyin": "xié zi",
+    "phrase_meaning": "shoes",
+    "frequency_rank": 587
+  },
+  {
+    "id": 588,
+    "character": "眼",
+    "pinyin": "yǎn",
+    "meaning": "eye / eyeglasses",
+    "phrase": "眼鏡",
+    "phrase_pinyin": "yǎn jìng",
+    "phrase_meaning": "eyeglasses / spectacles",
+    "frequency_rank": 588
+  },
+  {
+    "id": 589,
+    "character": "鏡",
+    "pinyin": "jìng",
+    "meaning": "mirror / lens / glasses",
+    "phrase": "眼鏡",
+    "phrase_pinyin": "yǎn jìng",
+    "phrase_meaning": "glasses / spectacles",
+    "frequency_rank": 589
+  },
+  {
+    "id": 590,
+    "character": "鑰",
+    "pinyin": "yào",
+    "meaning": "key (for lock)",
+    "phrase": "鑰匙",
+    "phrase_pinyin": "yào shi",
+    "phrase_meaning": "key (for lock)",
+    "frequency_rank": 590
+  },
+  {
+    "id": 591,
+    "character": "匙",
+    "pinyin": "chí",
+    "meaning": "spoon / key",
+    "phrase": "鑰匙",
+    "phrase_pinyin": "yào shi",
+    "phrase_meaning": "key (for door)",
+    "frequency_rank": 591
+  },
+  {
+    "id": 592,
+    "character": "燈",
+    "pinyin": "dēng",
+    "meaning": "lamp / lantern / light",
+    "phrase": "電燈",
+    "phrase_pinyin": "diàn dēng",
+    "phrase_meaning": "electric light / lamp",
+    "frequency_rank": 592
+  },
+  {
+    "id": 593,
+    "character": "鐘",
+    "pinyin": "zhōng",
+    "meaning": "clock / bell",
+    "phrase": "鬧鐘",
+    "phrase_pinyin": "nào zhōng",
+    "phrase_meaning": "alarm clock",
+    "frequency_rank": 593
+  },
+  {
+    "id": 594,
+    "character": "錶",
+    "pinyin": "biǎo",
+    "meaning": "watch (timepiece)",
+    "phrase": "手錶",
+    "phrase_pinyin": "shǒu biǎo",
+    "phrase_meaning": "wristwatch",
+    "frequency_rank": 594
+  },
+  {
+    "id": 595,
+    "character": "紙",
+    "pinyin": "zhǐ",
+    "meaning": "paper",
+    "phrase": "報紙",
+    "phrase_pinyin": "bào zhǐ",
+    "phrase_meaning": "newspaper",
+    "frequency_rank": 595
+  },
+  {
+    "id": 596,
+    "character": "筆",
+    "pinyin": "bǐ",
+    "meaning": "pen / pencil / stroke",
+    "phrase": "鉛筆",
+    "phrase_pinyin": "qiān bǐ",
+    "phrase_meaning": "pencil",
+    "frequency_rank": 596
+  },
+  {
+    "id": 597,
+    "character": "墨",
+    "pinyin": "mò",
+    "meaning": "ink / black / tacit",
+    "phrase": "墨水",
+    "phrase_pinyin": "mò shuǐ",
+    "phrase_meaning": "ink",
+    "frequency_rank": 597
+  },
+  {
+    "id": 598,
+    "character": "字",
+    "pinyin": "zì",
+    "meaning": "character / letter / word",
+    "phrase": "漢字",
+    "phrase_pinyin": "hàn zì",
+    "phrase_meaning": "Chinese character",
+    "frequency_rank": 598
+  },
+  {
+    "id": 599,
+    "character": "漢",
+    "pinyin": "hàn",
+    "meaning": "Han Chinese / man / Han dynasty",
+    "phrase": "漢語",
+    "phrase_pinyin": "hàn yǔ",
+    "phrase_meaning": "Chinese language (Mandarin)",
+    "frequency_rank": 599
+  },
+  {
+    "id": 600,
+    "character": "詞",
+    "pinyin": "cí",
+    "meaning": "word / term / speech",
+    "phrase": "詞語",
+    "phrase_pinyin": "cí yǔ",
+    "phrase_meaning": "word / term / expression",
+    "frequency_rank": 600
+  },
+  {
+    "id": 601,
+    "character": "仍",
+    "pinyin": "réng",
+    "meaning": "still",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 601
+  },
+  {
+    "id": 602,
+    "character": "男",
+    "pinyin": "nán",
+    "meaning": "male",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 602
+  },
+  {
+    "id": 603,
+    "character": "钱",
+    "pinyin": "qián",
+    "meaning": "surname",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 603
+  },
+  {
+    "id": 604,
+    "character": "破",
+    "pinyin": "pò",
+    "meaning": "to break",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 604
+  },
+  {
+    "id": 605,
+    "character": "网",
+    "pinyin": "wǎng",
+    "meaning": "net",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 605
+  },
+  {
+    "id": 606,
+    "character": "热",
+    "pinyin": "rè",
+    "meaning": "heat",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 606
+  },
+  {
+    "id": 607,
+    "character": "助",
+    "pinyin": "zhù",
+    "meaning": "to help",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 607
+  },
+  {
+    "id": 608,
+    "character": "倒",
+    "pinyin": "dǎo",
+    "meaning": "to fall",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 608
+  },
+  {
+    "id": 609,
+    "character": "育",
+    "pinyin": "yù",
+    "meaning": "nourish",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 609
+  },
+  {
+    "id": 610,
+    "character": "属",
+    "pinyin": "shǔ",
+    "meaning": "belong to",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 610
+  },
+  {
+    "id": 611,
+    "character": "坐",
+    "pinyin": "zuò",
+    "meaning": "to sit",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 611
+  },
+  {
+    "id": 612,
+    "character": "帝",
+    "pinyin": "dì",
+    "meaning": "emperor",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 612
+  },
+  {
+    "id": 613,
+    "character": "限",
+    "pinyin": "xiàn",
+    "meaning": "limit",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 613
+  },
+  {
+    "id": 614,
+    "character": "船",
+    "pinyin": "chuán",
+    "meaning": "a boat",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 614
+  },
+  {
+    "id": 615,
+    "character": "脸",
+    "pinyin": "liǎn",
+    "meaning": "face",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 615
+  },
+  {
+    "id": 616,
+    "character": "职",
+    "pinyin": "zhí",
+    "meaning": "office",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 616
+  },
+  {
+    "id": 617,
+    "character": "速",
+    "pinyin": "sù",
+    "meaning": "fast",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 617
+  },
+  {
+    "id": 618,
+    "character": "刻",
+    "pinyin": "kè",
+    "meaning": "quarter (hour",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 618
+  },
+  {
+    "id": 619,
+    "character": "乐",
+    "pinyin": "lè",
+    "meaning": "surname",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 619
+  },
+  {
+    "id": 620,
+    "character": "否",
+    "pinyin": "fǒu",
+    "meaning": "to negate",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 620
+  },
+  {
+    "id": 621,
+    "character": "刚",
+    "pinyin": "gāng",
+    "meaning": "hard",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 621
+  },
+  {
+    "id": 622,
+    "character": "威",
+    "pinyin": "wēi",
+    "meaning": "power",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 622
+  },
+  {
+    "id": 623,
+    "character": "毛",
+    "pinyin": "máo",
+    "meaning": "hair",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 623
+  },
+  {
+    "id": 624,
+    "character": "状",
+    "pinyin": "zhuàng",
+    "meaning": "accusation",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 624
+  },
+  {
+    "id": 625,
+    "character": "率",
+    "pinyin": "lu:4",
+    "meaning": "rate",
+    "phrase": "",
+    "phrase_pinyin": "",
+    "phrase_meaning": "",
+    "frequency_rank": 625
+  }
+]
