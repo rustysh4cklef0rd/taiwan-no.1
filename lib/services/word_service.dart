@@ -119,6 +119,18 @@ class WordService {
       if (result.length >= 6) break;
       if (seenIds.add(w.id)) result.add(w);
     }
+
+    // Persist today's word IDs so the settings section can show them
+    // even after some are marked as recognized (which removes them from the pool).
+    final key = 'today_word_ids_$today';
+    if (prefs.getStringList(key) == null) {
+      await prefs.setStringList(key, result.map((w) => w.id.toString()).toList());
+      // Mark all shown words as ever-seen the moment they appear.
+      for (final w in result) {
+        await prefs.setBool('ever_seen_${w.id}', true);
+      }
+    }
+
     return result;
   }
 
@@ -131,7 +143,15 @@ class WordService {
     final prefs = await SharedPreferences.getInstance();
     final int installDay = prefs.getInt('install_epoch_day') ?? epochDay;
     final int dayOfCycle = (epochDay - installDay) % cycleDays;
-    final double percent = (dayOfCycle / cycleDays) * 100;
+
+    // Base percent on recognized words so it updates in real time.
+    final recognizedRaw = prefs.getString(_kRecognizedIds) ?? '';
+    final recognizedCount = recognizedRaw.isEmpty
+        ? 0
+        : recognizedRaw.split(',').where((s) => s.trim().isNotEmpty).length;
+    final double percent =
+        totalWords == 0 ? 0.0 : (recognizedCount / totalWords) * 100;
+
     return {
       'dayOfCycle': dayOfCycle + 1,
       'cycleDays': cycleDays,
@@ -231,12 +251,32 @@ class WordService {
     return today.where((w) => prefs.getInt('tapped_${w.id}') == day).length;
   }
 
-  static Future<List<({Word word, bool tapped})>> getTodaysReview() async {
-    final today = await getTodaysWords(DateTime.now());
+  static Future<List<({Word word, bool recognized})>> getTodaysReview() async {
     final prefs = await SharedPreferences.getInstance();
     final day = _epochDay(DateTime.now());
-    return today
-        .map((w) => (word: w, tapped: prefs.getInt('tapped_${w.id}') == day))
+    final allWords = await loadWordList();
+
+    // Use the saved IDs for today so recognized words still appear in the list.
+    final savedIds = prefs.getStringList('today_word_ids_$day');
+    final List<Word> todayWords;
+    if (savedIds != null) {
+      final idSet = savedIds.map(int.parse).toSet();
+      todayWords = allWords.where((w) => idSet.contains(w.id)).toList();
+    } else {
+      todayWords = await getTodaysWords(DateTime.now());
+    }
+
+    final recognizedRaw = prefs.getString('recognized_ids') ?? '';
+    final recognized = recognizedRaw.isEmpty
+        ? <int>{}
+        : recognizedRaw
+            .split(',')
+            .map((s) => int.tryParse(s.trim()))
+            .whereType<int>()
+            .toSet();
+
+    return todayWords
+        .map((w) => (word: w, recognized: recognized.contains(w.id)))
         .toList();
   }
 
@@ -337,6 +377,85 @@ class WordService {
 
   static Future<void> clearAllRecognized() async {
     await _saveRecognizedIds({});
+  }
+
+  /// After marking [wordId] as recognized, swap it out of today's stored list
+  /// and replace it with the next available unrecognized word.
+  static Future<void> replaceWordInToday(int wordId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final day = _epochDay(DateTime.now());
+    final key = 'today_word_ids_$day';
+
+    final savedIds = prefs.getStringList(key);
+    if (savedIds == null || !savedIds.contains(wordId.toString())) return;
+
+    final allWords = await loadWordList();
+    final activeSet = prefs.getInt(_kActiveSet) ?? 1;
+    final maxId = setMaxIds[activeSet];
+    final setWords = allWords.where((w) => w.id <= maxId).toList();
+
+    final recognizedRaw = prefs.getString(_kRecognizedIds) ?? '';
+    final recognized = recognizedRaw.isEmpty
+        ? <int>{}
+        : recognizedRaw
+            .split(',')
+            .map((s) => int.tryParse(s.trim()))
+            .whereType<int>()
+            .toSet();
+
+    final todayIds = savedIds.map(int.parse).toSet();
+
+    // Words that are not recognized and not already shown today
+    final candidates = setWords
+        .where((w) => !recognized.contains(w.id) && !todayIds.contains(w.id))
+        .toList();
+
+    if (candidates.isEmpty) return;
+
+    // Use a rotation offset so we don't always pick the same replacement
+    final installDay = prefs.getInt('install_epoch_day') ?? day;
+    final offset = ((day - installDay) * 7) % candidates.length;
+    final replacement = candidates[offset];
+
+    final newIds = savedIds
+        .map((id) => id == wordId.toString() ? replacement.id.toString() : id)
+        .toList();
+    await prefs.setStringList(key, newIds);
+    await prefs.setBool('ever_seen_${replacement.id}', true);
+
+    // Push updated word list to the Android home-screen widget.
+    await pushStoredWordsToWidget(prefs, day);
+  }
+
+  /// Reads today's stored word IDs and pushes them to the home-screen widget.
+  static Future<void> pushStoredWordsToWidget(
+      SharedPreferences prefs, int day) async {
+    try {
+      final savedIds = prefs.getStringList('today_word_ids_$day');
+      if (savedIds == null) return;
+      final allWords = await loadWordList();
+      final idSet = savedIds.map(int.parse).toSet();
+      final words = allWords.where((w) => idSet.contains(w.id)).toList()
+        ..sort((a, b) =>
+            savedIds.indexOf(a.id.toString()) -
+            savedIds.indexOf(b.id.toString()));
+
+      for (int i = 0; i < words.length; i++) {
+        final w = words[i];
+        await HomeWidget.saveWidgetData<String>('word_${i}_char', w.character);
+        await HomeWidget.saveWidgetData<String>('word_${i}_pinyin', w.pinyin);
+        await HomeWidget.saveWidgetData<String>('word_${i}_meaning', w.meaning);
+        await HomeWidget.saveWidgetData<String>('word_${i}_phrase', w.phrase);
+        await HomeWidget.saveWidgetData<String>(
+            'word_${i}_phrase_pinyin', w.phrasePinyin);
+        await HomeWidget.saveWidgetData<String>(
+            'word_${i}_phrase_meaning', w.phraseMeaning);
+        await HomeWidget.saveWidgetData<String>('word_${i}_id', w.id.toString());
+      }
+
+      const widgetOpsChannel = MethodChannel('com.chinesewidget/widget_ops');
+      await widgetOpsChannel.invokeMethod('forceUpdate');
+    } catch (_) {}
   }
 
   static Future<void> _saveRecognizedIds(Set<int> ids) async {

@@ -26,6 +26,13 @@ List<Word>? _launchWords;
 /// Used to detect app-resume on a new day (when main() doesn't re-run).
 int? _launchWordsDay;
 
+/// Clears the in-memory word cache so the next home-screen load recomputes
+/// from SharedPreferences (e.g. after a word is replaced via settings).
+void invalidateLaunchCache() {
+  _launchWords = null;
+  _launchWordsDay = null;
+}
+
 /// Number of days to add to today for day-navigation (persisted in SharedPreferences).
 int simulatedDayOffset = 0;
 

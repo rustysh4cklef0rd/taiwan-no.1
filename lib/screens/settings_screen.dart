@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/word.dart';
 import '../services/word_service.dart';
 import 'package:chinese_reading_widget/main.dart'
-    show pushTodaysWordsToWidget, simulatedDayOffset, saveDayOffset, effectiveDate;
+    show pushTodaysWordsToWidget, simulatedDayOffset, saveDayOffset, effectiveDate, invalidateLaunchCache;
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -32,8 +32,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Map<int, int> _heatmapData = {};
   int _todayEpochDay = 0;
 
-  // Today's review
-  List<({Word word, bool tapped})> _todaysReview = [];
+  // Today's words
+  List<({Word word, bool recognized})> _todaysReview = [];
 
   // Settings
   bool _darkMode = false;
@@ -67,7 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _cycleDays = progress['cycleDays'] as int;
       _percent = progress['percent'] as double;
 
-      _todaysReview = results[1] as List<({Word word, bool tapped})>;
+      _todaysReview = results[1] as List<({Word word, bool recognized})>;
       _masteredCount = results[2] as int;
 
       final streak = results[3] as ({int current, int longest, int lastDay});
@@ -84,6 +84,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _quizMode = prefs.getBool('quiz_mode') ?? false;
       _hidePinyin = prefs.getBool('hide_pinyin') ?? false;
       _loading = false;
+    });
+  }
+
+  Future<void> _toggleRecognized(Word word, bool currentlyRecognized) async {
+    if (currentlyRecognized) {
+      await WordService.unmarkRecognized(word.id);
+    } else {
+      await WordService.markRecognized(word.id);
+      await WordService.replaceWordInToday(word.id);
+    }
+    invalidateLaunchCache();
+    final results = await Future.wait([
+      WordService.getTodaysReview(),
+      WordService.getRecognizedCount(),
+      WordService.getProgress(DateTime.now()),
+      WordService.getTotalUniqueWordsSeen(),
+    ]);
+    if (!mounted) return;
+    final progress = results[2] as Map<String, dynamic>;
+    setState(() {
+      _todaysReview = results[0] as List<({Word word, bool recognized})>;
+      _masteredCount = results[1] as int;
+      _dayOfCycle = progress['dayOfCycle'] as int;
+      _cycleDays = progress['cycleDays'] as int;
+      _percent = progress['percent'] as double;
+      _totalWordsSeen = results[3] as int;
     });
   }
 
@@ -223,6 +249,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   review: _todaysReview,
                   colorScheme: colorScheme,
                   textTheme: textTheme,
+                  onToggle: _toggleRecognized,
                 ),
                 const SizedBox(height: 32),
 
@@ -845,16 +872,17 @@ class _TodaysReviewCard extends StatelessWidget {
     required this.review,
     required this.colorScheme,
     required this.textTheme,
+    required this.onToggle,
   });
 
-  final List<({Word word, bool tapped})> review;
+  final List<({Word word, bool recognized})> review;
   final ColorScheme colorScheme;
   final TextTheme textTheme;
+  final void Function(Word word, bool currentlyRecognized) onToggle;
 
   @override
   Widget build(BuildContext context) {
-    final tappedCount = review.where((r) => r.tapped).length;
-    final missedCount = review.length - tappedCount;
+    final knownCount = review.where((r) => r.recognized).length;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -870,9 +898,9 @@ class _TodaysReviewCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '$tappedCount / ${review.length} reviewed',
+              '$knownCount / ${review.length} known',
               style: textTheme.labelSmall?.copyWith(
-                color: tappedCount == review.length
+                color: knownCount == review.length
                     ? colorScheme.primary
                     : colorScheme.outline,
                 letterSpacing: 0.5,
@@ -891,18 +919,12 @@ class _TodaysReviewCard extends StatelessWidget {
                   entry: review[i],
                   colorScheme: colorScheme,
                   textTheme: textTheme,
+                  onToggle: onToggle,
                 ),
               ],
             ],
           ),
         ),
-        if (missedCount > 0) ...[
-          const SizedBox(height: 8),
-          Text(
-            '$missedCount word${missedCount == 1 ? '' : 's'} not reviewed yet — tap them in the widget to open.',
-            style: textTheme.bodySmall?.copyWith(color: colorScheme.outline),
-          ),
-        ],
       ],
     );
   }
@@ -913,21 +935,24 @@ class _ReviewRow extends StatelessWidget {
     required this.entry,
     required this.colorScheme,
     required this.textTheme,
+    required this.onToggle,
   });
 
-  final ({Word word, bool tapped}) entry;
+  final ({Word word, bool recognized}) entry;
   final ColorScheme colorScheme;
   final TextTheme textTheme;
+  final void Function(Word word, bool currentlyRecognized) onToggle;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () => onToggle(entry.word, entry.recognized),
       leading: Text(
         entry.word.character,
         style: TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.bold,
-          color: entry.tapped
+          color: entry.recognized
               ? colorScheme.onSurface
               : colorScheme.onSurface.withAlpha(100),
         ),
@@ -935,7 +960,7 @@ class _ReviewRow extends StatelessWidget {
       title: Text(
         entry.word.pinyin,
         style: textTheme.bodyMedium?.copyWith(
-          color: entry.tapped ? colorScheme.onSurface : colorScheme.outline,
+          color: entry.recognized ? colorScheme.onSurface : colorScheme.outline,
         ),
       ),
       subtitle: Text(
@@ -944,7 +969,7 @@ class _ReviewRow extends StatelessWidget {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
-      trailing: entry.tapped
+      trailing: entry.recognized
           ? Icon(Icons.check_circle_outline,
               color: colorScheme.primary, size: 20)
           : Icon(Icons.radio_button_unchecked,

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-03-28 — v1.1.0
+
+### Fixed
+- Recognized words no longer disappear from the "Today's Words" settings section — IDs are stored on first load and used as source of truth, so the list stays stable regardless of recognition status
+- Words seen count now increments the moment today's 6 words are shown (not just when tapped); replacement words also count immediately
+- Cycle progress % now based on recognized/1250 instead of days elapsed — updates live when marking words known
+
+### Changed
+- "Today's Words" settings section now shows **recognized** status (known/unknown) instead of the old tapped/reviewed status
+- Counter changed from "X / 6 reviewed" → "X / 6 known"
+- Tapping any word row in Today's Words toggles its known status on the spot
+- Marking a word known immediately replaces it with a fresh unrecognized word, updating both the in-app list and the Android home-screen widget
+- `invalidateLaunchCache()` exposed from `main.dart` so settings can force home screen to reload on next open
+
 ## 2026-03-27 (README)
 
 ### Changed
