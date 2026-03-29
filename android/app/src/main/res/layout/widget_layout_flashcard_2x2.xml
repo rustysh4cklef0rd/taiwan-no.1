@@ -16,7 +16,7 @@
         android:text="好"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:textColor="#1A1A1A"
+        android:textColor="#1A1A2E"
         android:includeFontPadding="false"
         android:gravity="center" />
 
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="hǎo"
         android:textSize="11sp"
-        android:textColor="#666666"
+        android:textColor="#00BFCC"
         android:layout_marginTop="2dp"
         android:gravity="center" />
 
@@ -38,9 +38,9 @@
         android:layout_height="wrap_content"
         android:text="good / well"
         android:textSize="9sp"
-        android:textColor="#999999"
+        android:textColor="#3A3A5C"
         android:layout_marginTop="1dp"
-        android:gravity="start"
+        android:gravity="center"
         android:maxLines="1"
         android:ellipsize="end" />
 

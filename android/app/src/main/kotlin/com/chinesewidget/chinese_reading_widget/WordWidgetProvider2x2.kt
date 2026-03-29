@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.view.Gravity
 import android.widget.RemoteViews
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -57,7 +58,7 @@ class WordWidgetProvider2x2 : AppWidgetProvider() {
             val prefs: SharedPreferences =
                 context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-            val isDark = prefs.getBoolean("dark_mode", false)
+            val isDark = prefs.getBoolean("widget_dark_mode", false)
             val layoutId = if (isDark) R.layout.widget_layout_2x2_night
                            else R.layout.widget_layout_2x2
 
@@ -74,6 +75,11 @@ class WordWidgetProvider2x2 : AppWidgetProvider() {
                 if (hidePinyin) views.setTextViewText(PINYIN_IDS[slot], "")
                 val meaning = prefs.getString("word_${slot}_meaning", "") ?: ""
                 views.setTextViewText(MEANING_IDS[slot], meaning)
+                // IMPORTANT: Center short meanings; right-align long ones that overflow the cell.
+                // XML sets gravity="center" as default but RemoteViews requires a runtime override.
+                // Do not remove — without this, all meanings are left-aligned regardless of XML.
+                val meaningGravity = if (meaning.length > 12) Gravity.END else Gravity.CENTER_HORIZONTAL
+                views.setInt(MEANING_IDS[slot], "setGravity", meaningGravity)
 
                 val wordId = prefs.getString("word_${slot}_id", "-1")
                     ?.toIntOrNull() ?: slot

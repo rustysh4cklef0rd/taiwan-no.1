@@ -66,7 +66,7 @@ class FlashcardWidgetProvider : AppWidgetProvider() {
             val phrasePinyin = prefs.getString("word_${slot}_phrase_pinyin", "") ?: ""
             val phraseMeaning = prefs.getString("word_${slot}_phrase_meaning", "") ?: ""
 
-            val isDark = prefs.getBoolean("dark_mode", false)
+            val isDark = prefs.getBoolean("widget_dark_mode", false)
             val layoutId = if (isDark) R.layout.widget_layout_flashcard_night
                            else R.layout.widget_layout_flashcard
 

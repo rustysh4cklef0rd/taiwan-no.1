@@ -37,7 +37,7 @@
                 android:text="字"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#F5F5F5"
+                android:textColor="#E8E8E8"
                 android:includeFontPadding="false" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"
+                android:textColor="#00F5FF"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -57,9 +57,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
-                android:textColor="#777777"
+                android:textColor="#A0A0B0"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:text="字"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#F5F5F5"
+                android:textColor="#E8E8E8"
                 android:includeFontPadding="false" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"
+                android:textColor="#00F5FF"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -104,9 +104,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
-                android:textColor="#777777"
+                android:textColor="#A0A0B0"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -131,7 +131,7 @@
                 android:text="字"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#F5F5F5"
+                android:textColor="#E8E8E8"
                 android:includeFontPadding="false" />
 
             <TextView
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"
+                android:textColor="#00F5FF"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -151,9 +151,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
-                android:textColor="#777777"
+                android:textColor="#A0A0B0"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -186,7 +186,7 @@
                 android:text="字"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#F5F5F5"
+                android:textColor="#E8E8E8"
                 android:includeFontPadding="false" />
 
             <TextView
@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"
+                android:textColor="#00F5FF"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -206,9 +206,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
-                android:textColor="#777777"
+                android:textColor="#A0A0B0"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -233,7 +233,7 @@
                 android:text="字"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#F5F5F5"
+                android:textColor="#E8E8E8"
                 android:includeFontPadding="false" />
 
             <TextView
@@ -243,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"
+                android:textColor="#00F5FF"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -253,9 +253,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
-                android:textColor="#777777"
+                android:textColor="#A0A0B0"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -280,7 +280,7 @@
                 android:text="字"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#F5F5F5"
+                android:textColor="#E8E8E8"
                 android:includeFontPadding="false" />
 
             <TextView
@@ -290,7 +290,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"
+                android:textColor="#00F5FF"
                 android:layout_marginTop="2dp" />
 
             <TextView
@@ -300,9 +300,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="9sp"
-                android:textColor="#777777"
+                android:textColor="#A0A0B0"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>

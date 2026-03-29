@@ -105,6 +105,32 @@ class WordService {
       return correct < attempts && lastSeen < today;
     }).toList();
 
+    // Unmaster priority queue: words recently removed from mastered list
+    // that should surface soon. Drains FIFO; queue persists until words appear.
+    final poolIds = effectivePool.map((w) => w.id).toSet();
+    final queueRaw = prefs.getString(_kUnmasterQueue) ?? '';
+    final queueIds = queueRaw.isEmpty
+        ? <int>[]
+        : queueRaw
+            .split(',')
+            .map((s) => int.tryParse(s.trim()))
+            .whereType<int>()
+            .toList();
+    final unmasterWords = <Word>[];
+    final remainingQueue = <int>[];
+    for (final id in queueIds) {
+      final match = effectivePool.where((w) => w.id == id);
+      if (match.isNotEmpty && poolIds.contains(id)) {
+        unmasterWords.add(match.first);
+      } else {
+        remainingQueue.add(id); // not in pool yet — keep for later
+      }
+    }
+    // Remove drained words from queue
+    if (unmasterWords.isNotEmpty) {
+      await prefs.setString(_kUnmasterQueue, remainingQueue.join(','));
+    }
+
     // Standard rotation — anchored to install date so day 1 = words 1-6.
     final installDay = prefs.getInt('install_epoch_day') ?? today;
     final rotationDay = today - installDay;
@@ -112,10 +138,10 @@ class WordService {
     final rotationWords = List.generate(
         6, (i) => effectivePool[(startIndex + i) % effectivePool.length]);
 
-    // Merge: review words first, then rotation, deduped
+    // Merge: SRS first, then unmaster queue, then rotation — all deduped
     final result = <Word>[];
     final seenIds = <int>{};
-    for (final w in [...needsReview, ...rotationWords]) {
+    for (final w in [...needsReview, ...unmasterWords, ...rotationWords]) {
       if (result.length >= 6) break;
       if (seenIds.add(w.id)) result.add(w);
     }
@@ -211,7 +237,7 @@ class WordService {
   }
 
   static int _epochDay(DateTime date) =>
-      date.toUtc().difference(DateTime.utc(1970, 1, 1)).inDays;
+      date.difference(DateTime(1970)).inDays;
 
   // ── Tap tracking ──────────────────────────────────────────────────────────
 
@@ -340,6 +366,24 @@ class WordService {
       result[day] = prefs.getInt('daily_$day') ?? 0;
     }
     return result;
+  }
+
+  // ── Unmaster priority queue ───────────────────────────────────────────────
+
+  static const _kUnmasterQueue = 'unmaster_queue';
+
+  /// Adds a word to the priority queue so it surfaces within 1-2 days
+  /// after being removed from the mastered list.
+  static Future<void> addToUnmasterQueue(int wordId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_kUnmasterQueue) ?? '';
+    final ids = raw.isEmpty
+        ? <int>[]
+        : raw.split(',').map((s) => int.tryParse(s.trim())).whereType<int>().toList();
+    if (!ids.contains(wordId)) {
+      ids.add(wordId);
+      await prefs.setString(_kUnmasterQueue, ids.join(','));
+    }
   }
 
   // ── Recognized words ──────────────────────────────────────────────────────

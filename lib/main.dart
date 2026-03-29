@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'db/app_database.dart';
+import 'db/tap_repository.dart';
 import 'models/word.dart';
+import 'providers/app_providers.dart';
 import 'screens/detail_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/settings_screen.dart';
 import 'services/word_service.dart';
+import 'widgets/neon_text.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Entry point
@@ -47,6 +52,44 @@ Future<void> saveDayOffset(int offset) async {
   await prefs.setInt('day_offset', offset);
 }
 
+Future<void> _migrateTapData(SharedPreferences prefs) async {
+  final db = AppDatabase();
+  final allKeys = prefs.getKeys();
+
+  // Build epochDay → Set<wordId> from tapped_<wordId> keys
+  final Map<int, Set<int>> dayToWords = {};
+  for (final key in allKeys) {
+    if (key.startsWith('tapped_')) {
+      final wordId = int.tryParse(key.substring(7));
+      if (wordId == null) continue;
+      final day = prefs.getInt(key);
+      if (day == null) continue;
+      dayToWords.putIfAbsent(day, () => {}).add(wordId);
+    }
+  }
+
+  // Insert rows for each daily_ key
+  final rows = <({int wordId, int tappedAt})>[];
+  for (final key in allKeys) {
+    if (!key.startsWith('daily_')) continue;
+    final epochDay = int.tryParse(key.substring(6));
+    if (epochDay == null) continue;
+    final count = prefs.getInt(key) ?? 0;
+    final words = (dayToWords[epochDay] ?? {}).toList();
+    final baseTs = epochDay * 86400000;
+    for (int i = 0; i < count; i++) {
+      final wordId = i < words.length ? words[i] : 0;
+      rows.add((wordId: wordId, tappedAt: baseTs + i));
+    }
+  }
+
+  if (rows.isNotEmpty) {
+    final repo = TapRepository(db);
+    await repo.insertTaps(rows);
+  }
+  await db.close();
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Disable network font fetching — all fonts are bundled as assets.
@@ -55,16 +98,20 @@ void main() async {
   // First-run initialisation.
   final prefs = await SharedPreferences.getInstance();
 
+  // Migrate tap data from SharedPreferences to SQLite (one-time).
+  final migrated = prefs.getBool('tap_migration_v1_complete') ?? false;
+  if (!migrated) {
+    await _migrateTapData(prefs);
+    await prefs.setBool('tap_migration_v1_complete', true);
+  }
+
   // Restore persisted day offset (survives app restarts).
   simulatedDayOffset = prefs.getInt('day_offset') ?? 0;
 
   // Record install date once — word rotation is anchored to this so
   // every install starts from word 1 rather than mid-cycle.
   if (!prefs.containsKey('install_epoch_day')) {
-    final todayEpoch = DateTime.now()
-        .toUtc()
-        .difference(DateTime.utc(1970, 1, 1))
-        .inDays;
+    final todayEpoch = DateTime.now().difference(DateTime(1970)).inDays;
     await prefs.setInt('install_epoch_day', todayEpoch);
   }
 
@@ -85,9 +132,11 @@ void main() async {
   final String initialRoute = await _resolveInitialRoute(prefs);
 
   runApp(
-    ChineseReadingApp(
-      initialRoute: initialRoute,
-      ttsAvailable: ttsAvailable,
+    ProviderScope(
+      child: ChineseReadingApp(
+        initialRoute: initialRoute,
+        ttsAvailable: ttsAvailable,
+      ),
     ),
   );
 }
@@ -106,7 +155,7 @@ Future<void> pushTodaysWordsToWidget([DateTime? date]) async {
     final List<Word> words = await WordService.getTodaysWords(target);
 
     final epochDay =
-        target.toUtc().difference(DateTime.utc(1970, 1, 1)).inDays;
+        target.difference(DateTime(1970)).inDays;
     _launchWords = words; // cache so HomeScreen uses the exact same list
     _launchWordsDay = epochDay; // track the day so stale cache can be detected
     // ignore: avoid_print
@@ -157,21 +206,59 @@ Future<String> _resolveInitialRoute(SharedPreferences prefs) async {
       _pendingDetailWordId = wordId;
       // Clear so the next cold start doesn't re-open detail.
       await HomeWidget.saveWidgetData<int>('launch_word_id', -1);
-      return '/detail';
+      // IMPORTANT: Always return '/' here, never '/detail'.
+      // If initialRoute is '/detail', Flutter pre-pushes '/' first, creating TWO
+      // HomeScreen instances in the back stack — causing the "extra home page on back" bug.
+      // The default route handler below reads _pendingDetailWordId and passes it to HomeScreen.
+      return '/';
     }
   } catch (_) {}
 
   final bool onboardingDone = prefs.getBool('onboarding_complete') ?? false;
   if (!onboardingDone) return '/onboarding';
 
-  return '/home';
+  return '/';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Neon Night Market colour palette (shared across screens)
+// ─────────────────────────────────────────────────────────────────────────────
+
+class NeonColors {
+  NeonColors._();
+
+  // Backgrounds
+  static const night     = Color(0xFF0D0D0F);
+  static const nightMid  = Color(0xFF13131A);
+  static const nightLift = Color(0xFF1A1A26);
+
+  // Accents
+  static const pink   = Color(0xFFFF2E63);
+  static const cyan   = Color(0xFF00F5FF);
+  static const orange = Color(0xFFFF6B35);
+
+  // Light-mode accents
+  static const cyanDay = Color(0xFF00BFCC); // light-mode muted teal
+
+  // Light-mode ink
+  static const inkDay = Color(0xFF1A1A2E); // --ink
+  static const inkMid = Color(0xFF3A3A5C); // --ink-mid
+  static const inkDim = Color(0xFF6B6B8A); // --ink-dim
+
+  // Text
+  static const white    = Color(0xFFE8E8E8);
+  static const whiteDim = Color(0xFFA0A0B0);
+
+  // Glass surfaces
+  static const glassBg     = Color(0x0AFFFFFF); // rgba(255,255,255,0.04)
+  static const glassBorder = Color(0x1AFFFFFF); // rgba(255,255,255,0.10)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // App root
 // ─────────────────────────────────────────────────────────────────────────────
 
-class ChineseReadingApp extends StatefulWidget {
+class ChineseReadingApp extends ConsumerStatefulWidget {
   const ChineseReadingApp({
     super.key,
     required this.initialRoute,
@@ -182,19 +269,35 @@ class ChineseReadingApp extends StatefulWidget {
   final bool ttsAvailable;
 
   @override
-  State<ChineseReadingApp> createState() => _ChineseReadingAppState();
+  ConsumerState<ChineseReadingApp> createState() => _ChineseReadingAppState();
 }
 
-class _ChineseReadingAppState extends State<ChineseReadingApp> {
-  bool _darkMode = false;
+class _ChineseReadingAppState extends ConsumerState<ChineseReadingApp>
+    with WidgetsBindingObserver {
+  bool _darkMode = true; // default to dark; overridden by saved pref
   bool _showTtsPrompt = false;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _loadTheme();
     if (!widget.ttsAvailable) {
       _checkTtsPrompt();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState lifecycleState) {
+    if (lifecycleState == AppLifecycleState.resumed) {
+      ref.read(tapProvider.notifier).refresh();
+      ref.invalidate(todaysWordsProvider);
     }
   }
 
@@ -202,7 +305,7 @@ class _ChineseReadingAppState extends State<ChineseReadingApp> {
     final prefs = await SharedPreferences.getInstance();
     if (mounted) {
       setState(() {
-        _darkMode = prefs.getBool('dark_mode') ?? false;
+        _darkMode = prefs.getBool('dark_mode') ?? true;
       });
     }
   }
@@ -259,28 +362,54 @@ class _ChineseReadingAppState extends State<ChineseReadingApp> {
   ThemeData _buildTheme(Brightness brightness) {
     final bool isDark = brightness == Brightness.dark;
     final base = ColorScheme.fromSeed(
-      seedColor: const Color(0xFFC9372C),
+      seedColor: isDark ? NeonColors.pink : const Color(0xFF00BFCC),
       brightness: brightness,
     ).copyWith(
-      primary: const Color(0xFFC9372C),
+      primary: isDark ? NeonColors.pink : const Color(0xFF00BFCC),
       onPrimary: Colors.white,
+      secondary: isDark ? NeonColors.cyan : null,
+      tertiary: isDark ? NeonColors.orange : null,
       surfaceContainerHighest:
-          isDark ? const Color(0xFF2D2520) : Colors.white,
-      // Explicitly brighten text in dark mode — auto-generated values are too
-      // dim against the custom #2D2520 tile background.
-      onSurface: isDark ? const Color(0xFFF2E4DF) : null,
-      onSurfaceVariant: isDark ? const Color(0xFFDDC8C2) : null,
-      outline: isDark ? const Color(0xFFCDB8B3) : null,
+          isDark ? NeonColors.nightLift : Colors.white,
+      onSurface: isDark ? NeonColors.white : null,
+      onSurfaceVariant: isDark ? NeonColors.white : null,
+      outline: isDark ? NeonColors.whiteDim : null,
     );
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
       colorScheme: base,
       scaffoldBackgroundColor:
-          isDark ? const Color(0xFF1A1614) : const Color(0xFFFAF5EE),
+          isDark ? NeonColors.night : const Color(0xFFF0F1F5),
       textTheme: ThemeData(useMaterial3: true, brightness: brightness)
           .textTheme
           .apply(fontFamily: 'Nunito'),
+      switchTheme: isDark
+          ? SwitchThemeData(
+              thumbColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return NeonColors.cyan;
+                }
+                return NeonColors.whiteDim;
+              }),
+              trackColor: WidgetStateProperty.resolveWith((states) {
+                return Colors.transparent;
+              }),
+              trackOutlineColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return NeonColors.cyan;
+                }
+                return NeonColors.whiteDim.withAlpha(100);
+              }),
+              trackOutlineWidth: WidgetStateProperty.all(1.5),
+              overlayColor: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return NeonColors.cyan.withAlpha(30);
+                }
+                return null;
+              }),
+            )
+          : null,
     );
   }
 
@@ -303,12 +432,17 @@ class _ChineseReadingAppState extends State<ChineseReadingApp> {
             : _pendingDetailWordId;
         _pendingDetailWordId = null; // consume
         return MaterialPageRoute(
-          builder: (_) => const DetailScreen(),
-          settings: RouteSettings(name: '/detail', arguments: wordId),
+          builder: (_) => HomeScreen(initialDetailWordId: wordId),
+          settings: settings,
         );
       default:
+        // IMPORTANT: Consume _pendingDetailWordId here (set by widget tap cold-start).
+        // This is the only route pushed on launch — passing the word ID directly avoids
+        // the duplicate HomeScreen back-stack bug caused by using '/detail' as initialRoute.
+        final pending = _pendingDetailWordId;
+        _pendingDetailWordId = null;
         return MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
+          builder: (_) => HomeScreen(initialDetailWordId: pending),
           settings: settings,
         );
     }
@@ -319,40 +453,52 @@ class _ChineseReadingAppState extends State<ChineseReadingApp> {
 // Home screen — today's 6 words grid
 // ─────────────────────────────────────────────────────────────────────────────
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key, this.initialDetailWordId});
+
+  final int? initialDetailWordId;
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   List<Word> _words = [];
   bool _loading = true;
+  int _streakCurrent = 0;
+
+  // Persistent nav state
+  int _selectedIndex = 0;
+  int? _reviewWordId;
 
   @override
   void initState() {
     super.initState();
+    if (widget.initialDetailWordId != null) {
+      _reviewWordId = widget.initialDetailWordId;
+      _selectedIndex = 1;
+    }
     _load();
   }
 
+  // Map nav index (0-3) to page index (0-2): Stats(2) and Settings(3) share SettingsScreen
+  int get _effectivePageIndex {
+    if (_selectedIndex <= 1) return _selectedIndex;
+    return 2;
+  }
+
   Future<void> _load() async {
-    // If the app was resumed on a new calendar day (main() didn't re-run),
-    // _launchWords is stale — re-push so the home screen and widget stay in sync.
     final effective = effectiveDate;
-    final effectiveDay =
-        effective.toUtc().difference(DateTime.utc(1970, 1, 1)).inDays;
-    // ignore: avoid_print
-    print('[CWDBG] HomeScreen._load: effectiveDay=$effectiveDay _launchWordsDay=$_launchWordsDay _launchWords=${_launchWords?.map((w) => '${w.character}(${w.id})').toList()}');
+    final effectiveDay = effective.difference(DateTime(1970)).inDays;
     if ((_launchWordsDay ?? -1) != effectiveDay) {
       await pushTodaysWordsToWidget(effective);
     }
     final words = _launchWords ?? await WordService.getTodaysWords(effective);
-    // ignore: avoid_print
-    print('[CWDBG] HomeScreen._load: showing words=${words.map((w) => '${w.character}(${w.id})').toList()}');
+    final streak = await WordService.getStreakData();
     if (mounted) {
       setState(() {
         _words = words;
+        _streakCurrent = streak.current;
         _loading = false;
       });
     }
@@ -360,135 +506,397 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final colorScheme = Theme.of(context).colorScheme;
-    final now = effectiveDate;
-    final months = [
-      'Jan','Feb','Mar','Apr','May','Jun',
-      'Jul','Aug','Sep','Oct','Nov','Dec'
-    ];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '今日漢字',
-          style: const TextStyle(
-            fontFamily: 'serif',
-            fontSize: 22,
-            fontWeight: FontWeight.w700,
+    return PopScope(
+      // canPop: allow exit only when already on the home tab
+      canPop: _selectedIndex == 0,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop && _selectedIndex != 0) {
+          setState(() => _selectedIndex = 0);
+        }
+      },
+      child: Scaffold(
+        body: _loading
+            ? const Center(child: CircularProgressIndicator())
+            : IndexedStack(
+                index: _effectivePageIndex,
+                children: [
+                  _buildHomeBody(context),
+                  _reviewWordId != null
+                      ? DetailScreen(
+                          key: ValueKey(_reviewWordId),
+                          wordId: _reviewWordId,
+                          embedded: true,
+                          onBack: () {
+                            _load();
+                            setState(() => _selectedIndex = 0);
+                          },
+                        )
+                      : const SizedBox.shrink(),
+                  SettingsScreen(
+                    embedded: true,
+                    onDayChanged: _load,
+                  ),
+                ],
+              ),
+        bottomNavigationBar: _buildNavBar(isDark, colorScheme),
+      ),
+    );
+  }
+
+  Widget _buildNavBar(bool isDark, ColorScheme colorScheme) {
+    return Container(
+      decoration: BoxDecoration(
+        color: isDark
+            ? NeonColors.night.withAlpha(204)
+            : colorScheme.surface.withAlpha(225),
+        border: Border(
+          top: BorderSide(
+            color: isDark ? NeonColors.glassBorder : NeonColors.cyanDay.withAlpha(36),
           ),
         ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings_outlined),
-            tooltip: 'Settings',
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const SettingsScreen()),
-            ),
+      ),
+      padding: const EdgeInsets.only(top: 14, bottom: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _NavItem(
+            icon: '⬡',
+            label: 'Home',
+            active: _selectedIndex == 0,
+            onTap: () => setState(() => _selectedIndex = 0),
+          ),
+          _NavItem(
+            icon: '◈',
+            label: 'Review',
+            active: _selectedIndex == 1,
+            onTap: () {
+              if (_words.isNotEmpty) {
+                setState(() {
+                  _reviewWordId ??= _words.first.id;
+                  _selectedIndex = 1;
+                });
+              }
+            },
+          ),
+          _NavItem(
+            icon: '◉',
+            label: 'Stats',
+            active: _selectedIndex == 2,
+            onTap: () => setState(() => _selectedIndex = 2),
+          ),
+          _NavItem(
+            icon: '◎',
+            label: 'Settings',
+            active: _selectedIndex == 3,
+            onTap: () => setState(() => _selectedIndex = 3),
           ),
         ],
       ),
-      body: _loading
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+    );
+  }
+
+  Widget _buildHomeBody(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final now = effectiveDate;
+    const zhMonths = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+    const zhWeekdays = ['週一','週二','週三','週四','週五','週六','週日'];
+
+    // Tile accent colours cycle: pink, cyan, orange
+    const tileAccents = [NeonColors.pink, NeonColors.cyan, NeonColors.orange];
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            // ── App header ─────────────────────────────────────
+            Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFC9372C),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              months[now.month - 1].toUpperCase(),
-                              style: const TextStyle(
-                                fontSize: 7,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                                letterSpacing: 1,
-                              ),
-                            ),
-                            Text(
-                              '${now.day}',
-                              style: const TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                                height: 1.1,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Today's characters",
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: colorScheme.onSurface,
-                            ),
-                          ),
-                          Text(
-                            simulatedDayOffset == 0
-                                ? 'Tap any character to study'
-                                : 'Day offset: ${simulatedDayOffset > 0 ? '+' : ''}$simulatedDayOffset',
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: colorScheme.outline,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  NeonText(
+                    text: '學字',
+                    style: const TextStyle(
+                      fontFamily: 'serif',
+                      fontSize: 32,
+                      letterSpacing: 4,
+                    ),
+                    glowColor: NeonColors.pink,
+                    mode: NeonMode.flicker,
                   ),
-                  const SizedBox(height: 14),
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 0.85,
-                      ),
-                      itemCount: _words.length,
-                      itemBuilder: (context, index) {
-                        final w = _words[index];
-                        return _WordTile(
-                          word: w,
-                          onTap: () => Navigator.of(context).pushNamed(
-                            '/detail',
-                            arguments: w.id,
-                          ),
-                        );
-                      },
+                  const SizedBox(height: 2),
+                  Text(
+                    'Learn Chinese · 每日六字',
+                    style: TextStyle(
+                      fontSize: 11,
+                      letterSpacing: 3,
+                      color: isDark
+                          ? NeonColors.cyan.withAlpha(204)
+                          : colorScheme.outline,
                     ),
                   ),
                 ],
               ),
             ),
+
+            // ── Date row ───────────────────────────────────────
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Date pill
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 14, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? NeonColors.glassBg
+                        : colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(20),
+                    border: isDark
+                        ? Border.all(color: NeonColors.glassBorder)
+                        : null,
+                  ),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${zhMonths[now.month - 1]} ',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: isDark
+                                ? NeonColors.whiteDim
+                                : NeonColors.inkDim,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '${now.day}日',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? NeonColors.cyan
+                                : NeonColors.cyanDay,
+                            shadows: isDark
+                                ? [
+                                    Shadow(
+                                      color: NeonColors.cyan.withAlpha(128),
+                                      blurRadius: 6,
+                                    ),
+                                  ]
+                                : null,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' · ${zhWeekdays[now.weekday - 1]}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: isDark
+                                ? NeonColors.whiteDim
+                                : NeonColors.inkDim,
+                          ),
+                        ),
+                        TextSpan(
+                          text: simulatedDayOffset != 0
+                              ? '  (${simulatedDayOffset > 0 ? '+' : ''}$simulatedDayOffset)'
+                              : '',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: isDark
+                                ? NeonColors.whiteDim
+                                : NeonColors.inkDim,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                // Streak pill
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? NeonColors.orange.withAlpha(31)
+                        : colorScheme.tertiaryContainer,
+                    borderRadius: BorderRadius.circular(20),
+                    border: isDark
+                        ? Border.all(
+                            color: NeonColors.orange.withAlpha(89))
+                        : null,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('🔥', style: TextStyle(fontSize: 12)),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${ref.watch(tapProvider).valueOrNull?.streakCurrent ?? _streakCurrent}天 streak',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? NeonColors.orange
+                              : colorScheme.onTertiaryContainer,
+                          shadows: isDark
+                              ? [
+                                  Shadow(
+                                    color:
+                                        NeonColors.orange.withAlpha(153),
+                                    blurRadius: 8,
+                                  ),
+                                ]
+                              : null,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
+
+            // ── Section label ──────────────────────────────────
+            Row(
+              children: [
+                Text(
+                  "TODAY'S CHARACTERS",
+                  style: TextStyle(
+                    fontSize: 10,
+                    letterSpacing: 3,
+                    color: isDark
+                        ? NeonColors.whiteDim
+                        : colorScheme.outline,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Container(
+                    height: 1,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: isDark
+                            ? [
+                                Colors.white.withAlpha(20),
+                                Colors.transparent,
+                              ]
+                            : [
+                                NeonColors.cyanDay.withAlpha(64),
+                                Colors.transparent,
+                              ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            // ── 2-column character grid ───────────────────────
+            Expanded(
+              child: GridView.builder(
+                gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 0.95,
+                ),
+                itemCount: _words.length,
+                itemBuilder: (context, index) {
+                  final w = _words[index];
+                  return _WordTile(
+                    word: w,
+                    accent: tileAccents[index % tileAccents.length],
+                    onTap: () {
+                      // NOTE: do NOT call optimisticRecordTap here.
+                      // DetailScreen._loadWord() records the tap when built with a new key.
+                      // Calling it here AND there causes every tile tap to count as 2 taps.
+                      setState(() {
+                        _reviewWordId = w.id;
+                        _selectedIndex = 1;
+                      });
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
+// ─── Bottom nav item ───────────────────────────────────────────────────────
+
+class _NavItem extends StatelessWidget {
+  const _NavItem({
+    required this.icon,
+    required this.label,
+    required this.active,
+    required this.onTap,
+  });
+
+  final String icon;
+  final String label;
+  final bool active;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final color = active
+        ? (isDark ? NeonColors.cyan : NeonColors.cyanDay)
+        : (isDark ? NeonColors.whiteDim : NeonColors.inkDim);
+
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            icon,
+            style: TextStyle(
+              fontSize: 18,
+              color: color,
+              shadows: active
+                  ? (isDark
+                      ? [Shadow(color: NeonColors.cyan, blurRadius: 8)]
+                      : [Shadow(color: NeonColors.cyanDay.withAlpha(153), blurRadius: 8)])
+                  : null,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 10,
+              letterSpacing: 0.5,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── Word tile (glass morphism) ────────────────────────────────────────────
+
 class _WordTile extends StatelessWidget {
-  const _WordTile({required this.word, required this.onTap});
+  const _WordTile({
+    required this.word,
+    required this.accent,
+    required this.onTap,
+  });
 
   final Word word;
+  final Color accent;
   final VoidCallback onTap;
 
   @override
@@ -498,73 +906,80 @@ class _WordTile extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withAlpha(isDark ? 40 : 18),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            padding: const EdgeInsets.fromLTRB(8, 18, 8, 12),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  word.character,
-                  style: TextStyle(
-                    fontFamily: 'serif',
-                    fontSize: 44,
-                    fontWeight: FontWeight.w700,
-                    color: colorScheme.onSurface,
-                    height: 1,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  word.pinyin,
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: colorScheme.outline,
-                    letterSpacing: 0.3,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  word.meaning.split(';').first.split(',').first.trim(),
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: colorScheme.outline.withAlpha(160),
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isDark ? NeonColors.glassBg : colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark ? NeonColors.glassBorder : NeonColors.cyanDay.withAlpha(41),
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 3,
-              decoration: const BoxDecoration(
-                color: Color(0xFFC9372C),
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(16),
-                ),
+          boxShadow: isDark
+              ? null
+              : [
+                  BoxShadow(
+                    color: Colors.black.withAlpha(18),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+        ),
+        padding: const EdgeInsets.fromLTRB(14, 18, 14, 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              word.character,
+              style: TextStyle(
+                fontFamily: 'serif',
+                fontSize: 52,
+                height: 1,
+                color: isDark ? NeonColors.white : colorScheme.onSurface,
+                shadows: isDark
+                    ? [
+                        Shadow(
+                          color: Colors.white.withAlpha(51),
+                          blurRadius: 4,
+                        ),
+                      ]
+                    : [
+                        Shadow(
+                          color: NeonColors.inkDay.withAlpha(31),
+                          blurRadius: 3,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
               ),
             ),
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              word.pinyin,
+              style: TextStyle(
+                fontSize: 12,
+                letterSpacing: 1,
+                color: isDark ? NeonColors.cyan : NeonColors.inkDay,
+                shadows: isDark
+                    ? [
+                        Shadow(
+                          color: NeonColors.cyan.withAlpha(128),
+                          blurRadius: 6,
+                        ),
+                      ]
+                    : null,
+              ),
+            ),
+            const SizedBox(height: 3),
+            Text(
+              word.meaning.split(';').first.split(',').first.trim(),
+              style: TextStyle(
+                fontSize: 11,
+                letterSpacing: 0.3,
+                color: isDark ? NeonColors.whiteDim : colorScheme.outline,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }

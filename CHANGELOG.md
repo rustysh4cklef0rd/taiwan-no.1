@@ -1,5 +1,40 @@
 # Changelog
 
+## 2026-03-29 — Unified button design system
+
+### Changed
+- All custom buttons updated to unified design: 1px → 1.5px stroke width across all screens
+- Added dual-layer glow (blur 10px spread 1px + blur 20px spread 2px) to dark mode buttons that previously had no glow: Again, Good ✓, Easy — Mastered ⚡, I know this word, Mastered — tap to undo, Unlock Set N, Back ← 返回, Cancel (dialog)
+- Next Day nav button: unified border/text/icon from pastel `#FF80AA` to standard `NeonColors.pink` (#FF2E63); all three values now derived from the same color token
+- Neon switches: glow opacity reduced to match button system (alpha 100/60 → 71/41)
+- Reveal button: single-layer blur12 glow → dual-layer standard
+- Clear All dialog button: single-layer blur8 → dual-layer standard
+- Unlock Set N: border-radius 8 → 10px, added glow
+- Light mode buttons: single-layer glow → dual-layer at lower opacity for consistency
+
+## 2026-03-28 — Bug fixes: tap recording on mark-known, back navigation
+
+### Fixed
+- **Mark as known now records a tap**: `_toggleRecognized` in `DetailScreen` now calls `optimisticRecordTap` when marking a word as mastered (not when un-mastering). The "Easy — Mastered" quiz mode button also now records a tap.
+- **Back button navigates to home tab, not OS**: `HomeScreen` now wraps its scaffold in `PopScope(canPop: _selectedIndex == 0)`. Pressing back from the Review or Settings tab switches back to the Home tab; pressing back when already on the Home tab exits the app normally.
+
+## 2026-03-28 — v1.2.0 — Reactive state refactor
+
+### Added
+- **flutter_riverpod** (^2.5.1): full reactive state management via `ProviderScope` wrapping the app root
+- **drift** (^2.18.0) + **sqlite3_flutter_libs**: SQLite-backed tap tracking replacing raw SharedPreferences heatmap counters
+- `lib/db/app_database.dart` — Drift `Taps` table with `id`, `wordId`, `tappedAt` (Unix ms); generated `app_database.g.dart` via build_runner
+- `lib/db/tap_repository.dart` — `TapRepository` with `insertTap`, `insertTaps`, `getHeatmapData`, `getDaysWithTaps`, `getTodayTapCount`, `migrateFromSharedPrefs`
+- `lib/providers/app_providers.dart` — providers: `appDatabaseProvider`, `tapRepositoryProvider`, `appSettingsProvider` (`AppSettingsNotifier`), `tapProvider` (`TapNotifier` with optimistic updates + streak compute), `writeQueueProvider` (3-second batched write queue), `todaysWordsProvider`
+- **One-time migration** in `main()`: reads legacy `tapped_*`/`daily_*` SharedPreferences keys and inserts into SQLite on first launch
+- **AppLifecycleObserver** on `ChineseReadingApp`: refreshes `tapProvider` and invalidates `todaysWordsProvider` on app resume
+
+### Changed
+- `ChineseReadingApp` converted from `StatefulWidget` → `ConsumerStatefulWidget` with `WidgetsBindingObserver`
+- `HomeScreen` converted to `ConsumerStatefulWidget`; word tile tap now calls `ref.read(tapProvider.notifier).optimisticRecordTap(wordId)` for instant UI feedback; streak pill reads from `tapProvider`
+- `SettingsScreen` converted to `ConsumerStatefulWidget`; streak card, stats row, and heatmap card now read live data from `tapProvider`
+- `DetailScreen` converted to `ConsumerStatefulWidget`; `WordService.recordTap` replaced with `ref.read(tapProvider.notifier).optimisticRecordTap(wordId)`
+
 ## 2026-03-28 — v1.1.0
 
 ### Fixed

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:chinese_reading_widget/main.dart' show NeonColors;
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -41,6 +42,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            const SizedBox.shrink(),
             Expanded(
               child: PageView(
                 controller: _pageController,
@@ -236,9 +238,42 @@ class _BottomBar extends StatelessWidget {
             }),
           ),
           // Action button
-          FilledButton(
-            onPressed: onNext ?? onFinish,
-            child: Text(currentPage == totalPages - 1 ? 'Get Started' : 'Next'),
+          Builder(
+            builder: (context) {
+              final isDark = Theme.of(context).brightness == Brightness.dark;
+              final isLastPage = currentPage == totalPages - 1;
+              return GestureDetector(
+                onTap: onNext ?? onFinish,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: isDark ? NeonColors.pink.withAlpha(31) : NeonColors.cyanDay.withAlpha(20),
+                    border: Border.all(color: isDark ? NeonColors.pink.withAlpha(102) : NeonColors.cyanDay.withAlpha(80), width: 1.5),
+                    borderRadius: BorderRadius.circular(14),
+                    boxShadow: [
+                      BoxShadow(
+                        color: (isDark ? NeonColors.pink : NeonColors.cyanDay).withAlpha(71),
+                        blurRadius: 10,
+                        spreadRadius: 1,
+                      ),
+                      BoxShadow(
+                        color: (isDark ? NeonColors.pink : NeonColors.cyanDay).withAlpha(41),
+                        blurRadius: 20,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    isLastPage ? 'Get Started' : 'Next',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? NeonColors.pink : NeonColors.cyanDay,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

@@ -33,7 +33,7 @@
                 android:text="字"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"
+                android:textColor="#1A1A2E"
                 android:includeFontPadding="false" />
             <TextView
                 android:id="@+id/pinyin_0"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="8sp"
-                android:textColor="#666666"
+                android:textColor="#00BFCC"
                 android:layout_marginTop="1dp" />
             <TextView
                 android:id="@+id/meaning_0"
@@ -51,9 +51,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="7sp"
-                android:textColor="#999999"
+                android:textColor="#3A3A5C"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -77,7 +77,7 @@
                 android:text="字"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"
+                android:textColor="#1A1A2E"
                 android:includeFontPadding="false" />
             <TextView
                 android:id="@+id/pinyin_1"
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="8sp"
-                android:textColor="#666666"
+                android:textColor="#00BFCC"
                 android:layout_marginTop="1dp" />
             <TextView
                 android:id="@+id/meaning_1"
@@ -95,9 +95,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="7sp"
-                android:textColor="#999999"
+                android:textColor="#3A3A5C"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -121,7 +121,7 @@
                 android:text="字"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"
+                android:textColor="#1A1A2E"
                 android:includeFontPadding="false" />
             <TextView
                 android:id="@+id/pinyin_2"
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="8sp"
-                android:textColor="#666666"
+                android:textColor="#00BFCC"
                 android:layout_marginTop="1dp" />
             <TextView
                 android:id="@+id/meaning_2"
@@ -139,9 +139,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="7sp"
-                android:textColor="#999999"
+                android:textColor="#3A3A5C"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -174,7 +174,7 @@
                 android:text="字"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"
+                android:textColor="#1A1A2E"
                 android:includeFontPadding="false" />
             <TextView
                 android:id="@+id/pinyin_3"
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="8sp"
-                android:textColor="#666666"
+                android:textColor="#00BFCC"
                 android:layout_marginTop="1dp" />
             <TextView
                 android:id="@+id/meaning_3"
@@ -192,9 +192,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="7sp"
-                android:textColor="#999999"
+                android:textColor="#3A3A5C"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -218,7 +218,7 @@
                 android:text="字"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"
+                android:textColor="#1A1A2E"
                 android:includeFontPadding="false" />
             <TextView
                 android:id="@+id/pinyin_4"
@@ -227,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="8sp"
-                android:textColor="#666666"
+                android:textColor="#00BFCC"
                 android:layout_marginTop="1dp" />
             <TextView
                 android:id="@+id/meaning_4"
@@ -236,9 +236,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="7sp"
-                android:textColor="#999999"
+                android:textColor="#3A3A5C"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
@@ -262,7 +262,7 @@
                 android:text="字"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"
+                android:textColor="#1A1A2E"
                 android:includeFontPadding="false" />
             <TextView
                 android:id="@+id/pinyin_5"
@@ -271,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:text="zì"
                 android:textSize="8sp"
-                android:textColor="#666666"
+                android:textColor="#00BFCC"
                 android:layout_marginTop="1dp" />
             <TextView
                 android:id="@+id/meaning_5"
@@ -280,9 +280,9 @@
                 android:layout_height="wrap_content"
                 android:text="good"
                 android:textSize="7sp"
-                android:textColor="#999999"
+                android:textColor="#3A3A5C"
                 android:layout_marginTop="1dp"
-                android:gravity="start"
+                android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end" />
         </LinearLayout>
