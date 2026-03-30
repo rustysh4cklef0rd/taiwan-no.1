@@ -467,25 +467,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   bool _loading = true;
   int _streakCurrent = 0;
 
-  // Persistent nav state
+  // Persistent nav state — 0=Home, 2=Stats, 3=Settings (Review is a pushed route)
   int _selectedIndex = 0;
-  int? _reviewWordId;
-  int _settingsRefreshSeed = 0;
 
   @override
   void initState() {
     super.initState();
-    if (widget.initialDetailWordId != null) {
-      _reviewWordId = widget.initialDetailWordId;
-      _selectedIndex = 1;
-    }
     _load();
+    // If launched from a widget tap, push the detail screen after first frame.
+    if (widget.initialDetailWordId != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => DetailScreen(wordId: widget.initialDetailWordId),
+          ));
+        }
+      });
+    }
   }
 
-  // Map nav index (0-3) to page index (0-2): Stats(2) and Settings(3) share SettingsScreen
+  // Map nav index (0=Home, 2=Stats, 3=Settings) to IndexedStack page index (0 or 1)
   int get _effectivePageIndex {
-    if (_selectedIndex <= 1) return _selectedIndex;
-    return 2;
+    if (_selectedIndex == 0) return 0;
+    return 1; // Stats and Settings both use SettingsScreen
   }
 
   Future<void> _load() async {
@@ -511,7 +515,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return PopScope(
-      // canPop: allow exit only when already on the home tab
+      // Allow back to exit app only from Home tab; intercept from Stats/Settings.
       canPop: _selectedIndex == 0,
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop && _selectedIndex != 0) {
@@ -525,22 +529,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 index: _effectivePageIndex,
                 children: [
                   _buildHomeBody(context),
-                  _reviewWordId != null
-                      ? DetailScreen(
-                          key: ValueKey(_reviewWordId),
-                          wordId: _reviewWordId,
-                          embedded: true,
-                          onBack: () {
-                            _load();
-                            setState(() {
-                              _selectedIndex = 0;
-                              _settingsRefreshSeed++;
-                            });
-                          },
-                        )
-                      : const SizedBox.shrink(),
                   SettingsScreen(
-                    key: ValueKey(_settingsRefreshSeed),
                     embedded: true,
                     onDayChanged: _load,
                   ),
@@ -571,18 +560,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             icon: '⬡',
             label: 'Home',
             active: _selectedIndex == 0,
-            onTap: () => setState(() => _selectedIndex = 0),
+            onTap: () {
+              _load();
+              setState(() => _selectedIndex = 0);
+            },
           ),
           _NavItem(
             icon: '◈',
             label: 'Review',
-            active: _selectedIndex == 1,
+            active: false,
             onTap: () {
               if (_words.isNotEmpty) {
-                setState(() {
-                  _reviewWordId ??= _words.first.id;
-                  _selectedIndex = 1;
-                });
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => DetailScreen(wordId: _words.first.id),
+                )).then((_) => _load());
               }
             },
           ),
@@ -819,11 +810,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     onTap: () {
                       // NOTE: do NOT call optimisticRecordTap here.
                       // DetailScreen._loadWord() records the tap when built with a new key.
-                      // Calling it here AND there causes every tile tap to count as 2 taps.
-                      setState(() {
-                        _reviewWordId = w.id;
-                        _selectedIndex = 1;
-                      });
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => DetailScreen(wordId: w.id),
+                      )).then((_) => _load());
                     },
                   );
                 },

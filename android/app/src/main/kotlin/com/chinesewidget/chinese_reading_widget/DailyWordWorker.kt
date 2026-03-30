@@ -79,7 +79,7 @@ class DailyWordWorker(context: Context, params: WorkerParameters) :
         val flutterPrefs = applicationContext.getSharedPreferences(
             "FlutterSharedPreferences", Context.MODE_PRIVATE
         )
-        val activeSet = flutterPrefs.getInt("flutter.active_set", 1)
+        val activeSet = flutterPrefs.getLong("flutter.active_set", 1L).toInt()
 
         // Set max IDs: index matches set number (0 unused).
         val setMaxIds = listOf(0, 312, 625, 937, 1250)
@@ -101,7 +101,7 @@ class DailyWordWorker(context: Context, params: WorkerParameters) :
 
         val epochDay = System.currentTimeMillis() / 86_400_000L
         // Anchor rotation to install date so day 1 = words 1-6.
-        val installEpochDay = flutterPrefs.getInt("flutter.install_epoch_day", -1).toLong()
+        val installEpochDay = flutterPrefs.getLong("flutter.install_epoch_day", -1L)
         val rotationDay = if (installEpochDay < 0) 0L else (epochDay - installEpochDay)
         val startIndex = ((rotationDay * 6) % effectiveIndices.size).toInt()
 

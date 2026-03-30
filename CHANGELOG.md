@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-03-30 — Home screen refresh + DailyWordWorker crash fix
+
+### Fixed
+- "I know this word" button now removes the word from the home grid when navigating back — home screen reloads on detail screen pop
+- `DailyWordWorker` crash at midnight: `ClassCastException: Long cannot be cast to Integer` — Flutter stores Dart ints as Long in SharedPreferences; switched to `getLong()` for `active_set` and `install_epoch_day`
+
 ## 2026-03-30 — Bug fixes + icon glow update
 
 ### Fixed

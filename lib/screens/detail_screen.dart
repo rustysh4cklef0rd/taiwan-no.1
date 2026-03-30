@@ -179,7 +179,6 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
             duration: const Duration(seconds: 3),
           ),
         );
-        widget.onBack?.call();
       }
     }
   }
@@ -188,12 +187,6 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
     final word = _word;
     if (word == null) return;
     await WordService.recordQuizResult(word.id, correct: correct);
-    if (!mounted) return;
-    if (widget.embedded) {
-      widget.onBack?.call();
-    } else {
-      Navigator.of(context).maybePop();
-    }
   }
 
   static String _getToneName(int tone) {
@@ -637,20 +630,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
               ),
               const SizedBox(height: 10),
               GestureDetector(
-                onTap: () async {
-                  final word = _word;
-                  if (word == null) return;
-                  ref.read(tapProvider.notifier).optimisticRecordTap(word.id);
-                  await WordService.markRecognized(word.id);
-                  await WordService.replaceWordInToday(word.id);
-                  invalidateLaunchCache();
-                  if (!mounted) return;
-                  if (widget.embedded) {
-                    widget.onBack?.call();
-                  } else {
-                    Navigator.of(context).maybePop();
-                  }
-                },
+                onTap: _toggleRecognized,
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(vertical: 14),
