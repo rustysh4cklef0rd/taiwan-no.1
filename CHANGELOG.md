@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-03-29 — Fix CI Flutter version
+
+### Fixed
+- GitHub Actions workflow: Flutter 3.27.4 → 3.29.3 to satisfy Dart SDK ^3.7.0 requirement
+
 ## 2026-03-29 — New app icon + CI build pipeline
 
 ### Changed
