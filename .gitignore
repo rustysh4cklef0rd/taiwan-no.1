@@ -59,3 +59,5 @@ android/.gradle/
 # Design/plan HTML files generated during development
 design-mockup-*.html
 plan-*.html
+.playwright-mcp/
+icon-render.html

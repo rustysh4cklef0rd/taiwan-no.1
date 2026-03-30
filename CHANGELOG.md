@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-03-29 — New app icon + CI build pipeline
+
+### Changed
+- New Android app icon: stacked 學字 with red (top) + cyan (bottom) neon glow, Noto Sans TC font, near-black background
+- GitHub Actions workflow: auto-builds release APK on every push to master, uploads as downloadable artifact (30-day retention)
+
 ## 2026-03-29 — Unified button design system
 
 ### Changed
