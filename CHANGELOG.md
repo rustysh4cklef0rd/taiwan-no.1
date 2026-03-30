@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-03-30 — Bug fixes + icon glow update
+
+### Fixed
+- Marking a word as known via the star button in Review now removes it from Today's Characters and Today's Words in Settings
+- Pixel 6 2x2 widget no longer placed at 3x2 — reduced minWidth/minHeight from 110dp to 80dp
+
+### Changed
+- App icon glow intensity increased — wider diffuse halos on both characters
+
 ## 2026-03-29 — Fix CI Flutter version
 
 ### Fixed

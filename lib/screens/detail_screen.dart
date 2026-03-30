@@ -179,6 +179,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
             duration: const Duration(seconds: 3),
           ),
         );
+        widget.onBack?.call();
       }
     }
   }

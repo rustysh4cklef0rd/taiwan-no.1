@@ -470,6 +470,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   // Persistent nav state
   int _selectedIndex = 0;
   int? _reviewWordId;
+  int _settingsRefreshSeed = 0;
 
   @override
   void initState() {
@@ -531,11 +532,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           embedded: true,
                           onBack: () {
                             _load();
-                            setState(() => _selectedIndex = 0);
+                            setState(() {
+                              _selectedIndex = 0;
+                              _settingsRefreshSeed++;
+                            });
                           },
                         )
                       : const SizedBox.shrink(),
                   SettingsScreen(
+                    key: ValueKey(_settingsRefreshSeed),
                     embedded: true,
                     onDayChanged: _load,
                   ),
