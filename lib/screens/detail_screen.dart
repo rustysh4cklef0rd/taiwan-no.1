@@ -325,9 +325,9 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
             NeonText(
               text: word.character,
               style: TextStyle(
-                fontFamily: 'serif',
+                fontFamily: 'NotoSansTC',
                 fontSize: 120,
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.w700,
                 color: colorScheme.onSurface,
                 height: 1.0,
               ),
@@ -440,9 +440,9 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                     NeonText(
                       text: word.character,
                       style: TextStyle(
-                        fontFamily: 'serif',
+                        fontFamily: 'NotoSansTC',
                         fontSize: 112,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w500,
                         color: colorScheme.onSurface,
                         height: 1.0,
                       ),
@@ -991,7 +991,7 @@ class _PhraseCard extends StatelessWidget {
                     Text(
                       word.phrase,
                       style: TextStyle(
-                        fontFamily: 'serif',
+                        fontFamily: 'NotoSansTC',
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                         color: colorScheme.onSurface,

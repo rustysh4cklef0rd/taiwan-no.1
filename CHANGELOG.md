@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-03-31 — Typography system: embed Noto Sans TC + weight fixes
+
+### Added
+- `assets/fonts/NotoSansTC-Medium.ttf` (w500) + `NotoSansTC-Bold.ttf` (w700) — full CJK font coverage
+- `assets/fonts/Nunito-Medium.ttf` (w500) — fills gap between Regular and SemiBold
+- `lib/theme/typography.dart` — centralized `AppTypography` (Nunito) and `CjkStyle` (NotoSansTC) token classes
+
+### Changed
+- CJK characters now use embedded Noto Sans TC instead of system `'serif'` fallback — consistent rendering across all devices
+- Detail view character weight: w900 → w700 (clearer stroke structure)
+- Quiz card character weight: w900 → w500 (study-optimized, individual strokes visible)
+- Declared `NotoSansTC` font family in pubspec.yaml (3 weights: 400, 500, 700)
+- Declared Nunito w500 in pubspec.yaml (now 4 weights: 400, 500, 600, 700)
+
+### Removed
+- `google_fonts` dependency — was only used to disable runtime fetching, no actual GoogleFonts.* calls
+
 ## 2026-03-30 — Home screen refresh + DailyWordWorker crash fix
 
 ### Fixed

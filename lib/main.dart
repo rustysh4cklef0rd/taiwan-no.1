@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:home_widget/home_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -92,9 +92,6 @@ Future<void> _migrateTapData(SharedPreferences prefs) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Disable network font fetching — all fonts are bundled as assets.
-  GoogleFonts.config.allowRuntimeFetching = false;
-
   // First-run initialisation.
   final prefs = await SharedPreferences.getInstance();
 
@@ -617,7 +614,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   NeonText(
                     text: '學字',
                     style: const TextStyle(
-                      fontFamily: 'serif',
+                      fontFamily: 'NotoSansTC',
                       fontSize: 32,
                       letterSpacing: 4,
                     ),
@@ -924,7 +921,7 @@ class _WordTile extends StatelessWidget {
             Text(
               word.character,
               style: TextStyle(
-                fontFamily: 'serif',
+                fontFamily: 'NotoSansTC',
                 fontSize: 52,
                 height: 1,
                 color: isDark ? NeonColors.white : colorScheme.onSurface,
